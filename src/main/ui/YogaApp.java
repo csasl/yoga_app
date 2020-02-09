@@ -64,12 +64,15 @@ public class YogaApp {
     public List<YogaPose> mainPoses;
     public List<YogaPose> warmDownPoses;
     private Scanner input;
+    public YogaSequence myYogaSequence;
 
+    //EFFECTS: Runs the yoga app
     public YogaApp() {
         runApp();
     }
 
 
+    //EFFECTS: Populates lists of stages of workouts with pre-defined exercises
     public void initializeStages() {
         breathingExercises = new ArrayList<>();
         breathingExercises.add(ALTERNATE);
@@ -117,7 +120,6 @@ public class YogaApp {
     }
 
 
-
     public void displayMenu() {
         System.out.println("\nWelcome to Yoga Flow! Let's start building your very own sequence. "
                 + "\n Please select" + "one of the following options");
@@ -125,54 +127,50 @@ public class YogaApp {
         System.out.println("\t w to browse warm-up poses");
         System.out.println("\t m to browse poses for your main practice");
         System.out.println("\t f to browse warm-down poses to finish off your practice");
+        System.out.println("\t q to quit the application");
     }
 
     public void followCommand(String command) {
         if (command.equals("b")) {
-            displayBreathing();
+            displayExercises(breathingExercises);
         } else if (command.equals("w")) {
-            displayWarmUp();
+            displayExercises(warUpPoses);
         } else if (command.equals("m")) {
-            displayMain();
+            displayExercises(mainPoses);
         } else if (command.equals("f")) {
-            displayWarmDown();
+            displayExercises(warmDownPoses);
         } else {
             System.out.println("Selection invalid");
         }
     }
 
 
-
-
-
-    private void displayWarmDown() {
-    }
-
-    private void displayMain() {
-    }
-
-    private void displayWarmUp() {
-    }
-
-    public void displayBreathing() {
-        for (YogaPose pos: breathingExercises) {
-            System.out.println((breathingExercises.indexOf(pos) + 1) + "." + pos.getName());
+    public void displayExercises(List<YogaPose> poses) {
+        for (YogaPose pos : poses) {
+            System.out.println((poses.indexOf(pos) + 1) + "." + pos.getName());
         }
-        handleBreathing();
+        handleExercises(poses);
     }
 
 
-
-    private void handleBreathing() {
+    private void handleExercises(List<YogaPose> poses) {
         System.out.println("To see the description for a listed pose, please enter the number of the associated pose");
+        System.out.println("Press 0 to return to the main menu");
+
         Scanner selection = new Scanner(System.in);
         int number = selection.nextInt();
+        Scanner choose = new Scanner(System.in);
+        String select = choose.next();
 
-        for (YogaPose pos : breathingExercises) {
-            if (number == (breathingExercises.indexOf(pos) + 1)) {
+
+        for (YogaPose pos : poses) {
+            if (number == (poses.indexOf(pos) + 1)) {
                 System.out.println(pos.getDescription());
                 System.out.println("Level of difficulty: " + pos.getLevel());
             }
+        }
+        if (number == 0) {
+            displayMenu();
         }
     }
 }
