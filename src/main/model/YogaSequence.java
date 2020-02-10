@@ -1,4 +1,5 @@
 package model;
+//YogaSequence is a subclass of ExerciseSequence
 
 import java.util.ArrayList;
 import java.util.List;

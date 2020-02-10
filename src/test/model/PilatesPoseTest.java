@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PilatesTest {
-    Pilates testPose;
+class PilatesPoseTest {
+    PilatesPose testPose;
 
     @BeforeEach
     public void runBefore() {
-        testPose = new Pilates ("test pose", "test description",
+        testPose = new PilatesPose("test pose", "test description",
                                             "intermediate", Stage.MAIN);
     }
 

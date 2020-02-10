@@ -1,4 +1,5 @@
 package model;
+//ExerciseSequence represents a list of exercises
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public abstract class ExerciseSequence {
     public void addPose(Exercise pos) {
         exerciseSequence.add(pos);
     }
+
 //REQUIRES: Non-empty list of poses
 //MODIFIES: this
 //EFFECTS: Given a pose, removes the pose from the list if it is in the list, otherwise does not modify the list
@@ -48,6 +50,9 @@ public abstract class ExerciseSequence {
         return exerciseSequence.size();
     }
 
+//REQUIRES: Non-empty list of exercises
+//EFFECTS: returns true if sequence contains given pose name
+
     public Boolean sequenceContainsPose(String pose) {
         boolean contains = false;
 
@@ -59,7 +64,7 @@ public abstract class ExerciseSequence {
         return contains;
     }
 
-
+//EFFECTS: Returns all poses in the sequence in the format Pose 1. Pose 2. Pose 3....
     public String listAllPoses() {
         String listOfPoses = "";
         for (Exercise nextPose: exerciseSequence) {

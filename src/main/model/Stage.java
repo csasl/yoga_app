@@ -1,6 +1,5 @@
 package model;
-
-import com.sun.org.apache.xpath.internal.axes.UnionPathIterator;
+//Stage represents the four distinct stages that exercises are classified in.
 
 public enum Stage {
     BREATHING, WARMUP, MAIN, WARMDOWN

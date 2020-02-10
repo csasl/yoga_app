@@ -9,15 +9,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PilatesSequenceTest {
     PilatesSequence testSequence;
 
-    Pilates POSE_1 = new Pilates("alternate nostril breathing", "cover one nostril, breath through" +
+    PilatesPose POSE_1 = new PilatesPose("alternate nostril breathing", "cover one nostril, breath through" +
             "the other", "All", Stage.BREATHING);
 
-    Pilates POSE_2 = new Pilates("Cat-Cow", "get on your hands and knees, arch your back, then curve" +
+    PilatesPose POSE_2 = new PilatesPose("Cat-Cow", "get on your hands and knees, arch your back, then curve" +
             "in", "All", Stage.WARMUP);
 
-    Pilates POSE_3 = new Pilates("Sun Salutation", "12 steps", "Intermediate", Stage.MAIN);
+    PilatesPose POSE_3 = new PilatesPose("Sun Salutation", "12 steps", "Intermediate", Stage.MAIN);
 
-    Pilates POSE_4 = new Pilates("Corpse", "lay on your back and relax", "All", Stage.WARMDOWN);
+    PilatesPose POSE_4 = new PilatesPose("Corpse", "lay on your back and relax", "All", Stage.WARMDOWN);
 
 
     @BeforeEach
