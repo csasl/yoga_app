@@ -1,28 +1,28 @@
 package model;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class YogaSequenceTest {
-    YogaSequence testSequence;
+public class PilatesSequenceTest {
+    PilatesSequence testSequence;
 
-    YogaPose POSE_1 = new YogaPose("alternate nostril breathing", "cover one nostril, breath through" +
+    Pilates POSE_1 = new Pilates("alternate nostril breathing", "cover one nostril, breath through" +
             "the other", "All", Stage.BREATHING);
 
-    YogaPose POSE_2 = new YogaPose("Cat-Cow", "get on your hands and knees, arch your back, then curve" +
+    Pilates POSE_2 = new Pilates("Cat-Cow", "get on your hands and knees, arch your back, then curve" +
             "in", "All", Stage.WARMUP);
 
-    YogaPose POSE_3 = new YogaPose("Sun Salutation", "12 steps", "Intermediate", Stage.MAIN);
+    Pilates POSE_3 = new Pilates("Sun Salutation", "12 steps", "Intermediate", Stage.MAIN);
 
-    YogaPose POSE_4 = new YogaPose("Corpse", "lay on your back and relax", "All", Stage.WARMDOWN);
+    Pilates POSE_4 = new Pilates("Corpse", "lay on your back and relax", "All", Stage.WARMDOWN);
 
 
     @BeforeEach
     public void runBefore() {
-        testSequence = new YogaSequence();
+        testSequence = new PilatesSequence();
     }
 
     @Test

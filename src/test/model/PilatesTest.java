@@ -3,14 +3,14 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class YogaTest {
-    YogaPose testPose;
+class PilatesTest {
+    Pilates testPose;
 
     @BeforeEach
     public void runBefore() {
-        testPose = new YogaPose("test pose", "test description",
+        testPose = new Pilates ("test pose", "test description",
                                             "intermediate", Stage.MAIN);
     }
 
