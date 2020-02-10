@@ -65,6 +65,8 @@ public class YogaApp {
     private static final  String RETURN_CMD = "r";
     private static final String ADD_POSE = "a";
     private static final String BACK = "b";
+    private static final String REVIEW = "v";
+    private static final String REMOVE = "d";
 
 
 
@@ -183,7 +185,6 @@ public class YogaApp {
             return i;
         }
         return -1;
-
     }
 
     public void optionToAddPose(int i, List<YogaPose> poseList) {
@@ -196,12 +197,11 @@ public class YogaApp {
             setPoseTime(pose);
             myYogaSequence.addPose(pose);
             System.out.println("Your current sequence: " + myYogaSequence.listAllPoses());
-            System.out.println("The total time in your sequence is: " + myYogaSequence.totalTimeInSeq());
+            System.out.println("The total time in your sequence is: " + myYogaSequence.totalTimeInSeq() + " minutes.");
         } else if (cmd.equals(BACK)) {
             printListOfPoses(poseList);
         }
-        startAgain(poseList);
-
+        secondaryMenu(poseList);
     }
 
     public int setPoseTime(YogaPose pose) {
@@ -212,20 +212,45 @@ public class YogaApp {
         return minutes;
     }
 
-    public void startAgain(List<YogaPose> poseList) {
+    public void secondaryMenu(List<YogaPose> poseList) {
         System.out.println("To return to browse more poses enter b");
         System.out.println("To return to the main menu enter r");
+        System.out.println("To view your sequence enter v");
+
         String cmd = getUserInput();
-        if (cmd.equals(BACK)) {
-            printListOfPoses(poseList);
-        } else if (cmd.equals(RETURN_CMD)) {
-            printMenu();
+        switch (cmd) {
+            case BACK:
+                printListOfPoses(poseList);
+                break;
+            case RETURN_CMD:
+                printMenu();
+                break;
+            case REVIEW:
+                reviewSequence();
+                break;
         }
+    }
+
+    public void reviewSequence() {
+        System.out.println("Your current sequence:" + myYogaSequence.listAllPoses());
+        System.out.println("To remove a pose from your sequence press d");
+        String cmd = getUserInput();
+        if (cmd.equals(REMOVE)) {
+            removePose();
+        }
+    }
+
+    public void removePose() {
+        System.out.println("Enter the name of the pose you wish to remove: ");
+        String pose = getUserInput();
+        if (myYogaSequence.sequenceContainsPose(pose)) {
+            myYogaSequence.removePose(pose);
+        }
+        System.out.println("Your current sequence:" + myYogaSequence.listAllPoses());
     }
 
 
 
-//
     private void quitProgram() {
         System.out.println("Goodbye! Hope you enjoyed your practice today.");
     }

@@ -59,8 +59,9 @@ public class YogaSequenceTest {
         testSequence.addPose(POSE_3);
         testSequence.addPose(POSE_4);
         assertEquals(testSequence.getNumberOfPoses(), 4);
-        testSequence.removePose(POSE_1);
+        testSequence.removePose(POSE_1.getName());
         assertEquals(testSequence.getNumberOfPoses(), 3);
+        assertFalse(testSequence.sequenceContainsPose(POSE_1.getName()));
 
     }
 
@@ -86,19 +87,26 @@ public class YogaSequenceTest {
         YogaSequence testStageSeq = testSequence.getByStage(YogaStage.MAIN);
 
         assertEquals(testStageSeq.getNumberOfPoses(), 1);
-        assertTrue(testStageSeq.sequenceContainsPose(POSE_3));
+        assertTrue(testStageSeq.sequenceContainsPose(POSE_3.getName()));
 
         YogaSequence testStageSeqNotInSeq = testSequence.getByStage(YogaStage.WARMDOWN);
         assertEquals(testStageSeqNotInSeq, null);
 
     }
-
+@Test
     public void testSequenceContainsPose() {
         testSequence.addPose(POSE_1);
+        assertTrue(testSequence.sequenceContainsPose(POSE_1.getName()));
+        assertFalse(testSequence.sequenceContainsPose(POSE_4.getName()));
+    }
 
-        assertTrue(testSequence.sequenceContainsPose(POSE_1));
-        assertFalse(testSequence.sequenceContainsPose(POSE_4));
-
+@Test
+    public void testListAllPoses() {
+        testSequence.addPose(POSE_1);
+        testSequence.addPose(POSE_2);
+        testSequence.addPose(POSE_3);
+        assertEquals(testSequence.listAllPoses(),
+                POSE_1.getName()+". " + POSE_2.getName()+ ". " + POSE_3.getName() + ". " );
     }
 
 

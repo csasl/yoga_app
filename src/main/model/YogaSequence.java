@@ -21,8 +21,13 @@ public class YogaSequence {
 //MODIFIES: this
 //EFFECTS: Given a pose, removes the pose from the list if it is in the list, otherwise does not modify the list
 
-    public void removePose(YogaPose pos) {
-        yogaSequence.remove(pos);
+    public void removePose(String pose) {
+        for (int i = 0; i < yogaSequence.size(); i++) {
+            if (yogaSequence.get(i).getName().equals(pose)) {
+                yogaSequence.remove(i);
+                i--;
+            }
+        }
     }
 //REQUIRES: Non-empty list of poses
 //EFFECTS: returns the total time the sequence will take
@@ -56,14 +61,22 @@ public class YogaSequence {
         return yogaSequence.size();
     }
 
-    public Boolean sequenceContainsPose(YogaPose pos) {
-        return yogaSequence.contains(pos);
+    public Boolean sequenceContainsPose(String pose) {
+        boolean contains = false;
+
+        for (YogaPose nextPose : yogaSequence) {
+            if (nextPose.getName().equals(pose)) {
+                contains = true;
+            }
+        }
+        return contains;
     }
+
 
     public String listAllPoses() {
         String listOfPoses = "";
         for (YogaPose nextPose: yogaSequence) {
-            listOfPoses = listOfPoses + " " + nextPose.getName() + ", ";
+            listOfPoses = listOfPoses  + nextPose.getName() + ". ";
         }
         return listOfPoses;
     }
