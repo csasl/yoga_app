@@ -10,8 +10,9 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        new YogaApp();
-
+        YogaApp app = new YogaApp();
+        System.out.println("Welcome to Yoga Flow, let's get started!");
+        app.manageUserInput();
     }
 
 }

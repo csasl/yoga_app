@@ -59,6 +59,14 @@ public class YogaSequence {
     public Boolean sequenceContainsPose(YogaPose pos) {
         return yogaSequence.contains(pos);
     }
+
+    public String listAllPoses() {
+        String listOfPoses = "";
+        for (YogaPose nextPose: yogaSequence) {
+            listOfPoses = listOfPoses + " " + nextPose.getName() + ", ";
+        }
+        return listOfPoses;
+    }
 }
 
 

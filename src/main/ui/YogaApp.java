@@ -57,6 +57,16 @@ public class YogaApp {
             + "step your feet around 4 feet apart, turn your right foot 90 degrees and your left 45 degrees, "
             + "rotate your" + "torsoe to the right and bend your right knee. "
             + "Repeat on the other side.", "Intermediate", YogaStage.MAIN);
+    private static final String QUIT = "quit";
+    private static final String BREATH_CMD = "breathe";
+    private static final String WARM_UP_CMD = "warm";
+    private static final String MAIN_CMD = "main";
+    private static final String WARM_DOWN_CMD = "cool";
+    private static final  String RETURN_CMD = "r";
+    private static final String ADD_POSE = "a";
+    private static final String BACK = "b";
+
+
 
 
     public List<YogaPose> breathingExercises;
@@ -64,11 +74,15 @@ public class YogaApp {
     public List<YogaPose> mainPoses;
     public List<YogaPose> warmDownPoses;
     private Scanner input;
+    private boolean running;
     public YogaSequence myYogaSequence;
 
     //EFFECTS: Runs the yoga app
     public YogaApp() {
-        runApp();
+        input = new Scanner(System.in);
+        running = true;
+        initializeStages();
+        myYogaSequence = new YogaSequence();
     }
 
 
@@ -96,81 +110,131 @@ public class YogaApp {
         warmDownPoses.add(WARRIOR1);
     }
 
-    public void runApp() {
-        boolean running = true;
-        input = new Scanner(System.in);
-        String command = null;
-
-        initializeStages();
-
-        displayMenu();
+    public void manageUserInput() {
+        printMenu();
+        String cmd;
 
         while (running) {
+            cmd = getUserInput();
+            parseInput(cmd);
+        }
+    }
 
-            command = input.next();
-            command = command.toLowerCase();
+    private String getUserInput() {
+        String cmd = " ";
+        if (input.hasNext()) {
+            cmd = input.nextLine();
+            cmd.toLowerCase();
+        }
+        return cmd;
+    }
 
-            if (command == "q") {
-                running = false;
-            } else {
-                followCommand(command);
+
+    private void printMenu() {
+        System.out.println("Enter " + BREATH_CMD + " to browse breathing exercises");
+        System.out.println("Enter " + WARM_UP_CMD + " to browse warm-up poses");
+        System.out.println("Enter " + MAIN_CMD + " to browse poses that will form your main workout");
+        System.out.println("Enter " + WARM_DOWN_CMD + " to browse cool down exercises");
+        System.out.println("To quit at any time enter quit");
+    }
+
+    private void parseInput(String cmd) {
+        if (cmd.length() > 0) {
+            switch (cmd) {
+                case BREATH_CMD:
+                    printListOfPoses(breathingExercises);
+                    break;
+                case WARM_UP_CMD:
+                    printListOfPoses(warUpPoses);
+                    break;
+                case MAIN_CMD:
+                    printListOfPoses(mainPoses);
+                    break;
+                case WARM_DOWN_CMD:
+                    printListOfPoses(warmDownPoses);
+                    break;
+                case QUIT:
+                    running = false;
+                    quitProgram();
+                    break;
+                default:
+                    System.out.println("Invalid input, please try again");
             }
         }
-        System.out.println("Hope you enjoyed your practice today!");
     }
 
+    private void printListOfPoses(List<YogaPose> poses) {
+        System.out.println("To view the pose description, please enter its associated number");
+        for (YogaPose nextPose: poses) {
+            System.out.println((poses.indexOf(nextPose) + 1) + ". " + nextPose.getName());
+        }
 
-    public void displayMenu() {
-        System.out.println("\nWelcome to Yoga Flow! Let's start building your very own sequence. "
-                + "\n Please select" + "one of the following options");
-        System.out.println("\t b to browse breathing exercises");
-        System.out.println("\t w to browse warm-up poses");
-        System.out.println("\t m to browse poses for your main practice");
-        System.out.println("\t f to browse warm-down poses to finish off your practice");
-        System.out.println("\t q to quit the application");
+        optionToAddPose(getPoseDescription(poses), poses);
     }
 
-    public void followCommand(String command) {
-        if (command.equals("b")) {
-            displayExercises(breathingExercises);
-        } else if (command.equals("w")) {
-            displayExercises(warUpPoses);
-        } else if (command.equals("m")) {
-            displayExercises(mainPoses);
-        } else if (command.equals("f")) {
-            displayExercises(warmDownPoses);
+    public Integer getPoseDescription(List<YogaPose> poses) {
+        String cmd = getUserInput();
+        if (cmd == RETURN_CMD) {
+            printMenu();
         } else {
-            System.out.println("Selection invalid");
+            int i = Integer.parseInt(cmd) - 1;
+
+            System.out.println(poses.get(i).getDescription());
+            return i;
+        }
+        return -1;
+
+    }
+
+    public void optionToAddPose(int i, List<YogaPose> poseList) {
+        System.out.println("To add this pose to your sequence press a");
+        System.out.println("To go back to browse sequences press b");
+        String cmd = getUserInput();
+
+        if (cmd.equals(ADD_POSE)) {
+            YogaPose pose = poseList.get(i);
+            setPoseTime(pose);
+            myYogaSequence.addPose(pose);
+            System.out.println("Your current sequence: " + myYogaSequence.listAllPoses());
+            System.out.println("The total time in your sequence is: " + myYogaSequence.totalTimeInSeq());
+        } else if (cmd.equals(BACK)) {
+            printListOfPoses(poseList);
+        }
+        startAgain(poseList);
+
+    }
+
+    public int setPoseTime(YogaPose pose) {
+        System.out.println("Enter the number of minutes you wish to practice this pose for: ");
+        String cmd = getUserInput();
+        Integer minutes = Integer.parseInt(cmd);
+        pose.setTime(minutes);
+        return minutes;
+    }
+
+    public void startAgain(List<YogaPose> poseList) {
+        System.out.println("To return to browse more poses enter b");
+        System.out.println("To return to the main menu enter r");
+        String cmd = getUserInput();
+        if (cmd.equals(BACK)) {
+            printListOfPoses(poseList);
+        } else if (cmd.equals(RETURN_CMD)) {
+            printMenu();
         }
     }
 
 
-    public void displayExercises(List<YogaPose> poses) {
-        for (YogaPose pos : poses) {
-            System.out.println((poses.indexOf(pos) + 1) + "." + pos.getName());
-        }
-        handleExercises(poses);
+
+//
+    private void quitProgram() {
+        System.out.println("Goodbye! Hope you enjoyed your practice today.");
     }
 
+//
+//
 
-    private void handleExercises(List<YogaPose> poses) {
-        System.out.println("To see the description for a listed pose, please enter the number of the associated pose");
-        System.out.println("Press 0 to return to the main menu");
+//
 
-        Scanner selection = new Scanner(System.in);
-        int number = selection.nextInt();
-        Scanner choose = new Scanner(System.in);
-        String select = choose.next();
-
-
-        for (YogaPose pos : poses) {
-            if (number == (poses.indexOf(pos) + 1)) {
-                System.out.println(pos.getDescription());
-                System.out.println("Level of difficulty: " + pos.getLevel());
-            }
-        }
-        if (number == 0) {
-            displayMenu();
-        }
-    }
+//
+//
 }
