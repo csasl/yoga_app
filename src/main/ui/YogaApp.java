@@ -151,15 +151,147 @@ public class YogaApp {
     private boolean running;
     public ExerciseSequence myExerciseSequence;
 
-    //EFFECTS: Runs the yoga app
+    //EFFECTS: Creates a new Yoga App
     public YogaApp() {
         input = new Scanner(System.in);
         running = true;
+
+
+
+    }
+
+    public void runYogaApp() {
         buildBreathingOptionsYoga();
         buildWarmUpOptionsYoga();
         buildMainOptionsYoga();
         buildWarmDownOptionsYoga();
         buildExerciseListsPilates();
+        printWelcomeMenu();
+        String cmd1 = getUserInput();
+        initializeSequence(cmd1);
+        printStageMenu(cmd1);
+        String cmd2 = getUserInput();
+        displayExercises(handleStageSelection(cmd1, cmd2), cmd1);
+        String cmd5 = getUserInput();
+        displayExercises(handleStageSelection(cmd1, cmd5), cmd1);
+
+
+    }
+
+    public void initializeSequence(String cmd1) {
+        if (cmd1.equals(YOGA)) {
+            myExerciseSequence = new YogaSequence();
+        } else if (cmd1.equals(PILATES)) {
+            myExerciseSequence = new PilatesSequence();
+        }
+    }
+
+
+
+    private void handlePoseSelection(List<Exercise> exercises, String cmd3, String cmd1) {
+        if (cmd3.equals(RETURN_CMD)) {
+            printStageMenu(cmd1);
+        } else {
+            Integer poseNumber = Integer.parseInt(cmd3) - 1;
+            System.out.println(exercises.get(poseNumber).getDescription());
+            System.out.println("To add this pose to your routine enter 'a'");
+            System.out.println("To browse more sequences press 'b'");
+            String cmd4 = getUserInput();
+            handlePoseOptions(cmd4, poseNumber, exercises, cmd1);
+        }
+    }
+
+    private void handlePoseOptions(String cmd4,Integer poseNumber, List<Exercise> exercises, String cmd1) {
+        if (cmd4.equals(ADD_POSE)) {
+            Exercise pose = exercises.get(poseNumber);
+            myExerciseSequence.addPose(pose);
+            setPoseTime(pose);
+            System.out.println("Your current sequence:" + myExerciseSequence.listAllPoses());
+            System.out.println("Total time of your sequence: " + myExerciseSequence.totalTimeInSeq() + " minutes.");
+            System.out.println("Press 'b' to browse more poses");
+            System.out.println("To delete a pose press  'd'");
+            String cmd5 = getUserInput();
+            handlePoseListOptions(cmd5, exercises, cmd1);
+        } else if (cmd4.equals(BACK)) {
+            displayExercises(exercises, cmd1);
+        }
+    }
+
+    private void handlePoseListOptions(String cmd5, List<Exercise> exercises, String cmd1) {
+        if (cmd5.equals(BACK)) {
+            displayExercises(exercises, cmd1);
+        } else if (cmd5.equals(REMOVE)) {
+            removePoseFromList();
+        }
+    }
+
+    private void removePoseFromList() {
+        System.out.println("Please enter the name of the pose you wish to delete: ");
+        String poseToRemove = getUserInput();
+        myExerciseSequence.removePose(poseToRemove);
+        System.out.println("Your updated sequence: " + myExerciseSequence.listAllPoses());
+    }
+
+    public void setPoseTime(Exercise pose) {
+        System.out.println("Enter the number of minutes you want to practice this pose for: ");
+        String cmd5 = getUserInput();
+        Integer poseTime = Integer.parseInt(cmd5);
+        pose.setTime(poseTime);
+    }
+
+    private List<Exercise> handleStageSelection(String cmd1, String cmd2) {
+        List<Exercise> exercises = new ArrayList<>();
+        if (cmd1.equals(YOGA)) {
+            switch (cmd2) {
+                case BREATH_CMD: exercises = breathingexercisesYoga;
+                    break;
+                case WARM_UP_CMD: exercises = warmUpPosesYoga;
+                    break;
+                case MAIN_CMD: exercises = mainPosesYoga;
+                    break;
+                case WARM_DOWN_CMD: exercises = warmDownPosesYoga;
+                    break;
+            } } else if (cmd1.equals(PILATES)) {
+            switch (cmd2) {
+                case WARM_UP_CMD: exercises = warmUpPosesPilates;
+                    break;
+                case MAIN_CMD: exercises = mainPosesPilates;
+                    break;
+                case WARM_DOWN_CMD: exercises = warmDownPosesPilates;
+                    break; }
+        }
+        return exercises;
+    }
+
+    private void displayExercises(List<Exercise> exercises, String cmd1) {
+        for (Exercise nextExercise: exercises) {
+            int index = exercises.indexOf(nextExercise) + 1;
+            System.out.println(index + ". " + nextExercise.getName());
+        }
+        System.out.println("To view a pose description please enter its associated number.");
+        System.out.println("To return to the main menu press 'r'");
+        String cmd3 = getUserInput();
+        handlePoseSelection(exercises, cmd3, cmd1);
+    }
+
+    //EFFECTS: Prints the appropriate stage menu depending on which exercise the user selected
+    private void printStageMenu(String input) {
+        if (input.equals(YOGA)) {
+            System.out.println("For breathing exercises enter 'breathe'");
+            System.out.println("For warm-up exercises enter 'warm' ");
+            System.out.println("For your main routine exercises enter 'main'");
+            System.out.println("For warm-down exercises enter 'cool'");
+
+        } else if (input.equals(PILATES)) {
+            System.out.println("For warm-up exercises enter 'warm' ");
+            System.out.println("For your main routine exercises enter 'main'");
+            System.out.println("For warm-down exercises enter 'cool'");
+        }
+    }
+
+    //EFFECTS: Dsiplays menu of exercise options
+    private void printWelcomeMenu() {
+        System.out.println("To build a yoga routine, enter 'yoga', to build a pilates routine enter 'pilates'.");
     }
 
 
@@ -217,15 +349,7 @@ public class YogaApp {
         warmDownPosesPilates.add(POSE_4);
     }
 
-    public void manageUserInput() {
-        printMainMenu();
-        String cmd;
 
-        while (running) {
-            cmd = getUserInput();
-            handleInitalInput(cmd);
-        }
-    }
 
     private String getUserInput() {
         String cmd = " ";
@@ -236,185 +360,9 @@ public class YogaApp {
         return cmd;
     }
 
-    public void printMainMenu() {
-        System.out.println("To build a yoga sequence enter yoga, to build a pilates sequence enter pilates");
-    }
-
-    public void handleInitalInput(String cmd) {
-        switch (cmd) {
-            case YOGA:
-                myExerciseSequence = new YogaSequence();
-                printStageMenu();
-                String yogaInput = getUserInput();
-                parseYogaInput(yogaInput);
-                
-                break;
-            case PILATES:
-                myExerciseSequence = new PilatesSequence();
-                printStageMenu();
-                String pilatesInput = getUserInput();
-                parsePilatesInput(pilatesInput);
-        }
-    }
-
-
-
-
-    private void printStageMenu() {
-        System.out.println("Enter " + BREATH_CMD + " to browse breathing exercises");
-        System.out.println("Enter " + WARM_UP_CMD + " to browse warm-up poses");
-        System.out.println("Enter " + MAIN_CMD + " to browse poses that will form your main workout");
-        System.out.println("Enter " + WARM_DOWN_CMD + " to browse cool down exercises");
-        System.out.println("To quit at any time enter quit");
-    }
-
-    private void parseYogaInput(String cmd) {
-        if (cmd.length() > 0) {
-            switch (cmd) {
-                case BREATH_CMD:
-                    printListOfPoses(breathingexercisesYoga);
-                    break;
-                case WARM_UP_CMD:
-                    printListOfPoses(warmUpPosesYoga);
-                    break;
-                case MAIN_CMD:
-                    printListOfPoses(mainPosesYoga);
-                    break;
-                case WARM_DOWN_CMD:
-                    printListOfPoses(warmDownPosesYoga);
-                    break;
-                case QUIT:
-                    running = false;
-                    quitProgram();
-                    break;
-                default:
-                    System.out.println("Invalid input, please try again");
-            }
-        }
-    }
-
-    private void parsePilatesInput(String cmd) {
-        if (cmd.length() > 0) {
-            switch (cmd) {
-                case BREATH_CMD:
-                    printListOfPoses(breathingExercisePilates);
-                    break;
-                case WARM_UP_CMD:
-                    printListOfPoses(warmUpPosesPilates);
-                    break;
-                case MAIN_CMD:
-                    printListOfPoses(mainPosesPilates);
-                    break;
-                case WARM_DOWN_CMD:
-                    printListOfPoses(warmDownPosesPilates);
-                    break;
-                case QUIT:
-                    running = false;
-                    quitProgram();
-                    break;
-                default:
-                    System.out.println("Invalid input, please try again");
-            }
-        }
-    }
-
-    private void printListOfPoses(List<Exercise> poses) {
-        System.out.println("To view the pose description, please enter its associated number");
-        for (Exercise nextPose: poses) {
-            System.out.println((poses.indexOf(nextPose) + 1) + ". " + nextPose.getName());
-        }
-
-        optionToAddPose(getPoseDescription(poses), poses);
-    }
-
-    public Integer getPoseDescription(List<Exercise> poses) {
-        String cmd = getUserInput();
-        if (cmd == RETURN_CMD) {
-            printStageMenu();
-        } else {
-            int i = Integer.parseInt(cmd) - 1;
-
-            System.out.println(poses.get(i).getDescription());
-            return i;
-        }
-        return -1;
-    }
-
-    public void optionToAddPose(int i, List<Exercise> poseList) {
-        System.out.println("To add this pose to your sequence press a");
-        System.out.println("To go back to browse sequences press b");
-        String cmd = getUserInput();
-
-        if (cmd.equals(ADD_POSE)) {
-            Exercise pose = poseList.get(i);
-            setPoseTime(pose);
-            myExerciseSequence.addPose(pose);
-            System.out.println("Your current sequence: " + myExerciseSequence.listAllPoses());
-            System.out.println("The total time in your sequence is: "
-                    + myExerciseSequence.totalTimeInSeq() + " minutes.");
-        } else if (cmd.equals(BACK)) {
-            printListOfPoses(poseList);
-        }
-        secondaryMenu(poseList);
-    }
-
-    public int setPoseTime(Exercise pose) {
-        System.out.println("Enter the number of minutes you wish to practice this pose for: ");
-        String cmd = getUserInput();
-        Integer minutes = Integer.parseInt(cmd);
-        pose.setTime(minutes);
-        return minutes;
-    }
-
-    public void secondaryMenu(List<Exercise> poseList) {
-        System.out.println("To return to browse more poses enter b");
-        System.out.println("To return to the main menu enter r");
-        System.out.println("To view your sequence enter v");
-
-        String cmd = getUserInput();
-        switch (cmd) {
-            case BACK:
-                printListOfPoses(poseList);
-                break;
-            case RETURN_CMD:
-                printStageMenu();
-                parseYogaInput(cmd);
-            case REVIEW:
-                reviewSequence();
-                break;
-        }
-    }
-
-    public void reviewSequence() {
-        System.out.println("Your current sequence:" + myExerciseSequence.listAllPoses());
-        System.out.println("To remove a pose from your sequence press d");
-        String cmd = getUserInput();
-        if (cmd.equals(REMOVE)) {
-            removePose();
-        }
-    }
-
-    public void removePose() {
-        System.out.println("Enter the name of the pose you wish to remove: ");
-        String pose = getUserInput();
-        if (myExerciseSequence.sequenceContainsPose(pose)) {
-            myExerciseSequence.removePose(pose);
-        }
-        System.out.println("Your current sequence:" + myExerciseSequence.listAllPoses());
-
-    }
-
-
 
     private void quitProgram() {
         System.out.println("Goodbye! Hope you enjoyed your practice today.");
     }
 
-//
-//
-
-//
-
-//
-//
 }
