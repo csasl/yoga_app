@@ -6,8 +6,12 @@ import java.util.List;
 
 public class PilatesSequence extends ExerciseSequence {
     List<PilatesPose> pilatesSequence;
+    Integer totalTime;
+    Integer numberOfPoses;
 
     public PilatesSequence() {
         pilatesSequence = new ArrayList<>();
+        totalTime = 0;
+        numberOfPoses = 0;
     }
 }

@@ -27,7 +27,9 @@ public class YogaSequenceTest {
 
     @Test
     public void testConstructor() {
+
         assertEquals(testSequence.getNumberOfPoses(), 0);
+        assertEquals(testSequence.totalTime, 0);
     }
 
     @Test
@@ -35,7 +37,6 @@ public class YogaSequenceTest {
         assertEquals(testSequence.getNumberOfPoses(), 0);
         testSequence.addPose(POSE_1);
         assertEquals(testSequence.getNumberOfPoses(), 1);
-
     }
 
     @Test
@@ -46,7 +47,6 @@ public class YogaSequenceTest {
         testSequence.addPose(POSE_3);
         testSequence.addPose(POSE_4);
         assertEquals(testSequence.getNumberOfPoses(), 4);
-
     }
 
     @Test

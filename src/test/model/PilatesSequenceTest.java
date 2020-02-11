@@ -28,6 +28,7 @@ public class PilatesSequenceTest {
     @Test
     public void testConstructor() {
         assertEquals(testSequence.getNumberOfPoses(), 0);
+        assertEquals(testSequence.totalTime, 0);
     }
 
     @Test

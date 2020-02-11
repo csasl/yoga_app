@@ -6,10 +6,12 @@ import java.util.List;
 
 public class YogaSequence extends ExerciseSequence {
     List<YogaPose> yogaSequence;
+    Integer totalTime;
 
 //EFFECTS: Constructs and empty list of yoga poses
     public YogaSequence() {
         yogaSequence = new ArrayList<>();
+        totalTime = 0;
     }
 
 }

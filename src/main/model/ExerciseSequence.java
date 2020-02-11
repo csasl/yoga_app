@@ -6,10 +6,14 @@ import java.util.List;
 
 public abstract class ExerciseSequence {
     List<Exercise> exerciseSequence;
+    Integer totalTime;
+    Integer numberOfPoses;
 
 //EFFECTS: Constructs and empty list of yoga poses
     public ExerciseSequence() {
         exerciseSequence = new ArrayList<>();
+        totalTime = 0;
+        numberOfPoses = 0;
     }
 
 //MODIFIES: this
@@ -35,7 +39,6 @@ public abstract class ExerciseSequence {
 //EFFECTS: returns the total time the sequence will take
 
     public Integer totalTimeInSeq() {
-        Integer totalTime = 0;
         for (Exercise nextPos: exerciseSequence) {
             totalTime = totalTime + nextPos.getTime();
         }
@@ -47,7 +50,8 @@ public abstract class ExerciseSequence {
 //EFFECTS: Returns the total number of poses in the sequence
 
     public int getNumberOfPoses() {
-        return exerciseSequence.size();
+        numberOfPoses = exerciseSequence.size();
+        return numberOfPoses;
     }
 
 //REQUIRES: Non-empty list of exercises
