@@ -32,6 +32,13 @@ public class PilatesSequenceTest {
     }
 
     @Test
+    public void setName() {
+        testSequence.setName("Beginner");
+        assertEquals(testSequence.getNameOfSeq(), "Beginner");
+
+    }
+
+    @Test
     public void addOnePose() {
         assertEquals(testSequence.getNumberOfPoses(), 0);
         testSequence.addPose(POSE_1);

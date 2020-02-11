@@ -8,6 +8,7 @@ public class PilatesSequence extends ExerciseSequence {
     List<PilatesPose> pilatesSequence;
     Integer totalTime;
     Integer numberOfPoses;
+    String name;
 
     public PilatesSequence() {
         pilatesSequence = new ArrayList<>();

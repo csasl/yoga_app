@@ -54,12 +54,18 @@ public class YogaLatesApp {
         printStageMenu(cmd1);
     }
 
+//MODIFIES: ExerciseSequence
 //EFFECTS: Given a user selection of Yoga or Pilates, creates either a new YogaSequence or Pilates Sequence
+
     public void initializeSequence(String cmd1) {
+        System.out.println("Give your sequence a name:");
+        String seqName = getUserInput();
         if (cmd1.equals(YOGA)) {
             myExerciseSequence = new YogaSequence();
+            myExerciseSequence.setName(seqName);
         } else if (cmd1.equals(PILATES)) {
             myExerciseSequence = new PilatesSequence();
+            myExerciseSequence.setName(seqName);
         }
     }
 
@@ -94,7 +100,8 @@ public class YogaLatesApp {
             myExerciseSequence.addPose(pose);
             setPoseTime(pose);
             System.out.println("You have " + myExerciseSequence.getNumberOfPoses() + " poses in your sequence.");
-            System.out.println("Your current sequence is:" + myExerciseSequence.listAllPoses());
+            System.out.println("Your current " + myExerciseSequence.getNameOfSeq()
+                    + " sequence is:" + myExerciseSequence.listAllPoses());
             System.out.println("Total time of your sequence: " + myExerciseSequence.totalTimeInSeq() + " minutes.");
             System.out.println("Press 'b' to browse more poses");
             System.out.println("To delete a pose press  'd'");
@@ -121,7 +128,8 @@ public class YogaLatesApp {
         System.out.println("Please enter the name of the pose you wish to delete: ");
         String poseToRemove = getUserInput();
         myExerciseSequence.removePose(poseToRemove);
-        System.out.println("Your updated sequence: " + myExerciseSequence.listAllPoses());
+        System.out.println("Your updated " + myExerciseSequence.getNameOfSeq()
+                + "sequence: " + myExerciseSequence.listAllPoses());
         System.out.println("To return to the main menu press 'r'");
         String option = getUserInput();
         returnToMain(cmd1);

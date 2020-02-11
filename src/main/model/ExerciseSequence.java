@@ -5,15 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ExerciseSequence {
+    String name;
     List<Exercise> exerciseSequence;
     Integer totalTime;
     Integer numberOfPoses;
 
-//EFFECTS: Constructs and empty list of yoga poses
+
+//EFFECTS: Constructs and empty list of exercises
     public ExerciseSequence() {
         exerciseSequence = new ArrayList<>();
         totalTime = 0;
         numberOfPoses = 0;
+    }
+
+//MODIFIES: this
+//EFFECTS: Sets the sequence's name to given name
+    public void setName(String name) {
+        this.name = name;
     }
 
 //MODIFIES: this
@@ -75,6 +83,11 @@ public abstract class ExerciseSequence {
             listOfPoses = listOfPoses  + nextPose.getName() + ". ";
         }
         return listOfPoses;
+    }
+
+//EFFECTS: Returns name of sequence
+    public String getNameOfSeq() {
+        return name;
     }
 }
 
