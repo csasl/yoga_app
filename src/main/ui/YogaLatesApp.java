@@ -137,7 +137,7 @@ public class YogaLatesApp {
     private static final String PILATES = "pilates";
 
 
-    public List<Exercise> breathingexercisesYoga;
+    public List<Exercise> breathingExercisesYoga;
     public List<Exercise> warmUpPosesYoga;
     public List<Exercise> mainPosesYoga;
     public List<Exercise> warmDownPosesYoga;
@@ -153,9 +153,6 @@ public class YogaLatesApp {
     public YogaLatesApp() {
         input = new Scanner(System.in);
         running = true;
-
-
-
     }
 
     public void runYogaApp() {
@@ -169,11 +166,9 @@ public class YogaLatesApp {
         initializeSequence(cmd1);
         printStageMenu(cmd1);
         String cmd2 = getUserInput();
-        displayExercises(handleStageSelection(cmd1, cmd2), cmd1);
-        String cmd5 = getUserInput();
-        displayExercises(handleStageSelection(cmd1, cmd5), cmd1);
-        String cmd6 = getUserInput();
-        displayExercises(handleStageSelection(cmd1, cmd6), cmd1);
+//        String cmd5 = getUserInput();
+//
+//        String cmd6 = getUserInput();
 
     }
 
@@ -248,28 +243,48 @@ public class YogaLatesApp {
         pose.setTime(poseTime);
     }
 
-    private List<Exercise> handleStageSelection(String cmd1, String cmd2) {
-        List<Exercise> exercises = new ArrayList<>();
+    private void handleStageSelection(String cmd1, String cmd2) {
         if (cmd1.equals(YOGA)) {
-            switch (cmd2) {
-                case BREATH_CMD: exercises = breathingexercisesYoga;
-                    break;
-                case WARM_UP_CMD: exercises = warmUpPosesYoga;
-                    break;
-                case MAIN_CMD: exercises = mainPosesYoga;
-                    break;
-                case WARM_DOWN_CMD: exercises = warmDownPosesYoga;
-                    break;
-            } } else if (cmd1.equals(PILATES)) {
-            switch (cmd2) {
-                case WARM_UP_CMD: exercises = warmUpPosesPilates;
-                    break;
-                case MAIN_CMD: exercises = mainPosesPilates;
-                    break;
-                case WARM_DOWN_CMD: exercises = warmDownPosesPilates;
-                    break; }
+            parseYogaInput(cmd1, cmd2);
+        } else if (cmd1.equals(PILATES)) {
+            parsePilatesInput(cmd1, cmd2);
         }
-        return exercises;
+    }
+
+
+    public void parseYogaInput(String cmd1, String cmd2) {
+        List<Exercise> exercises = new ArrayList<>();
+        switch (cmd2) {
+            case BREATH_CMD:
+                exercises = breathingExercisesYoga;
+                break;
+            case WARM_UP_CMD:
+                exercises = warmUpPosesYoga;
+                break;
+            case MAIN_CMD:
+                exercises = mainPosesYoga;
+                break;
+            case WARM_DOWN_CMD:
+                exercises = warmDownPosesYoga;
+                break;
+        }
+        displayExercises(exercises, cmd1);
+    }
+
+    public void parsePilatesInput(String cmd1, String cmd2) {
+        List<Exercise> exercises = new ArrayList<>();
+        switch (cmd2) {
+            case WARM_UP_CMD:
+                exercises = warmUpPosesPilates;
+                break;
+            case MAIN_CMD:
+                exercises = mainPosesPilates;
+                break;
+            case WARM_DOWN_CMD:
+                exercises = warmDownPosesPilates;
+                break;
+        }
+        displayExercises(exercises, cmd1);
     }
 
     private void displayExercises(List<Exercise> exercises, String cmd1) {
@@ -306,11 +321,11 @@ public class YogaLatesApp {
 
     //EFFECTS: Populates lists of stages of workouts with pre-defined exercises
     public void buildBreathingOptionsYoga() {
-        breathingexercisesYoga = new ArrayList<>();
-        breathingexercisesYoga.add(ALTERNATE);
-        breathingexercisesYoga.add(KAPALABHATI);
-        breathingexercisesYoga.add(COOLING);
-        breathingexercisesYoga.add(LION);
+        breathingExercisesYoga = new ArrayList<>();
+        breathingExercisesYoga.add(ALTERNATE);
+        breathingExercisesYoga.add(KAPALABHATI);
+        breathingExercisesYoga.add(COOLING);
+        breathingExercisesYoga.add(LION);
     }
 
     public void buildWarmUpOptionsYoga() {
