@@ -165,7 +165,7 @@ public class YogaLatesApp {
         String cmd1 = getUserInput();
         initializeSequence(cmd1);
         printStageMenu(cmd1);
-        String cmd2 = getUserInput();
+ //       String cmd2 = getUserInput();
 //        String cmd5 = getUserInput();
 //
 //        String cmd6 = getUserInput();
@@ -311,6 +311,8 @@ public class YogaLatesApp {
             System.out.println("For your main routine exercises enter 'main'");
             System.out.println("For warm-down exercises enter 'cool'");
         }
+        String cmd2 = getUserInput();
+        handleStageSelection(input, cmd2);
     }
 
     //EFFECTS: Dsiplays menu of exercise options
