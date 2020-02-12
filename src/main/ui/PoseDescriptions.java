@@ -139,17 +139,61 @@ public class PoseDescriptions {
             + "your hands under your shoulders, inhale and lift your torsoe off the ground, stay for a few seconds, "
             + "exhale to come back down.", "All", Stage.WARMUP);
 
-    public static final PilatesPose ROLL_OVER = new PilatesPose("Roll over", "Begin lying down on "
+    protected static final PilatesPose ROLL_OVER = new PilatesPose("Roll over", "Begin lying down on "
             + "your back, extend your legs 90 degrees off the ground. Slightly lift your legs as you tilt your pelvis "
             + "back. Reach your legs over and above your head. Exhale and bring your legs back down to 90 degrees.",
             "Intermediate", Stage.MAIN);
 
-    public static final PilatesPose CIRCLES = new PilatesPose("One leg circles",
+    protected static final PilatesPose CIRCLES = new PilatesPose("One leg circles",
             "Lie on your back," + "bring one knee into your chest and extend it towards the ceiling. "
                     + "Point your toes, begin to make clockwise" + "circles with the lifted leg. "
                     + "Switch to counterclockwise after 8-10 circles.", "All", Stage.MAIN);
 
-    public static final PilatesPose POSE_4 = new PilatesPose("Pose4", "description", "Advanced",
+    protected static final PilatesPose SINGLE_lEG = new PilatesPose("Single leg stretch",
+            "Start on your back, bend your knees so your shins are parallel to the floor"
+                    + "curl up your head and shoulders and extend your left leg 45 degrees. Grasp your right"
+                    + "knee with your hands, inhale and switch legs. ", "All",
+            Stage.MAIN);
+
+    protected static final PilatesPose DOUBLE_LEG = new PilatesPose("Double leg stretch", "Start on"
+            + "your back with your knees bent, shins parallel to the floor. Curl up your head and shoulders, exhale and"
+            + "reach your arms behind you while extending your legs straight out, then bring your knees back in towards"
+            + "your chest, grasping it with your hands.", "Intermediate", Stage.MAIN);
+
+    protected static final PilatesPose ROCKER = new PilatesPose("Rocker", "Start sitting, bend your"
+            + "knees spread your legs hip width distance apart. Grab your shins or ankles with your hands. Lengthen"
+            + "your legs one at a time towards the ceiling in a V-shape. Inhale and rock bacwards on your shoulder, "
+            + "exhale and roll back up, repeat. ", "All", Stage.MAIN);
+
+    protected static final PilatesPose CRISS_CROSS = new PilatesPose("Criss cross", "Start on your "
+            + "back with your knees bent, shins parallel to the floor. Extend your right leg straight and bring your"
+            + "right elbow to your left knee, repeat on the other side.", "All", Stage.MAIN);
+
+    protected static final PilatesPose SAW = new PilatesPose("Saw", "Sit tall with your legs"
+            + "extended. Raise your arms out to the side at shoulder level. Inhale and twist to the right, reaching"
+            + "your left hand towards the outside of the right foot. Repeat on the other side.", "All",
+            Stage.MAIN);
+
+    protected static final PilatesPose ARM_LEG_REACH = new PilatesPose("Kneeling reach", "Start on"
+            + "your hands and knees. Keep a neutral spine throughout this exercise. Inhale and reach your right arm "
+            + "and left leg out. Exhale back to your hands and knees, repeat on the other side.",
+            "All", Stage.MAIN);
+
+    protected static final PilatesPose SEATED_TWIST = new PilatesPose("Seated Twist", "Seat "
+            + "cross-legged, inhale and twist your torsoe to the right, grab your right knee with your left hand to "
+            + "deepen, exhale come back to centre and repeat on the other side.", "All", Stage.WARMDOWN);
+
+    protected static final PilatesPose SPINE_STRETCH = new PilatesPose("Spine stretch", "Sit tall"
+            + "with your legs streched in front of you. Extend the arms out infront of you to shoulder height, exhale "
+            + "as" + "you come forward bringing your fingers towards your toes. Hold for a few breaths and release.",
+            "All", Stage.WARMDOWN);
+
+    protected static final PilatesPose BRIDGE_PILATES = new PilatesPose("Bridge", "Lay on your back,"
+            + " bend your knees and bring your feet as close to your sit-bones as possible, lift your hips of "
+            + "the floor until the thighs are parallel to the floor", "All", Stage.WARMDOWN);
+
+    protected static final PilatesPose CORPSE_PILATES = new PilatesPose("Corpse", "Lay down"
+            + "on your back, arms resting on your side, relax your muscles and breathe normally.", "All",
             Stage.WARMDOWN);
 
 

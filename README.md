@@ -14,11 +14,14 @@ available and by level of difficulty.
 
 **User Stories**
 
-- As a user I want to be able to choose between building a yoga or pilates sequence and name my sequence.
+- As a user I want to be able to choose between building a yoga or pilates sequence, name my sequence and allocate
+how long I want to work out for.
 - As a user, I want to be able to browse poses suitable for different stages of a workout and view their descriptions
-- As a user, I want to be able to add a pose to my sequence and set the time I want to practice for
-- As a user, I want to be able to view my sequence and be able to remove poses I don't want to keep.
+- As a user, I want to be able to add a pose to my sequence and set the time I want to practice the pose for
+- As a user, I want to be able to view the poses in my sequence, how much time I need to fill and be able to remove poses I don't want to keep.
 
 **References**
 
 Template code for UI package from: https://github.com/UBCx-Software-Construction/long-form-problem-starters.git
+Yoga poses from:  https://www.yogajournal.com/
+Pilates poses from: https://www.verywellfit.com/the-first-10-pilates-mat-exercises-and-more-2704611

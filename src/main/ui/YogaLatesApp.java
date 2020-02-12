@@ -304,12 +304,22 @@ public class YogaLatesApp {
         mainPosesPilates = new ArrayList<>();
         mainPosesPilates.add(ROLL_OVER);
         mainPosesPilates.add(CIRCLES);
+        mainPosesPilates.add(SINGLE_lEG);
+        mainPosesPilates.add(DOUBLE_LEG);
+        mainPosesPilates.add(ROCKER);
+        mainPosesPilates.add(CRISS_CROSS);
+        mainPosesPilates.add(SAW);
+        mainPosesPilates.add(ARM_LEG_REACH);
 
     }
 
     public void buildWarmDownExcercisesPilates() {
         warmDownPosesPilates = new ArrayList<>();
-        warmDownPosesPilates.add(POSE_4);
+        warmDownPosesPilates.add(SEATED_TWIST);
+        warmDownPosesPilates.add(SPINE_STRETCH);
+        warmDownPosesPilates.add(BRIDGE_PILATES);
+        warmDownPosesPilates.add(CORPSE_PILATES);
+
     }
 
 
