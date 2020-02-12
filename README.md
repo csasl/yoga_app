@@ -18,7 +18,7 @@ available and by level of difficulty.
 how long I want to work out for.
 - As a user, I want to be able to browse poses suitable for different stages of a workout and view their descriptions
 - As a user, I want to be able to add a pose to my sequence and set the time I want to practice the pose for
-- As a user, I want to be able to view the poses in my sequence, how much time I need to fill and be able to remove poses I don't want to keep.
+- As a user, I want to be able to remove poses I no longer want and see an updated list and time remaining to allocate each time I add or remove a pose
 
 **References**
 
