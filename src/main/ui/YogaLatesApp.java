@@ -1,5 +1,6 @@
 //YogaLates App runs the UI portion of the app
-//Used code from: https://github.com/UBCx-Software-Construction/long-form-problem-starters.git UI package as a template
+//Used code from: https://github.com/UBCx-Software-Construction/long-form-problem-starters.git UI package
+// and from: https://github.students.cs.ubc.ca/CPSC210/TellerApp.git UI package as a template
 //for this UI package
 
 package ui;
