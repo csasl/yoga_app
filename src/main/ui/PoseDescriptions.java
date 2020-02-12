@@ -1,5 +1,6 @@
 //Pilates poses and descriptions from: https://www.verywellfit.com/the-first-10-pilates-mat-exercises-and-more-2704611
 //Yoga poses and descriptions from: https://www.yogajournal.com/
+//PoseDescriptions class contains all the poses the user can select from to add to their sequence
 
 package ui;
 

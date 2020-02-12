@@ -1,5 +1,5 @@
 package model;
-//ExerciseSequence represents a list of exercises
+//ExerciseSequence class contains information about exercise sequences that the user can create
 
 import java.util.ArrayList;
 import java.util.List;
