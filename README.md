@@ -20,8 +20,10 @@ how long I want to work out for.
 - As a user, I want to be able to add a pose to my sequence and set the time I want to practice the pose for
 - As a user, I want to be able to remove poses I no longer want and see an updated list and time remaining to allocate each time I add or remove a pose
 
-**References**
+*References*
 
 Template code for UI package from: https://github.com/UBCx-Software-Construction/long-form-problem-starters.git
+
 Yoga poses from:  https://www.yogajournal.com/
+
 Pilates poses from: https://www.verywellfit.com/the-first-10-pilates-mat-exercises-and-more-2704611
