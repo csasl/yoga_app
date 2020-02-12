@@ -27,7 +27,6 @@ public class YogaLatesApp {
     public List<Exercise> warmUpPosesYoga;
     public List<Exercise> mainPosesYoga;
     public List<Exercise> warmDownPosesYoga;
-    public List<Exercise> breathingExercisePilates;
     public List<Exercise> warmUpPosesPilates;
     public List<Exercise> mainPosesPilates;
     public List<Exercise> warmDownPosesPilates;
@@ -47,7 +46,9 @@ public class YogaLatesApp {
         buildWarmUpOptionsYoga();
         buildMainOptionsYoga();
         buildWarmDownOptionsYoga();
-        buildExerciseListsPilates();
+        buildWarmUpExercisesPilates();
+        buildMainExercisesPilates();
+        buildWarmDownExcercisesPilates();
         printWelcomeMenu();
         String cmd1 = getUserInput();
         initializeSequence(cmd1);
@@ -60,12 +61,17 @@ public class YogaLatesApp {
     public void initializeSequence(String cmd1) {
         System.out.println("Give your sequence a name:");
         String seqName = getUserInput();
+        System.out.println("Please enter the number of minutes you want to work out for today: ");
+        String input = getUserInput();
+        Integer time = Integer.parseInt(input);
         if (cmd1.equals(YOGA)) {
             myExerciseSequence = new YogaSequence();
             myExerciseSequence.setName(seqName);
+            myExerciseSequence.setAllocatedTime(time);
         } else if (cmd1.equals(PILATES)) {
             myExerciseSequence = new PilatesSequence();
             myExerciseSequence.setName(seqName);
+            myExerciseSequence.setAllocatedTime(time);
         }
     }
 
@@ -103,6 +109,14 @@ public class YogaLatesApp {
             System.out.println("Your current " + myExerciseSequence.getNameOfSeq()
                     + " sequence is:" + myExerciseSequence.listAllPoses());
             System.out.println("Total time of your sequence: " + myExerciseSequence.totalTimeInSeq() + " minutes.");
+            if ((myExerciseSequence.getAllocatedTime() - myExerciseSequence.totalTimeInSeq()) <= 0) {
+                System.out.println("You have filled all your allocated time!");
+            } else {
+                System.out.println("You have "
+                        + (myExerciseSequence.getAllocatedTime() - myExerciseSequence.totalTimeInSeq()) + " minutes"
+                        + "left in your sequence");
+            }
+
             System.out.println("Press 'b' to browse more poses");
             System.out.println("To delete a pose press  'd'");
             String cmd5 = getUserInput();
@@ -277,14 +291,23 @@ public class YogaLatesApp {
 
 //EFFECTS: Populates Pilates exercise lists with pre-defined exercises
 
-    public void buildExerciseListsPilates() {
-        breathingExercisePilates = new ArrayList<>();
-        breathingExercisePilates.add(POSE_1);
-        warmUpPosesPilates = new ArrayList<>();
-        warmUpPosesPilates.add(POSE_2);
-        mainPosesPilates = new ArrayList<>();
-        mainPosesPilates.add(POSE_3);
+    public void buildWarmUpExercisesPilates() {
 
+        warmUpPosesPilates = new ArrayList<>();
+        warmUpPosesPilates.add(IMPRINTING);
+        warmUpPosesPilates.add(ARM_REACH);
+        warmUpPosesPilates.add(PELVIC_CURL);
+        warmUpPosesPilates.add(SWAN);
+    }
+
+    public void buildMainExercisesPilates() {
+        mainPosesPilates = new ArrayList<>();
+        mainPosesPilates.add(ROLL_OVER);
+        mainPosesPilates.add(CIRCLES);
+
+    }
+
+    public void buildWarmDownExcercisesPilates() {
         warmDownPosesPilates = new ArrayList<>();
         warmDownPosesPilates.add(POSE_4);
     }

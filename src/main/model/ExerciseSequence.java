@@ -7,21 +7,26 @@ import java.util.List;
 public abstract class ExerciseSequence {
     String name;
     List<Exercise> exerciseSequence;
-    Integer totalTime;
-    Integer numberOfPoses;
+    Integer allocatedTime;
+
 
 
 //EFFECTS: Constructs and empty list of exercises
     public ExerciseSequence() {
         exerciseSequence = new ArrayList<>();
-        totalTime = 0;
-        numberOfPoses = 0;
+
     }
 
 //MODIFIES: this
 //EFFECTS: Sets the sequence's name to given name
     public void setName(String name) {
         this.name = name;
+    }
+
+//MODIFIES: this
+//EFFECTS: Sets allocated time to given time in mins
+    public void setAllocatedTime(Integer time) {
+        this.allocatedTime = time;
     }
 
 //MODIFIES: this
@@ -47,6 +52,7 @@ public abstract class ExerciseSequence {
 //EFFECTS: returns the total time the sequence will take
 
     public Integer totalTimeInSeq() {
+        int totalTime = 0;
         for (Exercise nextPos: exerciseSequence) {
             totalTime = totalTime + nextPos.getTime();
         }
@@ -58,7 +64,7 @@ public abstract class ExerciseSequence {
 //EFFECTS: Returns the total number of poses in the sequence
 
     public int getNumberOfPoses() {
-        numberOfPoses = exerciseSequence.size();
+        int numberOfPoses = exerciseSequence.size();
         return numberOfPoses;
     }
 
@@ -89,8 +95,15 @@ public abstract class ExerciseSequence {
     public String getNameOfSeq() {
         return name;
     }
-}
 
+
+//EFFECTS: Returns allocated time
+    public Integer getAllocatedTime() {
+        return allocatedTime;
+
+    }
+
+}
 
 
 

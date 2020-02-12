@@ -1,3 +1,6 @@
+//Pilates poses and descriptions from: https://www.verywellfit.com/the-first-10-pilates-mat-exercises-and-more-2704611
+//Yoga poses and descriptions from: https://www.yogajournal.com/
+
 package ui;
 
 import model.PilatesPose;
@@ -119,14 +122,35 @@ public class PoseDescriptions {
 
     //Pilates poses:
 
-    public static final PilatesPose POSE_1 = new PilatesPose("Pose1", "description", "Advanced",
-            Stage.BREATHING);
+    protected static final PilatesPose IMPRINTING = new PilatesPose("Imprinting",
+            "Lay on your back, knees bent, feet flat on the floor, breathe deeply and "
+                    + "relax your muscles. Gently sink your spine into the mat as if making an imprint",
+            "All", Stage.BREATHING);
 
-    public static final PilatesPose POSE_2 = new PilatesPose("Pose2", "description", "Advanced",
-            Stage.WARMUP);
+    protected static final PilatesPose ARM_REACH = new PilatesPose("Arm reach and pull", "Begin"
+            + "in a standing position, reach your arms straight in front of you, inhale and pull your arms back, "
+            + "brining your shoulder blades closer together. Repeat.", "All", Stage.WARMUP);
 
-    public static final PilatesPose POSE_3 = new PilatesPose("Pose3", "description", "Advanced",
-            Stage.MAIN);
+    protected static final PilatesPose PELVIC_CURL = new PilatesPose("Pelvic curl", "Lay on your back"
+            + "engage your ab muscles and pull your abs towards your spine, inhale and lift your hips off the ground."
+            + "Exhale and release your hips back to the ground.", "All", Stage.WARMUP);
+
+    protected static final PilatesPose SWAN = new PilatesPose("Swan", "Lay on your belly, bring"
+            + "your hands under your shoulders, inhale and lift your torsoe off the ground, stay for a few seconds, "
+            + "exhale to come back down.", "All", Stage.WARMUP);
+
+    public static final PilatesPose ROLL_OVER = new PilatesPose("Roll over", "Begin lying down on "
+            + "your back, extend your legs 90 degrees off the ground. Slightly lift your legs as you tilt your pelvis "
+            + "back. Reach your legs over and above your head. Exhale and bring your legs back down to 90 degrees.",
+            "Intermediate", Stage.MAIN);
+
+    public static final PilatesPose CIRCLES = new PilatesPose("One leg circles",
+            "Lie on your back," + "bring one knee into your chest and extend it towards the ceiling. "
+                    + "Point your toes, begin to make clockwise" + "circles with the lifted leg. "
+                    + "Switch to counterclockwise after 8-10 circles.", "All", Stage.MAIN);
+
     public static final PilatesPose POSE_4 = new PilatesPose("Pose4", "description", "Advanced",
             Stage.WARMDOWN);
+
+
 }

@@ -14,7 +14,7 @@ available and by level of difficulty.
 
 **User Stories**
 
-- As a user I want to be able to choose between building a yoga or pilates sequence.
+- As a user I want to be able to choose between building a yoga or pilates sequence and name my sequence.
 - As a user, I want to be able to browse poses suitable for different stages of a workout and view their descriptions
 - As a user, I want to be able to add a pose to my sequence and set the time I want to practice for
 - As a user, I want to be able to view my sequence and be able to remove poses I don't want to keep.

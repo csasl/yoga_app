@@ -29,13 +29,19 @@ public class YogaSequenceTest {
     public void testConstructor() {
 
         assertEquals(testSequence.getNumberOfPoses(), 0);
-        assertEquals(testSequence.totalTime, 0);
+
     }
 
     @Test
-    public void setName() {
+    public void testSetName() {
         testSequence.setName("Beginner");
         assertEquals(testSequence.getNameOfSeq(), "Beginner");
+    }
+
+    @Test
+    public void testSetAllocatedTime() {
+        testSequence.setAllocatedTime(25);
+        assertEquals(testSequence.getAllocatedTime(), 25);
     }
 
     @Test
