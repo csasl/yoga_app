@@ -9,8 +9,8 @@ public class Writer {
     private FileWriter fileWriter;
     private PrintWriter printWriter;
 
-    public void write(String jsonString) throws IOException {
-        fileWriter = new FileWriter(SEQUENCE_FILE);
+    public void write(String jsonString, String path) throws IOException {
+        fileWriter = new FileWriter(path);
         printWriter = new PrintWriter(fileWriter);
         printWriter.print(jsonString);
 

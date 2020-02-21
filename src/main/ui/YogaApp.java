@@ -2,14 +2,12 @@ package ui;
 
 import model.YogaPose;
 import model.YogaSequence;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
+import persistence.Reader;
 import persistence.Writer;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -93,6 +91,19 @@ public class YogaApp {
 
     //EFFECTS: Loads sequence saved to file
     public void loadSequence() {
+        Reader reader = new Reader();
+
+        try {
+            String jsonString = reader.readLines(SEQUENCE_FILE);
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            myYogaSequence =  mapper.readValue(jsonString,YogaSequence.class);
+            System.out.println("loaded sequence, returning to main");
+            returnToMain();
+
+        } catch (IOException e) {
+            initializeNewSequence();
+        }
 
     }
 
@@ -124,8 +135,8 @@ public class YogaApp {
     //REQUIRES: Non-empty sequence
     //EFFECTS: Displays menu for managing sequence
     public void manageSequence() {
-        System.out.println("You have " + myYogaSequence.getNumberOfPoses() + " in your"
-                + myYogaSequence.getNameOfSeq());
+        System.out.println("You have " + myYogaSequence.countPoses() + " in your"
+                + myYogaSequence.getName());
         System.out.println("Your current sequence is: " + myYogaSequence.listAllPoses());
         System.out.println("The total time of your sequence is: " + myYogaSequence.totalTimeInSeq() + " minutes");
         if (myYogaSequence.totalTimeInSeq() >= myYogaSequence.getAllocatedTime()) {
@@ -168,7 +179,7 @@ public class YogaApp {
         try {
             String jsonString = mapper.writeValueAsString(myYogaSequence);
             Writer writer = new Writer();
-            writer.write(jsonString);
+            writer.write(jsonString, SEQUENCE_FILE);
             writer.close();
             System.out.println("Sequence saved to " + SEQUENCE_FILE);
             returnToMain();

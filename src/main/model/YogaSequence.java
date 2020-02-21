@@ -63,7 +63,7 @@ public  class YogaSequence {
 //REQUIRES: Non-empty list of poses
 //EFFECTS: Returns the total number of poses in the sequence
 
-    public int getNumberOfPoses() {
+    public int countPoses() {
         int numberOfPoses = exerciseSequence.size();
         return numberOfPoses;
     }
@@ -92,7 +92,7 @@ public  class YogaSequence {
     }
 
 //EFFECTS: Returns name of sequence
-    public String getNameOfSeq() {
+    public String getName() {
         return name;
     }
 

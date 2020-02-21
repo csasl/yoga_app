@@ -9,21 +9,21 @@ import model.YogaPose;
 
 
 import model.Stage;
-//PoseDescriptions class contains the information for all poses available for the user to browse
+//PoseDescriptions class contains the information for all poses  available for the user to browse
 
 public class PoseDescriptions {
 //Yoga Poses:
-    protected static final YogaPose ALTERNATE = new YogaPose("Alternate Nostril Breathing",
+    public static final YogaPose ALTERNATE = new YogaPose("Alternate Nostril Breathing",
             "Sit comfortably" + "cover your left nostril with your right ring finger, breathe in "
                     + "through your right nostril, cover "
                     + "your right nostril with your thumb, now uncover your left nostril and breathe out", "All",
             Stage.BREATHING);
 
-    protected static final YogaPose KAPALABHATI = new YogaPose("Kapalabhati", "Inhale deeply through"
+    public static final YogaPose KAPALABHATI = new YogaPose("Kapalabhati", "Inhale deeply through"
             + "your nose, as you exhale, press your belly towards your spine to force the breath out", "All",
             Stage.MAIN);
 
-    protected static final YogaPose COOLING = new YogaPose("Sitali", "Also known as cooling breath. "
+    public static final YogaPose COOLING = new YogaPose("Sitali", "Also known as cooling breath. "
             + "Make an O-shape with your mouth and inhale through your mouth as if drinking through a straw,"
             + " breath out " + "through " + "your nose.", "All", Stage.BREATHING);
 

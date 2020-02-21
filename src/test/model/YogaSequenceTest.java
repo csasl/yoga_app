@@ -28,14 +28,14 @@ public class YogaSequenceTest {
     @Test
     public void testConstructor() {
 
-        assertEquals(testSequence.getNumberOfPoses(), 0);
+        assertEquals(testSequence.countPoses(), 0);
 
     }
 
     @Test
     public void testSetName() {
         testSequence.setName("Beginner");
-        assertEquals(testSequence.getNameOfSeq(), "Beginner");
+        assertEquals(testSequence.getName(), "Beginner");
     }
 
     @Test
@@ -46,31 +46,31 @@ public class YogaSequenceTest {
 
     @Test
     public void addOnePose() {
-        assertEquals(testSequence.getNumberOfPoses(), 0);
+        assertEquals(testSequence.countPoses(), 0);
         testSequence.addPose(POSE_1);
-        assertEquals(testSequence.getNumberOfPoses(), 1);
+        assertEquals(testSequence.countPoses(), 1);
     }
 
     @Test
     public void addMultiplePoses() {
-        assertEquals(testSequence.getNumberOfPoses(), 0);
+        assertEquals(testSequence.countPoses(), 0);
         testSequence.addPose(POSE_1);
         testSequence.addPose(POSE_2);
         testSequence.addPose(POSE_3);
         testSequence.addPose(POSE_4);
-        assertEquals(testSequence.getNumberOfPoses(), 4);
+        assertEquals(testSequence.countPoses(), 4);
     }
 
     @Test
     public void removePose() {
-        assertEquals(testSequence.getNumberOfPoses(), 0);
+        assertEquals(testSequence.countPoses(), 0);
         testSequence.addPose(POSE_1);
         testSequence.addPose(POSE_2);
         testSequence.addPose(POSE_3);
         testSequence.addPose(POSE_4);
-        assertEquals(testSequence.getNumberOfPoses(), 4);
+        assertEquals(testSequence.countPoses(), 4);
         testSequence.removePose(POSE_1.getName());
-        assertEquals(testSequence.getNumberOfPoses(), 3);
+        assertEquals(testSequence.countPoses(), 3);
         assertFalse(testSequence.sequenceContainsPose(POSE_1.getName()));
 
     }

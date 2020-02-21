@@ -21,6 +21,10 @@ public  class YogaPose {
 
     }
 
+    public YogaPose() {
+
+    }
+
 //EFFECTS: returns name of exercise
     public String getName() {
         return this.name;
@@ -51,5 +55,23 @@ public  class YogaPose {
 //EFFECTS: given a time in minutes, sets the time exercise will be practised for
     public void setTime(int time) {
         this.time = time;
+    }
+
+    //EFFECTS: sets name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    //EFFECTS: sets level
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setType(Stage type) {
+        this.type = type;
     }
 }
