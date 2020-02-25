@@ -7,7 +7,8 @@ import java.nio.file.Paths;
 public class Reader {
 
 
-
+//EFFECTS: Reads all bytes in saved file and returns content of file
+    //Code obtained from: https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
     public String readLines(String path) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(path)));
         return content;

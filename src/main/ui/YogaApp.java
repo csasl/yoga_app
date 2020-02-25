@@ -53,29 +53,14 @@ public class YogaApp {
         buildWarmUpOptionsYoga();
         buildMainOptionsYoga();
         buildWarmDownOptionsYoga();
-        printWelcomeMenu();
-        String cmd1 = getUserInput();
-        parseInitialInput(cmd1);
+        loadSequence();
         printMainMenu();
         String cmd2 = getUserInput();
         parseMainInput(cmd2);
 
     }
 
-    //EFFECTS: Prints welcome menu
-    public void printWelcomeMenu() {
-        System.out.println("To build a new sequence enter " + NEW);
-        System.out.println("To load your saved sequence enter" + LOAD);
-    }
 
-    //EFFECTS: Handles user choice for new or saved sequence
-    public void parseInitialInput(String cmd1) {
-        if (cmd1.equals(NEW)) {
-            initializeNewSequence();
-        } else if (cmd1.equals(LOAD)) {
-            loadSequence();
-        }
-    }
 
     //EFFECTS: Creates a new sequence
     public void initializeNewSequence() {
@@ -89,7 +74,8 @@ public class YogaApp {
         myYogaSequence.setAllocatedTime(time);
     }
 
-    //EFFECTS: Loads sequence saved to file
+    //EFFECTS: Loads sequence previously saved to file
+    //Code to deserialize saved object from: https://mkyong.com/java/how-to-convert-java-object-to-from-json-jackson/
     public void loadSequence() {
         Reader reader = new Reader();
 
@@ -98,7 +84,8 @@ public class YogaApp {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             myYogaSequence =  mapper.readValue(jsonString,YogaSequence.class);
-            System.out.println("loaded sequence, returning to main");
+            System.out.println("Loaded saved sequence!");
+            System.out.println("Now returning to main menu.");
             returnToMain();
 
         } catch (IOException e) {
@@ -135,7 +122,7 @@ public class YogaApp {
     //REQUIRES: Non-empty sequence
     //EFFECTS: Displays menu for managing sequence
     public void manageSequence() {
-        System.out.println("You have " + myYogaSequence.countPoses() + " in your"
+        System.out.println("You have " + myYogaSequence.countPoses() + " in your "
                 + myYogaSequence.getName());
         System.out.println("Your current sequence is: " + myYogaSequence.listAllPoses());
         System.out.println("The total time of your sequence is: " + myYogaSequence.totalTimeInSeq() + " minutes");
@@ -174,6 +161,7 @@ public class YogaApp {
     }
 
     //EFFECTS: saves sequence to file
+    //Code to write objects to string obtained from: https://mkyong.com/java/jackson-how-to-parse-json/
     public void saveSequence() {
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -278,15 +266,6 @@ public class YogaApp {
         String option = getUserInput();
         parseMainInput(option);
     }
-
-
-
-
-
-
-
-
-
 
     //EFFECTS: Populates Yoga breathing exercise list with pre-defined exercises
     public void buildBreathingOptionsYoga() {
