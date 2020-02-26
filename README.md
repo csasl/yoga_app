@@ -1,4 +1,4 @@
-# YogaLates
+# Home Yoga
 
 ## A sequence builder and tracker for yoga and pilates poses
 
@@ -14,11 +14,12 @@ available and by level of difficulty.
 
 **User Stories**
 
-- As a user I want to be able to choose between building a yoga or pilates sequence, name my sequence and allocate
-how long I want to work out for.
+- As a user I want to be able to name my sequence and allocate how long I want to work out for.
 - As a user, I want to be able to browse poses suitable for different stages of a workout and view their descriptions
 - As a user, I want to be able to add a pose to my sequence and set the time I want to practice the pose for
 - As a user, I want to be able to remove poses I no longer want and see an updated list and time remaining to allocate each time I add or remove a pose
+- As a user, I want to be able to choose to save my sequence when I exit 
+- As a user, I want my saved sequence to reload once I re-open the app
 
 *References*
 
@@ -26,4 +27,4 @@ Template code for UI package from: https://github.com/UBCx-Software-Construction
 
 Yoga poses from:  https://www.yogajournal.com/
 
-Pilates poses from: https://www.verywellfit.com/the-first-10-pilates-mat-exercises-and-more-2704611
+P
