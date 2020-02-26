@@ -1,4 +1,5 @@
 package ui;
+//UI code template from GymLifeKiosk: https://github.com/UBCx-Software-Construction/long-form-problem-starters.git
 
 import model.YogaPose;
 import model.YogaSequence;
@@ -123,7 +124,7 @@ public class YogaApp {
     //EFFECTS: Displays menu for managing sequence
     public void manageSequence() {
         System.out.println("You have " + myYogaSequence.countPoses() + " in your "
-                + myYogaSequence.getName());
+                + myYogaSequence.getName() + " sequence.");
         System.out.println("Your current sequence is: " + myYogaSequence.listAllPoses());
         System.out.println("The total time of your sequence is: " + myYogaSequence.totalTimeInSeq() + " minutes");
         if (myYogaSequence.totalTimeInSeq() >= myYogaSequence.getAllocatedTime()) {

@@ -1,5 +1,7 @@
 package persistence;
 
+//Template for code from reader class in Teller App : https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
