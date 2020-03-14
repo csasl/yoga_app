@@ -22,9 +22,9 @@ public class WriterTest {
         testWriter = new Writer();
         testReader = new Reader();
         testSequence = new YogaSequence();
-        testSequence.addPose(PoseDescriptions.ALTERNATE);
-        testSequence.addPose(PoseDescriptions.COOLING);
-        testSequence.addPose(PoseDescriptions.KAPALABHATI);
+//        testSequence.addPose(PoseDescriptions.ALTERNATE);
+//        testSequence.addPose(PoseDescriptions.COOLING);
+//        testSequence.addPose(PoseDescriptions.KAPALABHATI);
         testSequence.setAllocatedTime(20);
         testSequence.setName("test");
     }

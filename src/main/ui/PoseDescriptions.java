@@ -31,6 +31,8 @@ public class PoseDescriptions {
             + "resting on your knees, take a deep breath in to your nose, open your mouth and stretch your tongue"
             + "towards your chin, exhale through your mouth.", "All", Stage.BREATHING);
 
+
+
     protected static final YogaPose CATCOW = new YogaPose("Cat-Cow", "Start on your hands and knees, "
             + "as you inhale, lift your sit bones and chest towards the sky, allowing your belly to sink, exhale back"
             + "to a neutral spine.", "All", Stage.WARMUP);
