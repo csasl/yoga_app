@@ -1,22 +1,91 @@
 package ui;
+//https://www.dummies.com/programming/java/how-to-use-sliders-in-java/
 
 import model.YogaPose;
+import model.YogaSequence;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
-public class PoseDetails {
+public class PoseDetails extends JPanel {
+    private  JButton addPose;
+    private List<YogaPose> selectedPoses;
+    private int selected;
+    private YogaPose selectedPose;
+    private JFrame poseWindow;
+    private JSlider timeSlider;
+    private YogaSequence sequence;
 
-    public void showDetails(List<YogaPose> poses, int selection) {
-        JFrame poseWindow = new JFrame(poses.get(selection).getName());
+    public PoseDetails(List<YogaPose> poses, int selected, YogaSequence seq) {
+        this.selectedPoses = poses;
+        this.selected = selected;
+        this.sequence = seq;
+        selectedPose = selectedPoses.get(selected);
+        poseWindow = new JFrame(selectedPose.getName());
         poseWindow.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        poseWindow. setLayout(new BorderLayout());
-        poseWindow.add(new JLabel(poses.get(selection).getDescription()));
+        poseWindow. setLayout(new FlowLayout());
+        showDetails();
+    }
+
+    public void showDetails() {
+        poseWindow.add(new JLabel(selectedPose.getDescription()));
+        addPose = new JButton("Add to sequence");
+        addPose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleAddSelection();
+            }
+        });
        // ImageIcon image = new ImageIcon(poses.get(selection).image);
        // JLabel imageLabel = new JLabel(image);
         //poseWindow.add(imageLabel);
+        poseWindow.add(addPose);
+
         poseWindow.setSize(1000,500);
         poseWindow.setVisible(true);
+    }
+
+    public void handleAddSelection() {
+        createTimeSlider();
+    }
+
+    public void createTimeSlider() {
+        JFrame timer = new JFrame("Time selection");
+        timer.setSize(500,500);
+        timer.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        timer.setLayout(new FlowLayout());
+        timer.add(new JLabel("Please select the number of minutes you want to work out for:"));
+        JButton setBtn = new JButton("Set");
+        setBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addToSeq();
+
+            }
+        });
+        timeSlider = new JSlider(0,30,1);
+        timeSlider.setMajorTickSpacing(10);
+        timeSlider.setMinorTickSpacing(1);
+        timeSlider.setPaintTicks(true);
+        timeSlider.setPaintLabels(true);
+        timer.add(timeSlider);
+        timer.add(setBtn);
+        timer.setVisible(true);
+    }
+
+    public void addToSeq() {
+        int time = timeSlider.getValue();
+        sequence.addPose(selectedPose);
+        selectedPose.setTime(time);
+        JFrame popUp = new JFrame("Success!");
+        popUp.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        popUp.setLayout(new BorderLayout());
+        popUp.add(new JLabel(selectedPose.getName() + " was successfully added"));
+        popUp.setSize(400,400);
+        popUp.setVisible(true);
+
     }
 }

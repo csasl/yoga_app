@@ -2,6 +2,7 @@ package ui;
 
 import model.Stage;
 import model.YogaPose;
+import model.YogaSequence;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,10 +22,12 @@ public class Stages extends JPanel {
     private JButton warmBtn;
     private JButton mainBtn;
     private JButton coolBtn;
+    private YogaSequence myYogaSeq;
 
 
     public Stages() {
         initializePoseLists();
+        myYogaSeq = new YogaSequence();
         setLayout(new GridLayout(2,2));
         setBackground(Color.DARK_GRAY);
 
@@ -46,7 +49,7 @@ public class Stages extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PoseLists poseList = new PoseLists();
-                poseList.createExercisesMenu(breathingExercisesYoga);
+                poseList.createExercisesMenu(breathingExercisesYoga, myYogaSeq);
             }
         });
 
@@ -54,7 +57,7 @@ public class Stages extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PoseLists warmList = new PoseLists();
-                warmList.createExercisesMenu(warmUpPosesYoga);
+                warmList.createExercisesMenu(warmUpPosesYoga, myYogaSeq);
             }
         });
 
@@ -62,7 +65,7 @@ public class Stages extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PoseLists mainList = new PoseLists();
-                mainList.createExercisesMenu(mainPosesYoga);
+                mainList.createExercisesMenu(mainPosesYoga, myYogaSeq);
             }
         });
 

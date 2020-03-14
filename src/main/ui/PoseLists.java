@@ -4,6 +4,7 @@ package ui;
 
 import model.Stage;
 import model.YogaPose;
+import model.YogaSequence;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -19,9 +20,9 @@ public class PoseLists extends JPanel implements ListSelectionListener {
 
     private JList poseList;
     private DefaultListModel poseListModel;
-    private JButton viewButton;
     private List<YogaPose> selectedSeq;
     private int selected;
+    private YogaSequence sequence;
 
     public PoseLists() {
         super(new BorderLayout());
@@ -31,8 +32,9 @@ public class PoseLists extends JPanel implements ListSelectionListener {
 
     }
 
-    public void createExercisesMenu(List<YogaPose> poses) {
+    public void createExercisesMenu(List<YogaPose> poses, YogaSequence sequence) {
         selectedSeq = poses;
+        this.sequence = sequence;
         JFrame poseFrame = new JFrame();
         poseFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         List<String> names = new ArrayList<>();
@@ -46,14 +48,7 @@ public class PoseLists extends JPanel implements ListSelectionListener {
         poseList.addListSelectionListener(this);
 
         poseFrame.add(poseList);
-        viewButton = new JButton("View");
-        viewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-
-            }
-        });
         poseFrame.setSize(1000,1000);
         poseFrame.setVisible(true);
 
@@ -63,10 +58,10 @@ public class PoseLists extends JPanel implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        selected = poseList.getSelectedIndex();
-        PoseDetails details = new PoseDetails();
-        details.showDetails(selectedSeq, selected);
-
+        if (!e.getValueIsAdjusting()) {
+            selected = poseList.getSelectedIndex();
+            new PoseDetails(selectedSeq, selected, sequence);
+        }
 
     }
 }

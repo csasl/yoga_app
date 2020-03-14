@@ -4,16 +4,18 @@
 
 package ui;
 
+import model.YogaSequence;
 import persistence.Reader;
 
 import javax.swing.*;
 
 public class Main {
 
+
+
+
     public static void main(String[] args) {
-//        YogaApp app = new YogaApp();
-//        System.out.println("Welcome to Home Yoga, let's get started!");
-//        app.runYogaApp();
+
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -22,8 +24,8 @@ public class Main {
 
             }
         });
-
     }
+
 
 
 }
