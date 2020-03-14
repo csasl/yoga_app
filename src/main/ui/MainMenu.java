@@ -5,17 +5,19 @@ import model.YogaSequence;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame {
+public class MainMenu extends JFrame {
    // private Toolbar toolbar;
     private Stages poses;
+    private YogaSequence sequence;
 
 
 //EFFECTS: Creates window that displays the 4 stages of the workout
-    public MainFrame() {
+    public MainMenu(YogaSequence seq) {
         super("Home Yoga");
+        this.sequence = seq;
         setLayout(new BorderLayout());
       //  toolbar = new Toolbar();
-        poses = new Stages();
+        poses = new Stages(sequence);
       //  add(toolbar, BorderLayout.NORTH);
         add(poses);
 

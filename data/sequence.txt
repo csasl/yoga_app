@@ -1,1 +1,0 @@
-{"name":"sun","allocatedTime":15,"exerciseSequence":[{"name":"Cat-Cow","type":"WARMUP","time":10,"description":"Start on your hands and knees, as you inhale, lift your sit bones and chest towards the sky, allowing your belly to sink, exhale backto a neutral spine.","level":"All"}]}

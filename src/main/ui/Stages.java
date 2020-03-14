@@ -25,9 +25,9 @@ public class Stages extends JPanel {
     private YogaSequence myYogaSeq;
 
 
-    public Stages() {
+    public Stages(YogaSequence sequence) {
         initializePoseLists();
-        myYogaSeq = new YogaSequence();
+        this.myYogaSeq = sequence;
         setLayout(new GridLayout(2,2));
         setBackground(Color.DARK_GRAY);
 
