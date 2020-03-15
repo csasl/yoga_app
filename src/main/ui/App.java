@@ -1,5 +1,6 @@
 package ui;
 //https://stackoverflow.com/questions/3002787/simple-popup-java-form-with-at-least-two-fields
+//https://stackoverflow.com/questions/38062716/implementing-an-actionlistener-to-a-jtextfield
 
 import model.YogaSequence;
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -41,6 +42,7 @@ public class App {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             myYogaSequence =  mapper.readValue(jsonString,YogaSequence.class);
+            runMain();
 
 
         } catch (IOException e) {
@@ -48,19 +50,32 @@ public class App {
         }
     }
 
+
     public void initializeNewSequence() {
+        myYogaSequence = new YogaSequence();
         JPanel welcome = new JPanel(new GridLayout(0,1));
         welcome.add(new JLabel("Welcome to HomeYoga, let's get started!"));
         welcome.add(new JLabel("Please name your sequence:"));
         welcome.add(nameField);
+        welcome.add(new JLabel("How many minutes would you like to work out for:"));
+        welcome.add(timeField);
+        addListeners();
+        int result = JOptionPane.showConfirmDialog(null,welcome,"Welcome",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            runMain();
+        }
+    }
+
+    public void addListeners() {
         nameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setName();
             }
         });
-        welcome.add(new JLabel("How many minutes would you like to work out for:"));
-        welcome.add(timeField);
+
         timeField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,17 +83,15 @@ public class App {
             }
         });
 
-        int result = JOptionPane.showConfirmDialog(null,welcome,"Welcome",
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    }
 
-        if (result == JOptionPane.OK_OPTION) {
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
+    public void runMain() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                    new MainMenu(myYogaSequence);
-                }
-            });
-        }
+                new MainMenu(myYogaSequence);
+            }
+        });
 
     }
 

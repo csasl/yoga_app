@@ -5,6 +5,8 @@ import model.YogaPose;
 import model.YogaSequence;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +18,7 @@ public class PoseDetails extends JPanel {
     private int selected;
     private YogaPose selectedPose;
     private JFrame poseWindow;
-    private JSlider timeSlider;
+    private JSlider timeSlider = new JSlider(0, 30);
     private YogaSequence sequence;
 
     public PoseDetails(List<YogaPose> poses, int selected, YogaSequence seq) {
@@ -66,7 +68,7 @@ public class PoseDetails extends JPanel {
 
             }
         });
-        timeSlider = new JSlider(0,30,1);
+
         timeSlider.setMajorTickSpacing(10);
         timeSlider.setMinorTickSpacing(1);
         timeSlider.setPaintTicks(true);
@@ -77,9 +79,16 @@ public class PoseDetails extends JPanel {
     }
 
     public void addToSeq() {
-        int time = timeSlider.getValue();
         sequence.addPose(selectedPose);
-        selectedPose.setTime(time);
+        timeSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int time = timeSlider.getValue();
+
+                selectedPose.setTime(time);
+            }
+        });
+
         JFrame popUp = new JFrame("Success!");
         popUp.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         popUp.setLayout(new BorderLayout());
