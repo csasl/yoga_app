@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public  class YogaSequence {
-    String name;
+
     List<YogaPose> exerciseSequence;
     Integer allocatedTime;
 
@@ -17,11 +17,7 @@ public  class YogaSequence {
 
     }
 
-//MODIFIES: this
-//EFFECTS: Sets the sequence's name to given name
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
 //MODIFIES: this
 //EFFECTS: Sets allocated time to given time in mins
@@ -89,11 +85,6 @@ public  class YogaSequence {
             listOfPoses = listOfPoses  + nextPose.getName() + ". ";
         }
         return listOfPoses;
-    }
-
-//EFFECTS: Returns name of sequence
-    public String getName() {
-        return name;
     }
 
 

@@ -32,11 +32,7 @@ public class YogaSequenceTest {
 
     }
 
-    @Test
-    public void testSetName() {
-        testSequence.setName("Beginner");
-        assertEquals(testSequence.getName(), "Beginner");
-    }
+
 
     @Test
     public void testSetAllocatedTime() {

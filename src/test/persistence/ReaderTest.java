@@ -27,7 +27,7 @@ public class ReaderTest {
         testSequence.addPose(PoseDescriptions.COOLING);
         testSequence.addPose(PoseDescriptions.KAPALABHATI);
         testSequence.setAllocatedTime(20);
-        testSequence.setName("test");
+
     }
 
     @Test
@@ -49,7 +49,7 @@ public class ReaderTest {
             testSequence = mapper2.readValue(readjson, YogaSequence.class);
             assertEquals(20, testSequence.getAllocatedTime());
             assertEquals(3, testSequence.countPoses());
-            assertEquals("test", testSequence.getName());
+
             assertTrue(testSequence.sequenceContainsPose("Kapalabhati"));
 
 
