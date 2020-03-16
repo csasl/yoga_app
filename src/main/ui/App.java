@@ -37,6 +37,7 @@ public class App {
         setPanelUI();
         setPaneUI();
         setListUI();
+        setLabelUI();
         loadSequence();
 
     }
@@ -88,6 +89,9 @@ public class App {
 
     //EFFECTS: Sets UI components for labels
     public void setLabelUI() {
+        UIManager.put("Label.background", Color.darkGray);
+        UIManager.put("Label.foreground", Color.white);
+        UIManager.put("Label.font", montserratLarge);
 
 
     }

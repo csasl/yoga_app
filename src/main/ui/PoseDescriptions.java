@@ -1,12 +1,12 @@
-package ui;
-
-import model.Stage;
-import model.YogaPose;
 //Pilates poses and descriptions from: https://www.verywellfit.com/the-first-10-pilates-mat-exercises-and-more-2704611
 //Yoga poses and descriptions from: https://www.yogajournal.com/
 //PoseDescriptions class contains all the poses the user can select from to add to their sequence
 
 
+package ui;
+
+import model.Stage;
+import model.YogaPose;
 
 import model.Stage;
 //PoseDescriptions class contains the information for all poses  available for the user to browse
@@ -14,36 +14,40 @@ import model.Stage;
 public class PoseDescriptions {
 //Yoga Poses:
     public static final YogaPose ALTERNATE = new YogaPose("Alternate Nostril Breathing",
-            "Sit comfortably" + "cover your left nostril with your right ring finger, breathe in "
-                    + "through your right nostril, cover "
-                    + "your right nostril with your thumb, now uncover your left nostril and breathe out", "All",
+            "\n 1.Sit comfortably in a cross legged position"
+                    + "\n 2. Cover your left nostril with your right ring finger and breathe in "
+                    + "through your right nostril"
+                    + "\n 3.Cover your right nostril with your thumb, "
+                    + "\n 4.now uncover your left nostril and breathe out", "All",
             Stage.BREATHING);
 
-    public static final YogaPose KAPALABHATI = new YogaPose("Kapalabhati", "Inhale deeply through"
-            + "your nose, as you exhale, press your belly towards your spine to force the breath out", "All",
+    public static final YogaPose KAPALABHATI = new YogaPose("Kapalabhati", "\n 1.Inhale deeply through"
+            + "your nose \n 2. As you exhale, press your belly towards your spine to force the breath out", "All",
             Stage.MAIN);
 
-    public static final YogaPose COOLING = new YogaPose("Sitali", "Also known as cooling breath. "
-            + "Make an O-shape with your mouth and inhale through your mouth as if drinking through a straw,"
-            + " breath out " + "through " + "your nose.", "All", Stage.BREATHING);
+    public static final YogaPose COOLING = new YogaPose("Sitali",
+            "\n 1.Make an O-shape with your mouth and inhale through your mouth as if drinking through a straw,"
+            + " \n 2.breath out through your nose.", "All", Stage.BREATHING);
 
-    protected static final YogaPose LION = new YogaPose("Lion", "Sit cross legged, with your hands "
-            + "resting on your knees, take a deep breath in to your nose, open your mouth and stretch your tongue"
-            + "towards your chin, exhale through your mouth.", "All", Stage.BREATHING);
+    protected static final YogaPose LION = new YogaPose("Lion", "\n 1.Sit cross legged, with your hands "
+            + "resting on your knees \n 2.Take a deep breath in to your nose, open your mouth and stretch your tongue"
+            + "towards your chin \n 3. Exhale through your mouth.", "All", Stage.BREATHING);
 
 
 
-    protected static final YogaPose CATCOW = new YogaPose("Cat-Cow", "Start on your hands and knees, "
-            + "as you inhale, lift your sit bones and chest towards the sky, allowing your belly to sink, exhale back"
-            + "to a neutral spine.", "All", Stage.WARMUP);
+    protected static final YogaPose CATCOW = new YogaPose("Cat-Cow", " \n 1.Start on your hands and knees, "
+            + "\n 2. As you inhale, lift your sit bones and chest towards the sky "
+            + "\n 3. Allow your belly to sink  exhale backto a neutral spine.",
+            "All", Stage.WARMUP);
 
-    protected static final YogaPose BOAT = new YogaPose("Boat", "Sit on the floor with your knees "
-            + "bent, lift your feet off the floor, lean back and slowly straighten your legs if possible",
+    protected static final YogaPose BOAT = new YogaPose("Boat", " \n 1.Sit on the floor with your knees "
+            + "bent \n 2. Lift your feet off the floor, lean back and slowly straighten your legs if possible",
             "Beginner/ Intermediate", Stage.WARMUP);
 
-    protected static final YogaPose SEATEDFORWARDBEND = new YogaPose("Seated forward bend", "Sit tall"
-            + "with your legs streched out in front of you, lean forward with your hips making sure to nor round your"
-            + "spine. If possible grab your feet or rest your hands on your shin.", "All", Stage.WARMUP);
+    protected static final YogaPose SEATEDFORWARDBEND = new YogaPose("Seated forward bend",
+            "\n 1.Sit tall with your legs streched out in front of you "
+                    + "\n 2. Lean forward with your hips making sure to nor round your spine. "
+                    + "\n 3.If possible grab your feet or rest your hands on your shin.", "All", Stage.WARMUP);
 
     protected static final YogaPose DOWNWARD_DOG = new YogaPose("Downward Dog", "Start on your hands"
             + "and knees, exhale lift your knees off the ground and your sit bones towards the ceiling",

@@ -1,5 +1,7 @@
-package ui;
 //https://www.dummies.com/programming/java/how-to-use-sliders-in-java/
+//https://stackoverflow.com/questions/1090098/newline-in-jlabel
+
+package ui;
 
 import model.YogaPose;
 import model.YogaSequence;
@@ -28,12 +30,15 @@ public class PoseDetails extends JPanel {
         selectedPose = selectedPoses.get(selected);
         poseWindow = new JFrame(selectedPose.getName());
         poseWindow.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        poseWindow. setLayout(new FlowLayout());
+        poseWindow. setLayout(new BorderLayout());
         showDetails();
     }
 
     public void showDetails() {
-        poseWindow.add(new JLabel(selectedPose.getDescription()));
+        JLabel poseDescription = new JLabel();
+        poseDescription.setText("<html>" + selectedPose.getDescription().replaceAll("<", "&lt")
+                .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
+        poseWindow.add(poseDescription, BorderLayout.CENTER);
         addPose = new JButton("Add to sequence");
         addPose.addActionListener(new ActionListener() {
             @Override
@@ -41,11 +46,8 @@ public class PoseDetails extends JPanel {
                 handleAddSelection();
             }
         });
-       // ImageIcon image = new ImageIcon(poses.get(selection).image);
-       // JLabel imageLabel = new JLabel(image);
-        //poseWindow.add(imageLabel);
-        poseWindow.add(addPose);
 
+        poseWindow.add(addPose, BorderLayout.SOUTH);
         poseWindow.setSize(1000,500);
         poseWindow.setVisible(true);
     }

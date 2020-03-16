@@ -4,7 +4,7 @@
 
 package ui;
 
-import model.Stage;
+
 import model.YogaPose;
 import model.YogaSequence;
 
