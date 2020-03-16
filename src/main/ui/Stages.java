@@ -1,3 +1,7 @@
+//https://stackoverflow.com/questions/4801386/how-do-i-add-an-image-to-a-jbutton
+//<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from
+// <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
 package ui;
 
 import model.Stage;
@@ -23,6 +27,10 @@ public class Stages extends JPanel {
     private JButton mainBtn;
     private JButton coolBtn;
     private YogaSequence myYogaSeq;
+    private ImageIcon flowFinal;
+    private ImageIcon breatheFinal;
+    private ImageIcon warmUpFinal;
+    private ImageIcon coolFinal;
 
 
     public Stages(YogaSequence sequence) {
@@ -30,17 +38,36 @@ public class Stages extends JPanel {
         this.myYogaSeq = sequence;
         setLayout(new GridLayout(2,2));
         setBackground(Color.DARK_GRAY);
-
-
-        breatheBtn = new JButton("Breathe");
-        warmBtn = new JButton("Warm-up");
-        mainBtn = new JButton("Flow");
-        coolBtn = new JButton("Cool-down");
+        makeIcons();
+        breatheBtn = new JButton(breatheFinal);
+        warmBtn = new JButton(warmUpFinal);
+        mainBtn = new JButton(flowFinal);
+        coolBtn = new JButton(coolFinal);
         add(breatheBtn);
         add(warmBtn);
         add(mainBtn);
         add(coolBtn);
         addButtonListeners();
+
+    }
+
+    public void makeIcons() {
+        ImageIcon flow = new ImageIcon("flow.png");
+        Image flowImage = flow.getImage();
+        Image flowResize = flowImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        flowFinal = new ImageIcon(flowResize);
+        ImageIcon breathe = new ImageIcon("breathe.png");
+        Image breatheImage = breathe.getImage();
+        Image breatheResize = breatheImage.getScaledInstance(200,200,Image.SCALE_SMOOTH);
+        breatheFinal = new ImageIcon(breatheResize);
+        ImageIcon warmup = new ImageIcon("warmup.png");
+        Image warmImage = warmup.getImage();
+        Image warmResize = warmImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        warmUpFinal = new ImageIcon(warmResize);
+        ImageIcon cool = new ImageIcon("cool.png");
+        Image coolImage = cool.getImage();
+        Image coolResize = coolImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        coolFinal = new ImageIcon(coolResize);
 
     }
 

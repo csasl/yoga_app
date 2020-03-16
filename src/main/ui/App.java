@@ -22,6 +22,8 @@ public class App {
     private static final String SEQUENCE_FILE = "./data/sequence.txt";
     private JComboBox timeBox;
     private Font montserrat;
+    private Font montserratLarge;
+
 
 
 
@@ -33,10 +35,8 @@ public class App {
         setFont();
         setButtonUI();
         setPanelUI();
-        UIManager.put("Panel.background", Color.darkGray);
-
-
-
+        setPaneUI();
+        setListUI();
         loadSequence();
 
     }
@@ -47,11 +47,15 @@ public class App {
         File font = new File("Montserrat.otf");
         try {
             montserrat = Font.createFont(Font.TRUETYPE_FONT, font);
+
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        montserratLarge = new Font("Montserrat", Font.PLAIN, 18);
+
 
     }
 
@@ -59,19 +63,41 @@ public class App {
     public void setButtonUI() {
         UIManager.put("Button.background", Color.darkGray);
         UIManager.put("Button.foreground", Color.white);
+        UIManager.put("Button.font", montserratLarge);
 
     }
 
     //EFFECTS: Sets UI components for panel components of app
     public void setPanelUI() {
+        UIManager.put("Panel.background", Color.darkGray);
+        UIManager.put("Panel.foreground", Color.white);
+        UIManager.put("Panel.font", montserratLarge);
+
 
     }
 
     //EFFECTS: Sets UI components for option panes in app
     public void setPaneUI() {
         UIManager.put("OptionPane.background", Color.darkGray);
-        UIManager.put("OptionPane.foreground", Color.white);
+        UIManager.put("OptionPane.okButtonBackground", Color.darkGray);
+        UIManager.put("OptionPane.messageForeground", Color.white);
+        UIManager.put("OptionPane.messageFont", montserratLarge);
+        UIManager.put("OptionPane.questionDialog.border.background", Color.darkGray);
 
+    }
+
+    //EFFECTS: Sets UI components for labels
+    public void setLabelUI() {
+
+
+    }
+
+    //EFFECTS: Sets UI components for JLists in app
+    public void setListUI() {
+        UIManager.put("List.background", Color.darkGray);
+        UIManager.put("List.foreground", Color.white);
+        UIManager.put("List.font", montserratLarge);
+        UIManager.put("List.cellHeight", 100);
     }
 
 
@@ -106,7 +132,7 @@ public class App {
         JOptionPane timePane = new JOptionPane();
         Integer i = (Integer) timePane.showInputDialog(null,
                 "Please select the number of minutes you want to work out for:", "Welcome"
-                        + "to HomeYoga!", JOptionPane.PLAIN_MESSAGE, finalLotus, times, 20);
+                        + " to HomeYoga!", JOptionPane.PLAIN_MESSAGE, finalLotus, times, 20);
         switch (i) {
             case 20:
                 myYogaSequence.setAllocatedTime(20);
