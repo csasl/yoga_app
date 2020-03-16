@@ -1,4 +1,4 @@
-//Main menu for 
+//Main menu for
 
 package ui;
 

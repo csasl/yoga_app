@@ -13,16 +13,15 @@ import persistence.Reader;
 
 import model.YogaSequence;
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 public class App {
     private YogaSequence myYogaSequence;
     private static final String SEQUENCE_FILE = "./data/sequence.txt";
     private JComboBox timeBox;
+    private Font montserrat;
 
 
 
@@ -30,17 +29,54 @@ public class App {
     public App() { }
 
     public void runApp() {
+
+        setFont();
+        setButtonUI();
+        setPanelUI();
+        UIManager.put("Panel.background", Color.darkGray);
+
+
+
         loadSequence();
-//        SwingUtilities.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                new MainMenu(myYogaSequence);
-//
-//            }
-//        });
+
+    }
+
+    //EFFECTS: Loads font to be used to app
+
+    public void setFont() {
+        File font = new File("Montserrat.otf");
+        try {
+            montserrat = Font.createFont(Font.TRUETYPE_FONT, font);
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //EFFECTS: Sets UI components for all buttons in app
+    public void setButtonUI() {
+        UIManager.put("Button.background", Color.darkGray);
+        UIManager.put("Button.foreground", Color.white);
+
+    }
+
+    //EFFECTS: Sets UI components for panel components of app
+    public void setPanelUI() {
+
+    }
+
+    //EFFECTS: Sets UI components for option panes in app
+    public void setPaneUI() {
+        UIManager.put("OptionPane.background", Color.darkGray);
+        UIManager.put("OptionPane.foreground", Color.white);
+
     }
 
 
+
+//EFFECTS: Reads sequence data from text file and loads values to sequence. If not found, throws IO exception
     public void loadSequence() {
         Reader reader = new Reader();
 
@@ -57,15 +93,20 @@ public class App {
         }
     }
 
-
+//EFFECTS: Displays menu for user to initialize a new sequence
     public void initializeNewSequence() {
         myYogaSequence = new YogaSequence();
         ImageIcon lotus = new ImageIcon("lotus.png");
+        Image lotusImage = lotus.getImage();
+        Image lotusResize = lotusImage.getScaledInstance(150,150, Image.SCALE_SMOOTH);
+        ImageIcon finalLotus = new ImageIcon(lotusResize);
+
 
         Object[] times = {20, 45, 60};
-        Integer i = (Integer) JOptionPane.showInputDialog(null,
+        JOptionPane timePane = new JOptionPane();
+        Integer i = (Integer) timePane.showInputDialog(null,
                 "Please select the number of minutes you want to work out for:", "Welcome"
-                        + "to HomeYoga!", JOptionPane.PLAIN_MESSAGE, lotus, times, 20);
+                        + "to HomeYoga!", JOptionPane.PLAIN_MESSAGE, finalLotus, times, 20);
         switch (i) {
             case 20:
                 myYogaSequence.setAllocatedTime(20);
@@ -76,8 +117,6 @@ public class App {
             case 60:
                 myYogaSequence.setAllocatedTime(60);
         }
-        UIManager.put("OptionPane.background", Color.black);
-        UIManager.getLookAndFeelDefaults().put("Panel.background", Color.black);
 
 
         runMain();
