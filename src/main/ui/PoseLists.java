@@ -1,4 +1,5 @@
 //Code from http://www.java2s.com/Code/Java/Swing-JFC/ListDataEventDemo.htm
+//https://stackoverflow.com/questions/21029653/java-jlist-text-center-align
 
 package ui;
 
@@ -43,6 +44,9 @@ public class PoseLists extends JPanel implements ListSelectionListener {
         }
 
         poseList = new JList(poseListModel);
+        DefaultListCellRenderer renderer = (DefaultListCellRenderer) poseList.getCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+
         poseList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         poseList.setSelectedIndex(0);
         poseList.addListSelectionListener(this);

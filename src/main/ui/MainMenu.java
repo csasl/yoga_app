@@ -4,11 +4,14 @@ package ui;
 
 import model.YogaPose;
 import model.YogaSequence;
+import org.codehaus.jackson.map.ObjectMapper;
+import persistence.Writer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -48,8 +51,8 @@ public class MainMenu extends JFrame {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                saveSeq();
+                JOptionPane.showMessageDialog(null, "Saved sequence!");
             }
         });
 
@@ -69,6 +72,19 @@ public class MainMenu extends JFrame {
         });
 
 
+    }
+
+    //EFFECTS: Saves sequence to text file
+    public void saveSeq() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String jsonString = mapper.writeValueAsString(sequence);
+            Writer writer = new Writer();
+            writer.write(jsonString, SEQUENCE_FILE);
+            writer.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Sorry, could not save");
+        }
     }
 
 //EFFECTS: Displays window of sequence details once view button is pressed on toolbar

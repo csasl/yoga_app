@@ -1,0 +1,1 @@
+{"exerciseSequence":[{"name":"Lion","type":"BREATHING","time":0,"level":"All","description":"\n 1.Sit cross legged, with your hands resting on your knees \n 2.Take a deep breath in to your nose, open your mouth and stretch your tonguetowards your chin \n 3. Exhale through your mouth."}],"allocatedTime":20}

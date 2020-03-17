@@ -5,6 +5,8 @@ package ui;
 
 import model.YogaPose;
 import model.YogaSequence;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -12,6 +14,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.List;
 
 public class PoseDetails extends JPanel {
@@ -22,6 +25,7 @@ public class PoseDetails extends JPanel {
     private JFrame poseWindow;
     private JSlider timeSlider = new JSlider(0, 30);
     private YogaSequence sequence;
+    private JFrame popUp;
 
     public PoseDetails(List<YogaPose> poses, int selected, YogaSequence seq) {
         this.selectedPoses = poses;
@@ -31,6 +35,9 @@ public class PoseDetails extends JPanel {
         poseWindow = new JFrame(selectedPose.getName());
         poseWindow.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         poseWindow. setLayout(new BorderLayout());
+        ImageIcon banner = new ImageIcon("banner.jpg");
+        poseWindow.add(new JLabel(banner), BorderLayout.NORTH);
+
         showDetails();
     }
 
@@ -58,7 +65,7 @@ public class PoseDetails extends JPanel {
 
     public void createTimeSlider() {
         JFrame timer = new JFrame("Time selection");
-        timer.setSize(500,500);
+        timer.setSize(700,400);
         timer.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         timer.setLayout(new FlowLayout());
         timer.add(new JLabel("Please select the number of minutes you want to work out for:"));
@@ -70,7 +77,6 @@ public class PoseDetails extends JPanel {
 
             }
         });
-
         timeSlider.setMajorTickSpacing(10);
         timeSlider.setMinorTickSpacing(1);
         timeSlider.setPaintTicks(true);
@@ -91,12 +97,30 @@ public class PoseDetails extends JPanel {
             }
         });
 
-        JFrame popUp = new JFrame("Success!");
+        popUp = new JFrame("Success!");
         popUp.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         popUp.setLayout(new BorderLayout());
-        popUp.add(new JLabel(selectedPose.getName() + " was successfully added"));
+        popUp.add(new JLabel(selectedPose.getName() + " was successfully added"), BorderLayout.CENTER);
         popUp.setSize(400,400);
         popUp.setVisible(true);
+        playMusic();
+
+    }
+
+    public static void playMusic() {
+        InputStream music;
+        try {
+            music = new FileInputStream(new File("sound.wav"));
+            AudioStream audio = new AudioStream(music);
+            AudioPlayer.player.start(audio);
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error");
+            e.printStackTrace();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error");
+            e.printStackTrace();
+        }
+
 
     }
 }

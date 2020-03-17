@@ -38,6 +38,7 @@ public class App {
         setPaneUI();
         setListUI();
         setLabelUI();
+        setSliderUI();
         loadSequence();
 
     }
@@ -84,6 +85,13 @@ public class App {
         UIManager.put("OptionPane.messageForeground", Color.white);
         UIManager.put("OptionPane.messageFont", montserratLarge);
         UIManager.put("OptionPane.questionDialog.border.background", Color.darkGray);
+
+    }
+
+    public void setSliderUI() {
+        UIManager.put("Slider.tickColor", Color.black);
+        UIManager.put("Slider.foreground", Color.black);
+        UIManager.put("Slider.background", Color.lightGray);
 
     }
 

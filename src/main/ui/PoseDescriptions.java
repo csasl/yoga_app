@@ -49,25 +49,29 @@ public class PoseDescriptions {
                     + "\n 2. Lean forward with your hips making sure to nor round your spine. "
                     + "\n 3.If possible grab your feet or rest your hands on your shin.", "All", Stage.WARMUP);
 
-    protected static final YogaPose DOWNWARD_DOG = new YogaPose("Downward Dog", "Start on your hands"
-            + "and knees, exhale lift your knees off the ground and your sit bones towards the ceiling",
+    protected static final YogaPose DOWNWARD_DOG = new YogaPose("Downward Dog",
+            "\n 1.Start on your hands and knees, "
+                    + "\n 2.Exhale lift your knees off the ground and your sit bones towards the ceiling",
             "All", Stage.MAIN);
 
-    protected static final YogaPose PLANK = new YogaPose("Plank", "Start in downward dog, inhale and "
-            + "draw your torsoe forward until your shoulders are above your wrists", "All", Stage.MAIN);
+    protected static final YogaPose PLANK = new YogaPose("Plank", "\n 1.Start in downward dog"
+            + "\n 2.Inhale and draw your torsoe forward until your shoulders are above your wrists",
+            "All", Stage.MAIN);
 
-    protected static final YogaPose CHAIR = new YogaPose("Chair", "Start in a standing position,"
-            + " raise " + "your arms, bend your knees, try to get your thighs parallel to the floor and take your "
+    protected static final YogaPose CHAIR = new YogaPose("Chair", "\n 1.Start in a standing position"
+            + " \n 2.Raise your arms, bend your knees, try to get your thighs parallel to the floor and take your "
             + "tailbone" + "down to the ground", "Intermediate", Stage.MAIN);
 
-    protected static final YogaPose BRIDGE = new YogaPose("Bridge", "Lay on your back, "
-            + "bend your knees" + "and bring your feet as close to your sit-bones as possible, "
-            + "lift your hips of the floor until the " + "thighs are parallel to the floor",
+    protected static final YogaPose BRIDGE = new YogaPose("Bridge", "\n 1.Lay on your back, "
+            + "bend your knees" + "\n 2. Bring your feet as close to your sit-bones as possible"
+            + "\n 3.Lift your hips of the floor until the " + "thighs are parallel to the floor",
             "Intermediate", Stage.WARMDOWN);
 
     protected static final YogaPose CHILD = new YogaPose("Child's pose",
-            "Sit on your knees spread your"
-            + "knees hip distance apart and fold forward", "All", Stage.WARMDOWN);
+            "\n 1.Sit on your knees spread your"
+            + "knees hip distance apart and fold forward "
+                    + "\n 2.Touch your forehead to the ground",
+            "All", Stage.WARMDOWN);
 
     protected static final YogaPose CORPSE = new YogaPose("Shavasana",
             "Lay on your back, close your eyes"
