@@ -35,10 +35,10 @@ public class ManageMenu  implements ActionListener {
             inSeqModel.addElement(p.getName());
         }
         inSeq = new JList(inSeqModel);
-        inSeq.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        inSeq.setVisibleRowCount(20);
+        formatSeqList();
         JScrollPane list1 = new JScrollPane(inSeq);
         removed = new JList(removedModel);
+        formatRemovedList();
         JScrollPane list2 = new JScrollPane(removed);
         buttonPanel = new JPanel();
         removeBtn = new JButton("Remove >>");
@@ -47,6 +47,19 @@ public class ManageMenu  implements ActionListener {
         managePanel.add(createBottomPanel(list1, list2));
         managePanel.setOpaque(true);
         return managePanel;
+    }
+
+    public void formatSeqList() {
+        inSeq.setVisibleRowCount(20);
+        inSeq.setFixedCellHeight(20);
+        inSeq.setFixedCellWidth(140);
+        inSeq.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+    }
+
+    public void formatRemovedList() {
+        removed.setVisibleRowCount(20);
+        removed.setFixedCellHeight(20);
+        removed.setFixedCellWidth(140);
     }
 
     public JPanel createBottomPanel(JScrollPane l1, JScrollPane l2) {
