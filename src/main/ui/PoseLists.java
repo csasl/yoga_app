@@ -24,6 +24,7 @@ public class PoseLists extends JPanel implements ListSelectionListener {
     private List<YogaPose> selectedSeq;
     private int selected;
     private YogaSequence sequence;
+    private JFrame poseFrame;
 
     public PoseLists() {
         super(new BorderLayout());
@@ -36,7 +37,7 @@ public class PoseLists extends JPanel implements ListSelectionListener {
     public void createExercisesMenu(List<YogaPose> poses, YogaSequence sequence) {
         selectedSeq = poses;
         this.sequence = sequence;
-        JFrame poseFrame = new JFrame();
+        poseFrame = new JFrame();
         poseFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         List<String> names = new ArrayList<>();
         for (YogaPose p: poses) {
@@ -65,6 +66,7 @@ public class PoseLists extends JPanel implements ListSelectionListener {
         if (!e.getValueIsAdjusting()) {
             selected = poseList.getSelectedIndex();
             new PoseDetails(selectedSeq, selected, sequence);
+            poseFrame.dispose();
         }
 
     }

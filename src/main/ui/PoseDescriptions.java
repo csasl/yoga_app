@@ -74,63 +74,72 @@ public class PoseDescriptions {
             "All", Stage.WARMDOWN);
 
     protected static final YogaPose CORPSE = new YogaPose("Shavasana",
-            "Lay on your back, close your eyes"
-            + "relax your muscles and breath normally. Stay here for as long as needed", "All",
+            "\n 1.Lay on your back, close your eyes"
+            + "\n 2.Relax your muscles and breath normally \n 3.Stay here for as long as needed", "All",
             Stage.WARMDOWN);
 
     protected static final YogaPose WARRIOR1 = new YogaPose("Warrior 1",
-            "Start in a standing position,"
-            + "step your feet around 4 feet apart, turn your right foot 90 degrees and your left 45 degrees, "
-            + "rotate your" + "torsoe to the right and bend your right knee. "
-            + "Repeat on the other side.", "Intermediate", Stage.MAIN);
+            "\n 1.Start in a standing position,"
+            + "\n 2.Step your feet around 4 feet apart \n 3.Turn your right foot 90 degrees and your left 45 degrees, "
+            + "\n 4.rotate your" + "torsoe to the right and bend your right knee. "
+            + "\n 5.Repeat on the other side.", "Intermediate", Stage.MAIN);
 
     protected static final YogaPose FISHTWIST = new YogaPose("Half Lord of the Fish Twist",
-            "Start in a "
-            + "seated position with your legs streched in front of you. Bend your knees, bring your left foot under"
-            + "your right hip. Step the right foot over the left leg so that your knee points up. Twist towards the "
-            + "left and set your left upper arm on the outside of the right knee. Repeat on"
+            "\n 1.Start in a "
+            + "seated position with your legs streched in front of you \n 2.Bend your knees, bring your left foot under"
+            + "your right hip \n 3.Step the right foot over the left leg so that your knee points up. "
+                    + "\n 4.Twist towards the "
+            + "left and set your left upper arm on the outside of the right knee \n 4.Repeat on"
             + "the other side.", "All", Stage.WARMUP);
 
     protected static final YogaPose PUPPY = new YogaPose("Puppy",
-            "Start on your hands and knees, walk"
-            + "your hands a few inches higher, curl your toes then lift your knees of the ground, drop your forehead "
+            "\n 1.Start on your hands and knees \n 2.Walk"
+            + "your hands a few inches higher \n 3.Curl your toes then lift your knees of the ground, "
+                    + "\n 3.Drop your forehead "
             + "towards the ground", "All", Stage.WARMUP);
 
     protected static final YogaPose BUTTERFLY = new YogaPose("Butterfly",
-            "Sit with your legs extended"
-            + "out infront of you, bring your heels as close to your pelvis as possible. Use your thumb and first 2"
+            "\n 1.Sit with your legs extended"
+            + "out infront of you \n 2.Bring your heels as close to your pelvis as possible."
+                    + "\n 3.Use your thumb and first 2"
             + "fingers to hold your big toes", "Intermediate", Stage.WARMUP);
 
-    protected static final YogaPose EAGLE = new YogaPose("Eagle", "Start in standing, bend "
+    protected static final YogaPose EAGLE = new YogaPose("Eagle", "\n 1.Start standing, bend "
             + "your knees "
-            + "slightly, lift up your left foot and cross your left thigh over the right. Hook your left foot on "
-            + "the right calf. Spread your arms straight in front of you, sweep your right arm abve the left, bend"
-            + "your elbows and left your elbows stretching your fingers to the ceiling.", "Intermdiate",
+            + "slightly \n 2.Lift up your left foot and cross your left thigh over the right. "
+            + "\n 3.Hook your left foot on "
+            + "the right calf \n 3.Spread your arms straight in front of you \n 4.Sweep your right arm above "
+            + "the left \n 5.Bend" + "your elbows and left your elbows stretching your "
+            + "fingers to the ceiling.",
+            "Intermdiate",
             Stage.MAIN);
 
-    protected static final YogaPose GATE = new YogaPose("Gate", "Kneel on the floor, "
-            + "extend your right"
-            + "leg to the right side of the room, bring your arms up towards the ceiling, as you exhale bend toward "
-            + "the right, rest your right hand on your right leg, bring your left arm up to the ceiling.", "All",
-            Stage.MAIN);
+    protected static final YogaPose GATE = new YogaPose("Gate", "\n 1.Kneel on the floor"
+            + "\n 2.Extend your right" + "leg to the right side of the room"
+            + "\n 3.Bring your arms up towards the ceiling, \n 4.As you exhale bend toward "
+            + "the right \n 5.Rest your right hand on your right leg "
+            + "\n 6.bring your left arm up to the ceiling.", "All", Stage.MAIN);
 
-    protected static final YogaPose LOW_LUNGE = new YogaPose("Low lunge", "From Downward Dog, step"
-            + "your right foot betwwen your hands, rest your left knee on the floor. "
-            + "Raise your arms towards the ceiling. Repeat on the other side.", "All", Stage.MAIN);
+    protected static final YogaPose LOW_LUNGE = new YogaPose("Low lunge", "\n 1.From Downward Dog, step"
+            + "your right foot betwwen your hands \n 2.Rest your left knee on the floor. "
+            + "\n 3.Raise your arms towards the ceiling. \n 4.Repeat on the other side.", "All", Stage.MAIN);
 
-    protected static final YogaPose HIGH_LUNGE = new YogaPose("High lunge", "From Downward Dog, step"
-            + "your right foot betwwen your hands, rest your left knee on the floor. "
-            + "Raise your arms towards the ceiling, now raise your left knee of the ground. "
-            + "Repeat on the other side", "All", Stage.MAIN);
+    protected static final YogaPose HIGH_LUNGE = new YogaPose("High lunge", "\n 1.From Downward Dog, step"
+            + "your right foot betwwen your hands \n 2.Rest your left knee on the floor. "
+            + "\n 3.Raise your arms towards the ceiling, now raise your left knee of the ground. "
+            + "\n 4.Repeat on the other side", "All", Stage.MAIN);
 
-    protected static final YogaPose TRIANGLE = new YogaPose("Triagnle", "Start in standing, step your"
-            + "feet about 4 feet apart. Turn your right foot 90 degrees to face the front and turn your left foot"
-            + "slightly to the right. Raise your arms to the side, bend your torsoe towards the right side.  Rest"
-            + "your right arm on your right foot, shin or thigh and lift your left arm up to the ceiling. "
-            + "Repeat on the other side", "Intermediate", Stage.MAIN);
+    protected static final YogaPose TRIANGLE = new YogaPose("Triangle", "\n 1.Start in standing "
+            + "\n 2.Step your"
+            + "feet about 4 feet apart. \n 3.Turn your right foot 90 degrees to face the front and turn your left foot"
+            + "slightly to the right. \n 4.Raise your arms to the side, bend your torsoe towards the right side. "
+            + "\n 5. Rest" + "your right arm on your right foot, shin or thigh and lift your left"
+            + " arm up to the ceiling. " + "\n 6.Repeat on the other side", "Intermediate", Stage.MAIN);
 
-    protected static final YogaPose GARLAND = new YogaPose("Garland", "Squat with your feet as close "
-            + "together as possible, spread your knees wider than your torsoe, press your elbows towards the knee "
+    protected static final YogaPose GARLAND = new YogaPose("Garland",
+            " \n 1.Squat with your feet as close "
+            + "together as possible \n 2.Spread your knees wider than your torsoe "
+                    + "\n 3. press your elbows towards the knee "
             + "and bring your palms together.", "Intermediate", Stage.MAIN);
 
 }

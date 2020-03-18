@@ -4,7 +4,6 @@
 // from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
 
-
 package ui;
 
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -26,12 +25,9 @@ public class App {
 
 
 
-
-
     public App() { }
 
     public void runApp() {
-
         setFont();
         setButtonUI();
         setPanelUI();
@@ -40,7 +36,6 @@ public class App {
         setLabelUI();
         setSliderUI();
         loadSequence();
-
     }
 
     //EFFECTS: Loads font to be used to app
@@ -55,10 +50,7 @@ public class App {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         montserratLarge = new Font("Montserrat", Font.PLAIN, 18);
-
-
     }
 
     //EFFECTS: Sets UI components for all buttons in app
@@ -88,6 +80,7 @@ public class App {
 
     }
 
+    //EFFECTS: Sets UI components for Slider
     public void setSliderUI() {
         UIManager.put("Slider.tickColor", Color.black);
         UIManager.put("Slider.foreground", Color.black);
@@ -112,39 +105,50 @@ public class App {
         UIManager.put("List.cellHeight", 100);
     }
 
+    //EFFECTS: Displays welcome screen when sequence already saved to file
+    public void welcomeBackScreen() {
+        JLabel welcomeMsg = new JLabel("Welcome back! Let's keep building");
+        JOptionPane.showMessageDialog(null, welcomeMsg, "Home Yoga", JOptionPane.PLAIN_MESSAGE,
+                makeIcon());
+        runMain();
+    }
 
 
-//EFFECTS: Reads sequence data from text file and loads values to sequence. If not found, throws IO exception
+
+    //EFFECTS: Reads sequence data from text file and loads values to sequence. If not found, throws IO exception
     public void loadSequence() {
         Reader reader = new Reader();
-
         try {
             String jsonString = reader.readLines(SEQUENCE_FILE);
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             myYogaSequence =  mapper.readValue(jsonString,YogaSequence.class);
-            runMain();
-
+            welcomeBackScreen();
 
         } catch (IOException e) {
             initializeNewSequence();
         }
     }
 
-//EFFECTS: Displays menu for user to initialize a new sequence
-    public void initializeNewSequence() {
-        myYogaSequence = new YogaSequence();
+
+
+    //EFFECTS: Resizes icons for welcome frames
+    public ImageIcon makeIcon() {
         ImageIcon lotus = new ImageIcon("lotus.png");
         Image lotusImage = lotus.getImage();
         Image lotusResize = lotusImage.getScaledInstance(150,150, Image.SCALE_SMOOTH);
         ImageIcon finalLotus = new ImageIcon(lotusResize);
+        return finalLotus;
+    }
 
-
+//EFFECTS: Displays menu for user to initialize a new sequence
+    public void initializeNewSequence() {
+        myYogaSequence = new YogaSequence();
         Object[] times = {20, 45, 60};
         JOptionPane timePane = new JOptionPane();
         Integer i = (Integer) timePane.showInputDialog(null,
                 "Please select the number of minutes you want to work out for:", "Welcome"
-                        + " to HomeYoga!", JOptionPane.PLAIN_MESSAGE, finalLotus, times, 20);
+                        + " to HomeYoga!", JOptionPane.PLAIN_MESSAGE, makeIcon(), times, 20);
         switch (i) {
             case 20:
                 myYogaSequence.setAllocatedTime(20);
@@ -155,8 +159,6 @@ public class App {
             case 60:
                 myYogaSequence.setAllocatedTime(60);
         }
-
-
         runMain();
     }
 
@@ -170,9 +172,6 @@ public class App {
         });
 
     }
-
-
-
 
 }
 

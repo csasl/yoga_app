@@ -36,8 +36,8 @@ public class ManageMenu  implements ActionListener {
         }
         inSeq = new JList(inSeqModel);
         inSeq.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        inSeq.setVisibleRowCount(20);
         JScrollPane list1 = new JScrollPane(inSeq);
-
         removed = new JList(removedModel);
         JScrollPane list2 = new JScrollPane(removed);
         buttonPanel = new JPanel();
@@ -79,9 +79,10 @@ public class ManageMenu  implements ActionListener {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("Manage Sequence");
         ManageMenu menu = new ManageMenu(sequence);
+        frame.setLayout(new BorderLayout());
         frame.setContentPane(menu.createPane());
         frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        frame.pack();
+        frame.setSize(500, 500);
         frame.setVisible(true);
 
     }

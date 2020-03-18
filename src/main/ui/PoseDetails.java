@@ -1,5 +1,7 @@
 //https://www.dummies.com/programming/java/how-to-use-sliders-in-java/
 //https://stackoverflow.com/questions/1090098/newline-in-jlabel
+//<div>Icons made by <a href="https://www.flaticon.com/authors/freepik"
+// title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 package ui;
 
@@ -18,13 +20,14 @@ import java.io.*;
 import java.util.List;
 
 public class PoseDetails extends JPanel {
-    private  JButton addPose;
+    private  JButton setBtn;
     private List<YogaPose> selectedPoses;
     private int selected;
     private YogaPose selectedPose;
     private JFrame poseWindow;
     private JSlider timeSlider = new JSlider(0, 30);
     private YogaSequence sequence;
+    private int selectedTime;
     private JFrame popUp;
 
     public PoseDetails(List<YogaPose> poses, int selected, YogaSequence seq) {
@@ -37,73 +40,63 @@ public class PoseDetails extends JPanel {
         poseWindow. setLayout(new BorderLayout());
         ImageIcon banner = new ImageIcon("banner.jpg");
         poseWindow.add(new JLabel(banner), BorderLayout.NORTH);
-
+        selectedTime = 0;
         showDetails();
     }
 
     public void showDetails() {
         JLabel poseDescription = new JLabel();
-        poseDescription.setText("<html>" + selectedPose.getDescription().replaceAll("<", "&lt")
+        poseDescription.setText("<html>" + selectedPose.getDescription()
                 .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
-        poseWindow.add(poseDescription, BorderLayout.CENTER);
-        addPose = new JButton("Add to sequence");
-        addPose.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                handleAddSelection();
-            }
-        });
 
-        poseWindow.add(addPose, BorderLayout.SOUTH);
-        poseWindow.setSize(1000,500);
+        poseWindow.add(poseDescription, BorderLayout.LINE_START);
+
+
+        createTimeSlider();
+        poseWindow.add(timeSlider, BorderLayout.LINE_END);
+        poseWindow.add(setBtn, BorderLayout.SOUTH);
+        poseWindow.setSize(1000,600);
         poseWindow.setVisible(true);
     }
 
-    public void handleAddSelection() {
-        createTimeSlider();
-    }
 
     public void createTimeSlider() {
-        JFrame timer = new JFrame("Time selection");
-        timer.setSize(700,400);
-        timer.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        timer.setLayout(new FlowLayout());
-        timer.add(new JLabel("Please select the number of minutes you want to work out for:"));
-        JButton setBtn = new JButton("Set");
-        setBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addToSeq();
-
-            }
-        });
+        setBtn = new JButton("Set");
         timeSlider.setMajorTickSpacing(10);
         timeSlider.setMinorTickSpacing(1);
         timeSlider.setPaintTicks(true);
         timeSlider.setPaintLabels(true);
-        timer.add(timeSlider);
-        timer.add(setBtn);
-        timer.setVisible(true);
+        sliderAddChangeListener();
+        setBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sequence.addPose(selectedPose);
+                setTime();
+            }
+        });
     }
 
-    public void addToSeq() {
-        sequence.addPose(selectedPose);
+    public void sliderAddChangeListener() {
         timeSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                int time = timeSlider.getValue();
-
-                selectedPose.setTime(time);
-            }
+                selectedTime = timeSlider.getValue();
+                }
         });
+    }
 
+
+    public void setTime() {
+        selectedPose.setTime(selectedTime);
         popUp = new JFrame("Success!");
         popUp.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         popUp.setLayout(new BorderLayout());
-        popUp.add(new JLabel(selectedPose.getName() + " was successfully added"), BorderLayout.CENTER);
+        popUp.add(new JLabel(selectedPose.getName() + " was added for " + selectedPose.getTime() + " minutes"),
+                BorderLayout.CENTER);
         popUp.setSize(400,400);
         popUp.setVisible(true);
         playMusic();
+        poseWindow.dispose();
 
     }
 

@@ -47,8 +47,10 @@ public class Stages extends JPanel {
         add(warmBtn);
         add(mainBtn);
         add(coolBtn);
-        addButtonListeners();
-
+        addBreatheBtnListener();
+        addWarmBtnListener();
+        addMainBtnListener();
+        addCoolButtonListeners();
     }
 
     public void makeIcons() {
@@ -71,7 +73,7 @@ public class Stages extends JPanel {
 
     }
 
-    public void addButtonListeners() {
+    public void addBreatheBtnListener() {
         breatheBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,7 +81,9 @@ public class Stages extends JPanel {
                 poseList.createExercisesMenu(breathingExercisesYoga, myYogaSeq);
             }
         });
+    }
 
+    public void addWarmBtnListener() {
         warmBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,6 +92,9 @@ public class Stages extends JPanel {
             }
         });
 
+    }
+
+    public void addMainBtnListener() {
         mainBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,9 +102,17 @@ public class Stages extends JPanel {
                 mainList.createExercisesMenu(mainPosesYoga, myYogaSeq);
             }
         });
+    }
 
+    public void addCoolButtonListeners() {
 
-
+        coolBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PoseLists coolList = new PoseLists();
+                coolList.createExercisesMenu(warmDownPosesYoga, myYogaSeq);
+            }
+        });
     }
 
     public void initializePoseLists() {
@@ -108,6 +123,7 @@ public class Stages extends JPanel {
         buildBreathingOptionsYoga();
         buildMainOptionsYoga();
         buildWarmUpOptionsYoga();
+        buildWarmDownOptionsYoga();
 
     }
 
@@ -146,6 +162,15 @@ public class Stages extends JPanel {
         mainPosesYoga.add(HIGH_LUNGE);
         mainPosesYoga.add(TRIANGLE);
         mainPosesYoga.add(GARLAND);
+    }
+
+    //EFFECTS: Populates Yoga warm-down exercises list with pre-defined exercises
+
+    public void buildWarmDownOptionsYoga() {
+        warmDownPosesYoga = new ArrayList<>();
+        warmDownPosesYoga.add(BRIDGE);
+        warmDownPosesYoga.add(CHILD);
+        warmDownPosesYoga.add(CORPSE);
     }
 
 

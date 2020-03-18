@@ -89,13 +89,14 @@ public class MainMenu extends JFrame {
 
 //EFFECTS: Displays window of sequence details once view button is pressed on toolbar
     public void viewSeq() {
+        int time = sequence.getAllocatedTime() - sequence.totalTimeInSeq();
         JFrame view = new JFrame("View Sequence");
         view.setDefaultCloseOperation(HIDE_ON_CLOSE);
         view.setLayout(new FlowLayout());
         view.setSize(500,500);
         view.add(new JLabel("Your sequence has "
-                    + sequence.countPoses() + ": " + getListPoses()));
-        view.add(new JLabel("You have" + (sequence.getAllocatedTime() - sequence.totalTimeInSeq())
+                    + sequence.countPoses() + ": " + getListPoses() + " poses"));
+        view.add(new JLabel("You have " + time
                     + " minutes to allocate in your sequence"));
         view.setVisible(true);
 
