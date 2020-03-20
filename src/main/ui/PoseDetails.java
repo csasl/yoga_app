@@ -38,8 +38,11 @@ public class PoseDetails extends JPanel {
         poseWindow = new JFrame(selectedPose.getName());
         poseWindow.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         poseWindow. setLayout(new BorderLayout());
-        ImageIcon banner = new ImageIcon("banner.jpg");
-        poseWindow.add(new JLabel(banner), BorderLayout.NORTH);
+        ImageIcon banner = new ImageIcon("./data/banner.jpg");
+        Image bannerImage = banner.getImage();
+        Image bannerResize = bannerImage.getScaledInstance(1000, 200, Image.SCALE_SMOOTH);
+        ImageIcon finalBanner = new ImageIcon(bannerResize);
+        poseWindow.add(new JLabel(finalBanner), BorderLayout.NORTH);
         selectedTime = 0;
         showDetails();
     }
@@ -103,7 +106,7 @@ public class PoseDetails extends JPanel {
     public static void playMusic() {
         InputStream music;
         try {
-            music = new FileInputStream(new File("sound.wav"));
+            music = new FileInputStream(new File("./data/sound.wav"));
             AudioStream audio = new AudioStream(music);
             AudioPlayer.player.start(audio);
         } catch (FileNotFoundException e) {

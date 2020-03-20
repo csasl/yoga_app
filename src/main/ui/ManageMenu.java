@@ -51,7 +51,7 @@ public class ManageMenu  implements ActionListener {
 
     public void formatSeqList() {
         inSeq.setVisibleRowCount(20);
-        inSeq.setFixedCellHeight(20);
+        inSeq.setFixedCellHeight(30);
         inSeq.setFixedCellWidth(140);
         inSeq.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     }

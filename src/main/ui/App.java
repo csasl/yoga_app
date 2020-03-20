@@ -22,6 +22,7 @@ public class App {
     private JComboBox timeBox;
     private Font montserrat;
     private Font montserratLarge;
+    private Font appFont;
 
 
 
@@ -35,29 +36,32 @@ public class App {
         setListUI();
         setLabelUI();
         setSliderUI();
+        setComboBoxUI();
         loadSequence();
     }
 
     //EFFECTS: Loads font to be used to app
 
     public void setFont() {
-        File font = new File("Montserrat.otf");
+        File font = new File("./data/Montserrat.otf");
         try {
             montserrat = Font.createFont(Font.TRUETYPE_FONT, font);
+
 
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            appFont = new Font("Futura", Font.PLAIN, 20);
         }
-        montserratLarge = new Font("Montserrat", Font.PLAIN, 18);
+        appFont = new Font("Montserrat", Font.PLAIN, 20);
+
     }
 
     //EFFECTS: Sets UI components for all buttons in app
     public void setButtonUI() {
         UIManager.put("Button.background", Color.darkGray);
         UIManager.put("Button.foreground", Color.white);
-        UIManager.put("Button.font", montserratLarge);
+        UIManager.put("Button.font", appFont);
 
     }
 
@@ -65,7 +69,7 @@ public class App {
     public void setPanelUI() {
         UIManager.put("Panel.background", Color.darkGray);
         UIManager.put("Panel.foreground", Color.white);
-        UIManager.put("Panel.font", montserratLarge);
+        UIManager.put("Panel.font", appFont);
 
 
     }
@@ -75,7 +79,7 @@ public class App {
         UIManager.put("OptionPane.background", Color.darkGray);
         UIManager.put("OptionPane.okButtonBackground", Color.darkGray);
         UIManager.put("OptionPane.messageForeground", Color.white);
-        UIManager.put("OptionPane.messageFont", montserratLarge);
+        UIManager.put("OptionPane.messageFont", appFont);
         UIManager.put("OptionPane.questionDialog.border.background", Color.darkGray);
 
     }
@@ -92,7 +96,7 @@ public class App {
     public void setLabelUI() {
         UIManager.put("Label.background", Color.darkGray);
         UIManager.put("Label.foreground", Color.white);
-        UIManager.put("Label.font", montserratLarge);
+        UIManager.put("Label.font", appFont);
 
 
     }
@@ -101,9 +105,15 @@ public class App {
     public void setListUI() {
         UIManager.put("List.background", Color.darkGray);
         UIManager.put("List.foreground", Color.white);
-        UIManager.put("List.font", montserratLarge);
+        UIManager.put("List.font", appFont);
         UIManager.put("List.cellHeight", 100);
     }
+
+    public void setComboBoxUI() {
+        UIManager.put("ComboBox.font", appFont);
+    }
+
+
 
     //EFFECTS: Displays welcome screen when sequence already saved to file
     public void welcomeBackScreen() {
@@ -134,7 +144,7 @@ public class App {
 
     //EFFECTS: Resizes icons for welcome frames
     public ImageIcon makeIcon() {
-        ImageIcon lotus = new ImageIcon("lotus.png");
+        ImageIcon lotus = new ImageIcon("./data/lotus.png");
         Image lotusImage = lotus.getImage();
         Image lotusResize = lotusImage.getScaledInstance(150,150, Image.SCALE_SMOOTH);
         ImageIcon finalLotus = new ImageIcon(lotusResize);

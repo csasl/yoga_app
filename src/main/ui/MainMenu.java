@@ -89,15 +89,21 @@ public class MainMenu extends JFrame {
 
 //EFFECTS: Displays window of sequence details once view button is pressed on toolbar
     public void viewSeq() {
-        int time = sequence.getAllocatedTime() - sequence.totalTimeInSeq();
+
         JFrame view = new JFrame("View Sequence");
         view.setDefaultCloseOperation(HIDE_ON_CLOSE);
-        view.setLayout(new FlowLayout());
+        view.setLayout(new BorderLayout());
         view.setSize(500,500);
         view.add(new JLabel("Your sequence has "
-                    + sequence.countPoses() + ": " + getListPoses() + " poses"));
-        view.add(new JLabel("You have " + time
-                    + " minutes to allocate in your sequence"));
+                    + sequence.countPoses() +  " poses"), BorderLayout.NORTH);
+        JLabel poseListLabel = new JLabel();
+        poseListLabel.setText("<html>" + getListPoses()
+                       .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
+
+        view.add(poseListLabel, BorderLayout.CENTER);
+
+        view.add(new JLabel(makeTimeText()), BorderLayout.SOUTH);
+        view.pack();
         view.setVisible(true);
 
     }
@@ -107,9 +113,26 @@ public class MainMenu extends JFrame {
         String allPoses = "";
         List<YogaPose> poses = sequence.getExerciseSequence();
         for (YogaPose p : poses) {
-            allPoses = allPoses + "\n" + p.getName();
+            allPoses = allPoses + "\n" + p.getName() + " - " + p.getTime() + " minutes";
         }
         return allPoses;
+
+    }
+
+    public int getRemainingTime() {
+        int time = sequence.getAllocatedTime() - sequence.totalTimeInSeq();
+        return time;
+    }
+
+    public String makeTimeText() {
+        String timeLeft = "";
+        int time = getRemainingTime();
+        if (time > 0) {
+            timeLeft = "You have " + time + " minutes remaining to allocate";
+        } else {
+            timeLeft = "You have allocated all the time in your sequence!";
+        }
+        return timeLeft;
     }
 }
 
