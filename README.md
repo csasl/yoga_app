@@ -67,9 +67,11 @@ to indicate a successful add
 save on close, the save button must be clicked
 
 -The sequence will reload automatically once the app is opened again, to check you can click the view sequence/ manage 
-sequence button on the main menu to see all the loaded poses.
+sequence button on the main menu to see all the loaded poses. I did not think a separate load button would make sense
+in this situation- instructor confirmed on piazza save button only is sufficient (question @1017)
 
 NOTES TO GRADER: 
+
 1.The screenshots above show what the app looks like on a Windows computer and looks quite different on 
 a Mac- apologies if anything is hard to see depending on which you are using.
 
