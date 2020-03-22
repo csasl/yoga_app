@@ -65,19 +65,19 @@ public class Stages extends JPanel {
      */
 
     public void makeIcons() {
-        ImageIcon flow = new ImageIcon("./data/flow.png");
+        ImageIcon flow = new ImageIcon("./data/flow.jpg");
         Image flowImage = flow.getImage();
         Image flowResize = flowImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         flowFinal = new ImageIcon(flowResize);
-        ImageIcon breathe = new ImageIcon("./data/breathe.png");
+        ImageIcon breathe = new ImageIcon("./data/breathe.jpg");
         Image breatheImage = breathe.getImage();
         Image breatheResize = breatheImage.getScaledInstance(200,200,Image.SCALE_SMOOTH);
         breatheFinal = new ImageIcon(breatheResize);
-        ImageIcon warmup = new ImageIcon("./data/warmup.png");
+        ImageIcon warmup = new ImageIcon("./data/warmup.jpg");
         Image warmImage = warmup.getImage();
         Image warmResize = warmImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         warmUpFinal = new ImageIcon(warmResize);
-        ImageIcon cool = new ImageIcon("./data/cool.png");
+        ImageIcon cool = new ImageIcon("./data/cool.jpg");
         Image coolImage = cool.getImage();
         Image coolResize = coolImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         coolFinal = new ImageIcon(coolResize);
