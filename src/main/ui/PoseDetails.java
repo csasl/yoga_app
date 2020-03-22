@@ -19,6 +19,10 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.List;
 
+/**
+ * Represents the window that displays pose details
+ */
+
 public class PoseDetails extends JPanel {
     private  JButton setBtn;
     private List<YogaPose> selectedPoses;
@@ -29,6 +33,13 @@ public class PoseDetails extends JPanel {
     private YogaSequence sequence;
     private int selectedTime;
     private JFrame popUp;
+
+    /**
+     * Initializes the window that displays the details of the pose
+     * @param poses List contains all exercises in the stage the user has chosen
+     * @param selected the index of the pose the user chose from the poseList
+     * @param seq the sequence the user has built so far
+     */
 
     public PoseDetails(List<YogaPose> poses, int selected, YogaSequence seq) {
         this.selectedPoses = poses;
@@ -47,14 +58,16 @@ public class PoseDetails extends JPanel {
         showDetails();
     }
 
+
+    /**
+     * Adds JLabel of pose instructions and time slider for user to choose time
+     */
     public void showDetails() {
         JLabel poseDescription = new JLabel();
         poseDescription.setText("<html>" + selectedPose.getDescription()
                 .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
 
         poseWindow.add(poseDescription, BorderLayout.LINE_START);
-
-
         createTimeSlider();
         poseWindow.add(timeSlider, BorderLayout.LINE_END);
         poseWindow.add(setBtn, BorderLayout.SOUTH);
@@ -62,7 +75,9 @@ public class PoseDetails extends JPanel {
         poseWindow.setVisible(true);
     }
 
-
+    /**
+     * Helper to create the time slider for user to set pose time
+     */
     public void createTimeSlider() {
         setBtn = new JButton("Set");
         timeSlider.setMajorTickSpacing(10);
@@ -79,6 +94,9 @@ public class PoseDetails extends JPanel {
         });
     }
 
+    /**
+     * Detects change in slider value
+     */
     public void sliderAddChangeListener() {
         timeSlider.addChangeListener(new ChangeListener() {
             @Override
@@ -88,7 +106,9 @@ public class PoseDetails extends JPanel {
         });
     }
 
-
+    /**
+     * Sets time to time on slider and displays popup indicating add was successful
+     */
     public void setTime() {
         selectedPose.setTime(selectedTime);
         popUp = new JFrame("Success!");
@@ -97,11 +117,14 @@ public class PoseDetails extends JPanel {
         popUp.add(new JLabel(selectedPose.getName() + " was added for " + selectedPose.getTime() + " minutes"),
                 BorderLayout.CENTER);
         popUp.setSize(400,400);
-        popUp.setVisible(true);
         playMusic();
+        popUp.setVisible(true);
         poseWindow.dispose();
-
     }
+
+    /**
+     * Plays sound when popup that indicates add is successful is displayed
+     */
 
     public static void playMusic() {
         InputStream music;
@@ -116,7 +139,6 @@ public class PoseDetails extends JPanel {
             JOptionPane.showMessageDialog(null, "Error");
             e.printStackTrace();
         }
-
-
     }
+
 }

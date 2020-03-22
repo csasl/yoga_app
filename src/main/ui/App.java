@@ -1,8 +1,13 @@
 //https://stackoverflow.com/questions/3002787/simple-popup-java-form-with-at-least-two-fields
-//https://stackoverflow.com/questions/38062716/implementing-an-actionlistener-to-a-jtextfield
 //Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a>
 // from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+//Font tutorial: https://www.youtube.com/watch?v=43duJsYmhxQ
+//https://mkyong.com/java/how-to-convert-java-object-to-from-json-jackson/
+//http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
 
+/**
+ *Represents application initialization
+ */
 
 package ui;
 
@@ -16,17 +21,23 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+
+
 public class App {
     private YogaSequence myYogaSequence;
     private static final String SEQUENCE_FILE = "./data/sequence.txt";
-    private JComboBox timeBox;
-    private Font montserrat;
-    private Font montserratLarge;
     private Font appFont;
+    private Font segoe;
 
 
-
+    /**
+     * Constructor creates a new app
+     */
     public App() { }
+
+    /**
+     *Initializes UI formats and sequence
+     */
 
     public void runApp() {
         setFont();
@@ -40,24 +51,28 @@ public class App {
         loadSequence();
     }
 
-    //EFFECTS: Loads font to be used to app
+    /**
+     * Helper to set up font used in app
+     */
 
     public void setFont() {
-        File font = new File("./data/Montserrat.otf");
+       // File font = new File("./data/Montserrat.otf");
         try {
-            montserrat = Font.createFont(Font.TRUETYPE_FONT, font);
-
-
+            segoe = Font.createFont(Font.TRUETYPE_FONT, new File("./data/segoe.ttf")).deriveFont(20f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("./data/segoe.ttf")));
         } catch (FontFormatException e) {
-            e.printStackTrace();
+            appFont = new Font("Arial", Font.PLAIN, 20);
         } catch (IOException e) {
-            appFont = new Font("Futura", Font.PLAIN, 20);
+            appFont = new Font("Arial", Font.PLAIN, 20);
         }
-        appFont = new Font("Montserrat", Font.PLAIN, 20);
+        appFont = segoe;
 
     }
 
-    //EFFECTS: Sets UI components for all buttons in app
+    /**
+     * Helper to set up UI for app's JButtons
+     */
     public void setButtonUI() {
         UIManager.put("Button.background", Color.darkGray);
         UIManager.put("Button.foreground", Color.white);
@@ -65,16 +80,19 @@ public class App {
 
     }
 
-    //EFFECTS: Sets UI components for panel components of app
+
+    /**
+     * Helper to set up UI for app's JPanels
+     */
     public void setPanelUI() {
         UIManager.put("Panel.background", Color.darkGray);
         UIManager.put("Panel.foreground", Color.white);
         UIManager.put("Panel.font", appFont);
-
-
     }
 
-    //EFFECTS: Sets UI components for option panes in app
+    /**
+     * Helper to set up UI for app's JPanes
+     */
     public void setPaneUI() {
         UIManager.put("OptionPane.background", Color.darkGray);
         UIManager.put("OptionPane.okButtonBackground", Color.darkGray);
@@ -84,7 +102,9 @@ public class App {
 
     }
 
-    //EFFECTS: Sets UI components for Slider
+    /**
+     * Helper to set up UI for app's JSlider
+     */
     public void setSliderUI() {
         UIManager.put("Slider.tickColor", Color.black);
         UIManager.put("Slider.foreground", Color.black);
@@ -92,7 +112,9 @@ public class App {
 
     }
 
-    //EFFECTS: Sets UI components for labels
+    /**
+     * Helper to set up UI for app's JLabels
+     */
     public void setLabelUI() {
         UIManager.put("Label.background", Color.darkGray);
         UIManager.put("Label.foreground", Color.white);
@@ -101,7 +123,9 @@ public class App {
 
     }
 
-    //EFFECTS: Sets UI components for JLists in app
+    /**
+     * Helper to set up UI for app's JLists
+     */
     public void setListUI() {
         UIManager.put("List.background", Color.darkGray);
         UIManager.put("List.foreground", Color.white);
@@ -109,13 +133,19 @@ public class App {
         UIManager.put("List.cellHeight", 100);
     }
 
+    /**
+     * Helper to set up UI for app's JComboBox
+     */
+
     public void setComboBoxUI() {
         UIManager.put("ComboBox.font", appFont);
     }
 
 
 
-    //EFFECTS: Displays welcome screen when sequence already saved to file
+    /**
+     * Displays welcome screen when sequence already saved to file
+     */
     public void welcomeBackScreen() {
         JLabel welcomeMsg = new JLabel("Welcome back! Let's keep building");
         JOptionPane.showMessageDialog(null, welcomeMsg, "Home Yoga", JOptionPane.PLAIN_MESSAGE,
@@ -125,7 +155,10 @@ public class App {
 
 
 
-    //EFFECTS: Reads sequence data from text file and loads values to sequence. If not found, throws IO exception
+    /**
+     * Loads data saved from sequence file if it exists
+     * Code from: https://mkyong.com/java/how-to-convert-java-object-to-from-json-jackson/
+     */
     public void loadSequence() {
         Reader reader = new Reader();
         try {
@@ -142,7 +175,10 @@ public class App {
 
 
 
-    //EFFECTS: Resizes icons for welcome frames
+    /**
+     * Helper to make icon for welcome screen
+     * Code from: http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
+     */
     public ImageIcon makeIcon() {
         ImageIcon lotus = new ImageIcon("./data/lotus.png");
         Image lotusImage = lotus.getImage();
@@ -151,7 +187,9 @@ public class App {
         return finalLotus;
     }
 
-//EFFECTS: Displays menu for user to initialize a new sequence
+    /**
+     * Initializes new sequence and welcome screen when no data was saved
+     */
     public void initializeNewSequence() {
         myYogaSequence = new YogaSequence();
         Object[] times = {20, 45, 60};
@@ -172,7 +210,9 @@ public class App {
         runMain();
     }
 
-
+    /**
+     * Loads the main menu
+     */
     public void runMain() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

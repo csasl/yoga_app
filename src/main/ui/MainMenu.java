@@ -1,4 +1,6 @@
-//Main menu for
+//https://docs.oracle.com/javase/tutorial/uiswing/events/actionlistener.html
+//https://www.baeldung.com/jackson-object-mapper-tutorial
+
 
 package ui;
 
@@ -13,7 +15,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
-import java.util.ArrayList;
+
+/**
+ * Represents the main menu that users interact with
+ */
 
 public class MainMenu extends JFrame {
     private JToolBar toolbar;
@@ -25,7 +30,10 @@ public class MainMenu extends JFrame {
     private static final String SEQUENCE_FILE = "./data/sequence.txt";
 
 
-//EFFECTS: Creates window that displays the 4 stages of the workout
+    /**
+     * Constructor initializes sequence and components on main menu
+     * @param seq the sequence being built by user
+     */
     public MainMenu(YogaSequence seq) {
         super("Home Yoga");
         this.sequence = seq;
@@ -39,14 +47,14 @@ public class MainMenu extends JFrame {
         poses = new Stages(sequence);
         add(toolbar, BorderLayout.NORTH);
         add(poses);
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 1000);
         setVisible(true);
-
     }
-//EFFECTS: Creates listeners for the toolbar buttons
 
+    /**
+     * Helper to set up action listeners for buttons on main menu
+     */
     public void addListeners() {
         save.addActionListener(new ActionListener() {
             @Override
@@ -70,11 +78,11 @@ public class MainMenu extends JFrame {
                 viewSeq();
             }
         });
-
-
     }
 
-    //EFFECTS: Saves sequence to text file
+    /**
+     * Saves sequence to text file when save button selected
+     */
     public void saveSeq() {
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -87,7 +95,9 @@ public class MainMenu extends JFrame {
         }
     }
 
-//EFFECTS: Displays window of sequence details once view button is pressed on toolbar
+    /**
+     * Creates window of sequence details so far
+     */
     public void viewSeq() {
 
         JFrame view = new JFrame("View Sequence");
@@ -99,15 +109,16 @@ public class MainMenu extends JFrame {
         JLabel poseListLabel = new JLabel();
         poseListLabel.setText("<html>" + getListPoses()
                        .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
-
         view.add(poseListLabel, BorderLayout.CENTER);
-
         view.add(new JLabel(makeTimeText()), BorderLayout.SOUTH);
         view.pack();
         view.setVisible(true);
-
     }
-//EFFECTS: returns a string containing the pose names of all poses in the current sequence
+
+    /**
+     * Helper to get the names and times set for each pose in the sequence so far for JLabel
+     * @return String of all pose names and set times
+     */
 
     public String getListPoses() {
         String allPoses = "";
@@ -116,14 +127,22 @@ public class MainMenu extends JFrame {
             allPoses = allPoses + "\n" + p.getName() + " - " + p.getTime() + " minutes";
         }
         return allPoses;
-
     }
+
+    /**
+     * Helper to calculate time left for user to allocate
+     * @return time left to allocate
+     */
 
     public int getRemainingTime() {
         int time = sequence.getAllocatedTime() - sequence.totalTimeInSeq();
         return time;
     }
 
+    /**
+     * Helper to make text for JLabel of time remaining
+     * @return Message of how much time is left to allocate
+     */
     public String makeTimeText() {
         String timeLeft = "";
         int time = getRemainingTime();

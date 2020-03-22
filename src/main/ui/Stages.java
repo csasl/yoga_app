@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import static ui.PoseDescriptions.*;
 
+/**
+ * Represents JButtons for each of the four workout stages
+ */
+
 public class Stages extends JPanel {
     public List<YogaPose> breathingExercisesYoga;
     public List<YogaPose> warmUpPosesYoga;
@@ -32,7 +36,10 @@ public class Stages extends JPanel {
     private ImageIcon warmUpFinal;
     private ImageIcon coolFinal;
 
-
+    /**
+     * Constructor builds the list of poses and buttons for each stage of the workout
+     * @param sequence the sequence the user has built so far
+     */
     public Stages(YogaSequence sequence) {
         initializePoseLists();
         this.myYogaSeq = sequence;
@@ -53,6 +60,10 @@ public class Stages extends JPanel {
         addCoolButtonListeners();
     }
 
+    /**
+     * Helper method to make the icons for the JButtons
+     */
+
     public void makeIcons() {
         ImageIcon flow = new ImageIcon("./data/flow.png");
         Image flowImage = flow.getImage();
@@ -70,8 +81,11 @@ public class Stages extends JPanel {
         Image coolImage = cool.getImage();
         Image coolResize = coolImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         coolFinal = new ImageIcon(coolResize);
-
     }
+
+    /**
+     * Helper to detect when the breathe JButton is selected, deploys exercise menu with breathing exercises
+     */
 
     public void addBreatheBtnListener() {
         breatheBtn.addActionListener(new ActionListener() {
@@ -82,6 +96,10 @@ public class Stages extends JPanel {
             }
         });
     }
+
+    /**
+     * Helper to detect when the warm-up JButton is selected, deploys exercise menu with warm up exercises
+     */
 
     public void addWarmBtnListener() {
         warmBtn.addActionListener(new ActionListener() {
@@ -94,6 +112,10 @@ public class Stages extends JPanel {
 
     }
 
+    /**
+     * Helper to detect when the main JButton is selected, deploys exercise menu with main exercises
+     */
+
     public void addMainBtnListener() {
         mainBtn.addActionListener(new ActionListener() {
             @Override
@@ -103,6 +125,10 @@ public class Stages extends JPanel {
             }
         });
     }
+
+    /**
+     * Helper to detect when the cool JButton is selected, deploys exercise menu with cool down  exercises
+     */
 
     public void addCoolButtonListeners() {
 
@@ -115,6 +141,9 @@ public class Stages extends JPanel {
         });
     }
 
+    /**
+     * Helper that initalizes the list of poses in each stage
+     */
     public void initializePoseLists() {
         breathingExercisesYoga = new ArrayList<>();
         warmUpPosesYoga = new ArrayList<>();
@@ -128,8 +157,9 @@ public class Stages extends JPanel {
     }
 
 
-
-  //  EFFECTS: Populates Yoga breathing exercise list with pre-defined exercises
+    /**
+     * Helper that populates the breathing exercises list with pre-defined exercises
+     */
     public void buildBreathingOptionsYoga() {
         breathingExercisesYoga = new ArrayList<>();
         breathingExercisesYoga.add(PoseDescriptions.ALTERNATE);
@@ -138,7 +168,9 @@ public class Stages extends JPanel {
         breathingExercisesYoga.add(LION);
     }
 
-    //EFFECTS: Populates Yoga warm-up exercise list with pre-defined exercises
+    /**
+     * Helper that populates the warm-up exercises list with pre-defined exercises
+     */
     public void buildWarmUpOptionsYoga() {
         warmUpPosesYoga = new ArrayList<>();
         warmUpPosesYoga.add(CATCOW);
@@ -149,7 +181,9 @@ public class Stages extends JPanel {
         warmUpPosesYoga.add(BUTTERFLY);
     }
 
-    //EFFECTS: Populates Yoga main exercise list with pre-defined exercises
+    /**
+     * Helper that populates the main exercises list with pre-defined exercises
+     */
     public void buildMainOptionsYoga() {
         mainPosesYoga = new ArrayList<>();
         mainPosesYoga.add(PLANK);
@@ -164,7 +198,9 @@ public class Stages extends JPanel {
         mainPosesYoga.add(GARLAND);
     }
 
-    //EFFECTS: Populates Yoga warm-down exercises list with pre-defined exercises
+    /**
+     * Helper that populates the warm-down exercises list with pre-defined exercises
+     */
 
     public void buildWarmDownOptionsYoga() {
         warmDownPosesYoga = new ArrayList<>();

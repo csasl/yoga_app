@@ -8,11 +8,12 @@ package ui;
 import model.Stage;
 import model.YogaPose;
 
-import model.Stage;
-//PoseDescriptions class contains the information for all poses  available for the user to browse
+/**
+ * Represents all the poses that the user can choose from to build their sequence
+ */
 
 public class PoseDescriptions {
-//Yoga Poses:
+
     public static final YogaPose ALTERNATE = new YogaPose("Alternate Nostril Breathing",
             "\n 1.Sit comfortably in a cross legged position"
                     + "\n 2. Cover your left nostril with your right ring finger and breathe in "

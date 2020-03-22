@@ -6,15 +6,15 @@ import java.util.List;
 
 public  class YogaSequence {
 
-    List<YogaPose> exerciseSequence;
-    Integer allocatedTime;
+    private List<YogaPose> exerciseSequence;
+    private Integer allocatedTime;
+
 
 
 
 //EFFECTS: Constructs and empty list of exercises
     public YogaSequence() {
         exerciseSequence = new ArrayList<>();
-
     }
 
 

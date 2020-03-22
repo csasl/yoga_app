@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * Represents menu to manage sequence, allows user to remove any unwanted poses
+ */
 
 public class ManageMenu  implements ActionListener {
     private JList inSeq;
@@ -22,10 +25,20 @@ public class ManageMenu  implements ActionListener {
     private JPanel buttonPanel;
     private JButton removeBtn;
 
+    /**
+     * Constructor creates a new menu with sequence so far
+     * @param seq sequence built by the user so far
+     */
+
     public ManageMenu(YogaSequence seq) {
         this.sequence = seq;
         poses = seq.getExerciseSequence();
     }
+
+    /**
+     * Creates all components for the scroll pane of names of poses in sequence
+     * @return
+     */
 
     public JPanel createPane() {
         managePanel = new JPanel();
@@ -49,6 +62,10 @@ public class ManageMenu  implements ActionListener {
         return managePanel;
     }
 
+    /**
+     * Helper to format the JList of poses in the sequence so far
+     */
+
     public void formatSeqList() {
         inSeq.setVisibleRowCount(20);
         inSeq.setFixedCellHeight(30);
@@ -56,11 +73,22 @@ public class ManageMenu  implements ActionListener {
         inSeq.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     }
 
+    /**
+     * Helper to format the JList of poses the user has removed
+     */
+
     public void formatRemovedList() {
         removed.setVisibleRowCount(20);
         removed.setFixedCellHeight(20);
         removed.setFixedCellWidth(140);
     }
+
+    /**
+     * Creates the panels where the Jlists of poses in and out of the sequence are displayed
+     * @param l1 JList of poses in the sequence
+     * @param l2 JList of poses that have been removed
+     * @return JPanel of the JLists separated by a solid block
+     */
 
     public JPanel createBottomPanel(JScrollPane l1, JScrollPane l2) {
         JPanel bottomPanel = new JPanel();
@@ -74,7 +102,10 @@ public class ManageMenu  implements ActionListener {
         return bottomPanel;
     }
 
-
+    /**
+     * Removes the pose that the user has selected once the remove button is clicked
+     * @param e The pose that the user has selected on the JList of poses in the sequence
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -87,6 +118,10 @@ public class ManageMenu  implements ActionListener {
         }
 
     }
+
+    /**
+     * Displays the scroll panes with the JLists
+     */
 
     public void showGUI() {
         JFrame.setDefaultLookAndFeelDecorated(true);
