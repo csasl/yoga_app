@@ -116,6 +116,7 @@ public class PoseDetails extends JPanel {
      */
     public void setTime() {
         selectedPose.setTime(selectedTime);
+        poseWindow.dispose();
         popUp = new JFrame("Success!");
         popUp.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         popUp.setLayout(new BorderLayout());
@@ -127,7 +128,7 @@ public class PoseDetails extends JPanel {
         popUp.setSize(600,600);
         playMusic();
         popUp.setVisible(true);
-        poseWindow.dispose();
+
     }
 
     /**

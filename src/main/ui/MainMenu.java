@@ -129,17 +129,9 @@ public class MainMenu extends JFrame {
         return allPoses;
     }
 
-//    /**
-//     * Helper to calculate time left for user to allocate
-//     * @return time left to allocate
-//     */
-//
-//    public int getRemainingTime() {
-//        int time = sequence.getAllocatedTime() - sequence.totalTimeInSeq();
-//        return time;
-//    }
-//
-//    /**
+
+
+   /**
 //     * Helper to make text for JLabel of time remaining
 //     * @return Message of how much time is left to allocate
 //     */

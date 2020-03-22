@@ -6,7 +6,7 @@ import model.YogaSequence;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ui.PoseDescriptions;
+
 
 import java.io.IOException;
 

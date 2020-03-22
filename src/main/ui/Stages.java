@@ -166,6 +166,9 @@ public class Stages extends JPanel {
         breathingExercisesYoga.add(KAPALABHATI);
         breathingExercisesYoga.add(PoseDescriptions.COOLING);
         breathingExercisesYoga.add(LION);
+        breathingExercisesYoga.add(CONQUEROR);
+        breathingExercisesYoga.add(SOUND);
+
     }
 
     /**
@@ -179,6 +182,9 @@ public class Stages extends JPanel {
         warmUpPosesYoga.add(FISHTWIST);
         warmUpPosesYoga.add(PUPPY);
         warmUpPosesYoga.add(BUTTERFLY);
+        warmUpPosesYoga.add(LOCUST);
+
+
     }
 
     /**
@@ -190,12 +196,18 @@ public class Stages extends JPanel {
         mainPosesYoga.add(DOWNWARD_DOG);
         mainPosesYoga.add(CHAIR);
         mainPosesYoga.add(WARRIOR1);
+        mainPosesYoga.add(WARRIORII);
         mainPosesYoga.add(EAGLE);
         mainPosesYoga.add(GATE);
         mainPosesYoga.add(LOW_LUNGE);
         mainPosesYoga.add(HIGH_LUNGE);
         mainPosesYoga.add(TRIANGLE);
         mainPosesYoga.add(GARLAND);
+        mainPosesYoga.add(DOLPHIN);
+        mainPosesYoga.add(DPLANK);
+        mainPosesYoga.add(UPPLANK);
+
+
     }
 
     /**
@@ -207,6 +219,12 @@ public class Stages extends JPanel {
         warmDownPosesYoga.add(BRIDGE);
         warmDownPosesYoga.add(CHILD);
         warmDownPosesYoga.add(CORPSE);
+        warmDownPosesYoga.add(LOCUST);
+        warmDownPosesYoga.add(BIGTOE);
+        warmDownPosesYoga.add(STAFF);
+        warmDownPosesYoga.add(BABY);
+        warmDownPosesYoga.add(ANGLE);
+
     }
 
 

@@ -143,6 +143,88 @@ public class PoseDescriptions {
                     + "\n 3. press your elbows towards the knee "
             + "and bring your palms together.", "Intermediate", Stage.MAIN);
 
+
+    protected static final YogaPose CONQUEROR = new YogaPose("Conqueror", "1 .Inhale through your nose"
+            + "\n 2. then exhale slowly through a wide-open mouth. "
+            + "\n 3.Direct the out-going breath slowly across the back of your throat with a drawn-out HA sound. "
+            + "\n 4.Repeat several times, then close your mouth. "
+            + "\n 5. Now, as you both inhale and exhale through your nose, "
+            + "\n direct the breath again slowly across the back of your throat.", "All", Stage.BREATHING);
+
+
+    protected static final YogaPose SOUND = new YogaPose("Yoga of Sound",
+            "\n 1.Breathe normally for 30 seconds."
+                    + "\n 2. Begin to channel your inhales through your inner nostrils. "
+                    + "\n 3. Breathe normally again for 30 seconds"
+                    + "\n 3. Then channel your exhales beneath your outer nostrils "
+                    + "\n 4.Combine the inner and outer breath" + "for a few minutes", "All", Stage.BREATHING);
+
+
+    protected static final YogaPose LOCUST = new YogaPose("Locust", "1. Lie on your belly with your arms along "
+            + "the sides of your torso," + " \npalms up, forehead resting on the floor."
+            + "\n 2. Exhale and lift your head, upper torso, arms, and legs away from the floor "
+            + "\n 3. Raise your arms parallel to the floor and stretch back actively through your fingertips"
+            + "\n 4. Gaze forward or slightly upward, being careful not to jut "
+            + "\nyour chin forward and crunch the back of your neck.", "Intermediate", Stage.WARMDOWN);
+
+    protected static final YogaPose BIGTOE = new YogaPose("Big Toe",
+            "1. Stand upright with your inner feet parallel and about six inches apart "
+                    + "\n 2.Keeping your legs straight, exhale and bend forward from your hip "
+                    + "\n 3. Slide the index and middle fingers of each hand between the big toes and the second toes"
+                    + "\n grip the big toes firmly \n 4. Inhale and lift your torsoe and straighten your elbows"
+                    + "\n 5. Exhale back down and repeat a few times.", "All", Stage.WARMDOWN);
+
+    protected static final YogaPose STAFF = new YogaPose("Staff",
+            "1. Sit on the floor with your legs together and extended in front of your torso."
+                    + "\n 2. Flex your ankles, pressing out through your heels. \n 3. Rest your hands on the floor,"
+                    + "fingers pointing towards your toes \n 4. Sit up tall, stay for a few minutes", "All",
+            Stage.WARMDOWN);
+
+    protected static final YogaPose BABY = new YogaPose("Happy Baby",
+            "1. Lie on your back. With an exhale, bend your knees into your belly "
+                    + "\n 2 .Inhale, grip the outsides of your feet with your hands"
+                    + "\n 3 .Open your knees slightly wider than your torso, then bring them up toward your armpits"
+                    + "\n 4. Position each ankle directly over the knee, flex your feet,"
+                    + "\n push your feet into your hands", "All", Stage.WARMDOWN);
+
+    protected static final YogaPose ANGLE = new YogaPose("Bound Angle",
+            "1. Sit with your legs straight out in front of you"
+                    + "\n 2. Bring your heels as close to your pelvis as you comfortably can. "
+                    + "\n 3. With the first and second finger and thumb, grasp the big toe of each foot "
+                    + "\n 4. Stay for a few minutes, then straighten your legs in front of you.", "All",
+            Stage.WARMDOWN);
+
+    protected static final YogaPose DOLPHIN = new YogaPose("Dolphin", "1. Come onto the floor on your hands and knees. "
+            + "\n Set your knees directly below your hips and your forearms on "
+            + "the floor with your shoulders directly above your wrists "
+            + "\n 2. Curl your toes under, then exhale and lift your knees away from the floor"
+            + "\n 3. Press the forearms actively into the floor, straighten your knees if possible",
+            "All", Stage.MAIN);
+
+    protected static final YogaPose DPLANK = new YogaPose("Dolphin Plank", "1. Start in Dolphin with your knees bent"
+            + "\n 2. Then walk your feet back until your shoulders are directly over the elbows "
+            + "\n and your torso is parallel to the floor \n 3. Press your inner forearms and elbows "
+            + "firmly against the floor \n 4. Stay for 30s to 1 minute, then release your knees to the floor",
+            "All", Stage.MAIN);
+
+    protected static final YogaPose UPPLANK = new YogaPose("Upward Plank", "1. Start in Staff pose"
+            + "\n 2. Bend your knees and place your feet on the floor, big toes turned inward"
+            + "\n 3. Exhale, press your inner feet and hands down against the floor, and lift your hips"
+            + "\n 4. Straighten your legs one at a time. Lift your hips still higher "
+            + "\n 5. Slowly drop your head back", "all", Stage.MAIN);
+
+    protected static final YogaPose WARRIORII = new YogaPose("Warrior 2", "1. Start standing tall"
+            + "\n 2. With an exhalation, step or lightly jump your feet 3 1/2 to 4 feet apart. "
+            + "\n 3. Raise your arms parallel to the floor and reach them actively out to the sides, "
+            + "\n palms down" + "\n 4. Turn your right foot slightly to the right and your "
+            + "\n left foot out to the left 90 degrees"
+            + "\n 5.Exhale and bend your left knee over the left ankle, "
+            + "\n so that the shin is perpendicular to the floor \n 6. Stretch arms out parallel to floor"
+            + "\n 7. Repeat on other side", "All", Stage.MAIN);
+
+
+
+
 }
 
 

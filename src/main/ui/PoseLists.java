@@ -77,7 +77,7 @@ public class PoseLists extends JPanel implements ListSelectionListener {
             selected = poseList.getSelectedIndex();
             new PoseDetails(selectedSeq, selected, sequence);
             poseFrame.dispose();
-        }
 
+        }
     }
 }
