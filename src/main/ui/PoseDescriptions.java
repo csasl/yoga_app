@@ -23,15 +23,18 @@ public class PoseDescriptions {
             Stage.BREATHING);
 
     public static final YogaPose KAPALABHATI = new YogaPose("Kapalabhati", "\n 1.Inhale deeply through"
-            + "your nose \n 2. As you exhale, press your belly towards your spine to force the breath out", "All",
+            + "your nose \n 2. As you exhale, press your belly towards your spine "
+            + "\nto force the breath out", "All",
             Stage.MAIN);
 
     public static final YogaPose COOLING = new YogaPose("Sitali",
-            "\n 1.Make an O-shape with your mouth and inhale through your mouth as if drinking through a straw,"
+            "\n 1.Make an O-shape with your mouth and inhale through your mouth "
+                    + "\nas if drinking through a straw,"
             + " \n 2.breath out through your nose.", "All", Stage.BREATHING);
 
     protected static final YogaPose LION = new YogaPose("Lion", "\n 1.Sit cross legged, with your hands "
-            + "resting on your knees \n 2.Take a deep breath in to your nose, open your mouth and stretch your tongue"
+            + "resting on your knees \n 2.Take a deep breath in to your nose, open your mouth and "
+            + "\n stretch your tongue"
             + "towards your chin \n 3. Exhale through your mouth.", "All", Stage.BREATHING);
 
 
@@ -60,7 +63,8 @@ public class PoseDescriptions {
             "All", Stage.MAIN);
 
     protected static final YogaPose CHAIR = new YogaPose("Chair", "\n 1.Start in a standing position"
-            + " \n 2.Raise your arms, bend your knees, try to get your thighs parallel to the floor and take your "
+            + " \n 2.Raise your arms, bend your knees, "
+            + "\ntry to get your thighs parallel to the floor \n 3. Take your "
             + "tailbone" + "down to the ground", "Intermediate", Stage.MAIN);
 
     protected static final YogaPose BRIDGE = new YogaPose("Bridge", "\n 1.Lay on your back, "
@@ -111,7 +115,7 @@ public class PoseDescriptions {
             + "\n 3.Hook your left foot on "
             + "the right calf \n 3.Spread your arms straight in front of you \n 4.Sweep your right arm above "
             + "the left \n 5.Bend" + "your elbows and left your elbows stretching your "
-            + "fingers to the ceiling.",
+            + "\nfingers to the ceiling.",
             "Intermdiate",
             Stage.MAIN);
 
@@ -122,7 +126,7 @@ public class PoseDescriptions {
             + "\n 6.bring your left arm up to the ceiling.", "All", Stage.MAIN);
 
     protected static final YogaPose LOW_LUNGE = new YogaPose("Low lunge", "\n 1.From Downward Dog, step"
-            + "your right foot betwwen your hands \n 2.Rest your left knee on the floor. "
+            + "your right foot between your hands \n 2.Rest your left knee on the floor. "
             + "\n 3.Raise your arms towards the ceiling. \n 4.Repeat on the other side.", "All", Stage.MAIN);
 
     protected static final YogaPose HIGH_LUNGE = new YogaPose("High lunge", "\n 1.From Downward Dog, step"

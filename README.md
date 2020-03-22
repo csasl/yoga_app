@@ -1,7 +1,7 @@
 #Home Yoga
-A sequence builder and tracker for yoga and pilates poses
+A sequence builder and tracker for yoga and poses
 
-**Description of Project**
+Description of Project**
 
 The primary purpose of the app will be to enable users to browse yoga poses, view the pose description and add it to a list of poses to create a personalized yoga sequence. 
 The poses will be categorized by stage of workout: breathing, warm-up, main and warm-down.
@@ -68,3 +68,6 @@ save on close, the save button must be clicked
 
 -The sequence will reload automatically once the app is opened again, to check you can click the view sequence/ manage 
 sequence button on the main menu to see all the loaded poses.
+
+NOTE TO GRADER: The screenshots above show what the app looks like on a Windows computer and looks quite different on 
+a Mac- apologies if anything is hard to see depending on which you are using.

@@ -37,14 +37,9 @@ public class MainMenu extends JFrame {
     public MainMenu(YogaSequence seq) {
         super("Home Yoga");
         this.sequence = seq;
-
-        save.setBackground(Color.darkGray);
-        manage.setBackground(Color.darkGray);
-        view.setBackground(Color.darkGray);
         setLayout(new BorderLayout());
         toolbar = new JToolBar();
         toolbar.setLayout(new FlowLayout(FlowLayout.LEFT));
-        toolbar.setBackground(Color.DARK_GRAY);
         toolbar.add(save);
         toolbar.add(manage);
         toolbar.add(view);
