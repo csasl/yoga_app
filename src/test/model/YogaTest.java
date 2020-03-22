@@ -29,4 +29,28 @@ class YogaTest {
         testPose.setTime(10);
         assertEquals(testPose.getTime(), 10);
     }
+
+    @Test
+    public void testSetName() {
+        testPose.setName("test");
+        assertEquals("test", testPose.getName());
+    }
+
+    @Test
+    public void testSetLevel() {
+        testPose.setLevel("All");
+        assertEquals("All", testPose.getLevel());
+    }
+
+    @Test
+    public void testSetDescription() {
+        testPose.setDescription("test");
+        assertEquals("test", testPose.getDescription());
+    }
+
+    @Test
+    public void testSetStage() {
+        testPose.setType(Stage.BREATHING);
+        assertTrue(testPose.getType().equals(Stage.BREATHING));
+    }
 }
