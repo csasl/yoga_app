@@ -129,25 +129,25 @@ public class MainMenu extends JFrame {
         return allPoses;
     }
 
-    /**
-     * Helper to calculate time left for user to allocate
-     * @return time left to allocate
-     */
-
-    public int getRemainingTime() {
-        int time = sequence.getAllocatedTime() - sequence.totalTimeInSeq();
-        return time;
-    }
-
-    /**
-     * Helper to make text for JLabel of time remaining
-     * @return Message of how much time is left to allocate
-     */
+//    /**
+//     * Helper to calculate time left for user to allocate
+//     * @return time left to allocate
+//     */
+//
+//    public int getRemainingTime() {
+//        int time = sequence.getAllocatedTime() - sequence.totalTimeInSeq();
+//        return time;
+//    }
+//
+//    /**
+//     * Helper to make text for JLabel of time remaining
+//     * @return Message of how much time is left to allocate
+//     */
     public String makeTimeText() {
         String timeLeft = "";
-        int time = getRemainingTime();
-        if (time > 0) {
-            timeLeft = "You have " + time + " minutes remaining to allocate";
+
+        if (sequence.getRemainingTime() > 0) {
+            timeLeft = "You have " + sequence.getRemainingTime() + " minutes remaining to allocate";
         } else {
             timeLeft = "You have allocated all the time in your sequence!";
         }

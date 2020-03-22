@@ -23,6 +23,7 @@ public class YogaSequenceTest {
     @BeforeEach
     public void runBefore() {
         testSequence = new YogaSequence();
+        testSequence.setAllocatedTime(25);
     }
 
     @Test
@@ -36,7 +37,6 @@ public class YogaSequenceTest {
 
     @Test
     public void testSetAllocatedTime() {
-        testSequence.setAllocatedTime(25);
         assertEquals(testSequence.getAllocatedTime(), 25);
     }
 
@@ -99,4 +99,14 @@ public class YogaSequenceTest {
         assertEquals(testSequence.listAllPoses(),
                 POSE_1.getName()+". " + POSE_2.getName()+ ". " + POSE_3.getName() + ". " );
     }
+
+@Test
+    public void testUpdateTime() {
+        POSE_1.setTime(5);
+        testSequence.addPose(POSE_1);
+        assertEquals(20, testSequence.getRemainingTime());
+        POSE_2.setTime(3);
+        testSequence.addPose(POSE_2);
+        assertEquals(17, testSequence.getRemainingTime());
+}
 }

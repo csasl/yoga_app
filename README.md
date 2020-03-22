@@ -6,7 +6,7 @@ The primary purpose of the app will be to enable users to browse yoga and pilate
 
 ##User Stories
 
--As a user I want to be able to name my sequence and allocate how long I want to work out for.
+-As a user I want to be able to allocate how long I want to work out for.
 
 -As a user, I want to be able to browse poses suitable for different stages of a workout and view their descriptions
 
@@ -23,29 +23,37 @@ The primary purpose of the app will be to enable users to browse yoga and pilate
 
 **General navigation:**
 - The welcome screen has a drop down menu to select the total amount of time you want to work out for
-- Then on the main menu, you can click the breathe, warm-up, flow and cool-down buttons to view poses suitable for
-each stage
--When you click on a pose, you will see the pose instructions and are given the option to add the pose to your sequence
-by setting the time you want to stay in the pose and adding it to your sequence
--In the main menu, there are buttons on the top to manage the sequence, where you can remove any unwanted poses, save the sequence
-and view the sequence so far
+![image info](./data/welcome.jpg)
+
+-You will then reach the main menu shown below. The 4 JButtons in the centre correspond to each stage of the yoga
+practice, when clicked, poses suitable to that stage will be displayed. There are also 3 other buttons on top where
+the user can save, view their sequence or manage their sequence.
+
+![image info](./data/mainScreen.jpg)
+
 
 **Requirement 1:**
 
-1. When you view a pose description and want to add the pose (X) to the sequence (Y), you can drag the
-slider to set the time field for the specific pose, this will set the time field for the pose and deduct the total time
-left to allocate for the whole sequence that you selected in the welcome screen.
+Once you select a pose to view its description you will reach a screen similar to the one below:
 
-2. To add the pose to the sequence, you can click the 'Set' button
+![image_info](./data/details.jpg)
 
-3. To remove a pose, you can select the pose you want to remove from a scroll pane, and click the remove button
+Event 1: Drag the slider to set the time, then the circled 'Add' button responds to either the 'Enter' key **or** a  click 
+to add the pose(X) to the sequence(Y)
+
+To remove a pose from your sequence, click the 'Manage Sequence' button on the main menu, you will get to this screen:
+
+![image_info](./data/manage.jpg)
+
+Event 2: To remove a pose, you can select the pose you want to remove from the scroll pane, and click the remove button
 to remove it
 
 **Requirement 2:**
 
--For the visual component, I have added, an app icon in the welcome screen, button icons on my stage buttons in the main menu
+-For the visual component, I have added an app icon in the welcome screen, button icons on my stage buttons in the main menu,
+a banner in the window for pose details and an image in the pop up when the 'Add' button is pressed
 
--For the audio component, once you set a time and hit the 'set' button in a pose description video, a bell sound will be played
+-For the audio component, once you set a time and hit the 'Add' button showed in the third image above, a bell sound will be played
 to indicate a successful add
 
 **Requirement 3**

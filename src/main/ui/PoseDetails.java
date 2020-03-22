@@ -2,6 +2,7 @@
 //https://stackoverflow.com/questions/1090098/newline-in-jlabel
 //<div>Icons made by <a href="https://www.flaticon.com/authors/freepik"
 // title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+//https://stackoverflow.com/questions/12260962/how-to-set-the-java-default-button-to-react-on-enter-key-released
 
 package ui;
 
@@ -14,8 +15,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.*;
 import java.util.List;
 
@@ -49,6 +49,8 @@ public class PoseDetails extends JPanel {
         poseWindow = new JFrame(selectedPose.getName());
         poseWindow.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         poseWindow. setLayout(new BorderLayout());
+        setBtn = new JButton("Add");
+        poseWindow.getRootPane().setDefaultButton(setBtn);
         ImageIcon banner = new ImageIcon("./data/banner.jpg");
         Image bannerImage = banner.getImage();
         Image bannerResize = bannerImage.getScaledInstance(1000, 200, Image.SCALE_SMOOTH);
@@ -79,7 +81,7 @@ public class PoseDetails extends JPanel {
      * Helper to create the time slider for user to set pose time
      */
     public void createTimeSlider() {
-        setBtn = new JButton("Set");
+
         timeSlider.setMajorTickSpacing(10);
         timeSlider.setMinorTickSpacing(1);
         timeSlider.setPaintTicks(true);
@@ -88,11 +90,14 @@ public class PoseDetails extends JPanel {
         setBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sequence.addPose(selectedPose);
                 setTime();
+                sequence.addPose(selectedPose);
+
             }
         });
     }
+
+
 
     /**
      * Detects change in slider value
@@ -114,9 +119,12 @@ public class PoseDetails extends JPanel {
         popUp = new JFrame("Success!");
         popUp.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         popUp.setLayout(new BorderLayout());
-        popUp.add(new JLabel(selectedPose.getName() + " was added for " + selectedPose.getTime() + " minutes"),
-                BorderLayout.CENTER);
-        popUp.setSize(400,400);
+        popUp.add(new JLabel(selectedPose.getName()
+                        + " was added for " + selectedPose.getTime() + " minutes!", SwingConstants.CENTER),
+                BorderLayout.NORTH);
+        ImageIcon success = new ImageIcon("./data/success.png");
+        popUp.add(new JLabel(success), BorderLayout.CENTER);
+        popUp.setSize(600,600);
         playMusic();
         popUp.setVisible(true);
         poseWindow.dispose();
