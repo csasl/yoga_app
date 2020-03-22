@@ -1,4 +1,4 @@
-#Home Yoga
+#Home Yoga#
 A sequence builder and tracker for yoga and poses
 
 Description of Project**
@@ -9,7 +9,7 @@ The target audience for the application is people who currently practice or are 
  This project is of particular interest to me because I practice yoga regularly and know that it can be intimidating to start of with and may be difficult to make time to practice.
  This application would enable users to customize their routine based on the amount of time they have available.
 
-##User Stories
+**User Stories**
 
 -As a user I want to be able to allocate how long I want to work out for.
 
@@ -24,7 +24,7 @@ The target audience for the application is people who currently practice or are 
 -As a user, I want my saved sequence to reload once I re-open the app
 
 
-##Instructions for Grader
+**Instructions for Grader**
 
 **General navigation:**
 - The welcome screen has a drop down menu to select the total amount of time you want to work out for
@@ -68,7 +68,7 @@ save on close, the save button must be clicked
 
 -The sequence will reload automatically once the app is opened again, to check you can click the view sequence/ manage 
 sequence button on the main menu to see all the loaded poses. I did not think a separate load button would make sense
-in this situation- instructor confirmed on piazza save button only is sufficient (question @1017)
+in this situation- instructor confirmed on piazza save button only is sufficient (question @1017, @1160)
 
 NOTES TO GRADER: 
 
