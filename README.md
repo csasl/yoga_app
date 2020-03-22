@@ -69,5 +69,9 @@ save on close, the save button must be clicked
 -The sequence will reload automatically once the app is opened again, to check you can click the view sequence/ manage 
 sequence button on the main menu to see all the loaded poses.
 
-NOTE TO GRADER: The screenshots above show what the app looks like on a Windows computer and looks quite different on 
+NOTES TO GRADER: 
+1.The screenshots above show what the app looks like on a Windows computer and looks quite different on 
 a Mac- apologies if anything is hard to see depending on which you are using.
+
+2. The view sequence button only works when you have at least one pose to a sequence
+

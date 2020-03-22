@@ -79,8 +79,9 @@ public class ManageMenu  implements ActionListener {
 
     public void formatRemovedList() {
         removed.setVisibleRowCount(20);
-        removed.setFixedCellHeight(20);
+        removed.setFixedCellHeight(30);
         removed.setFixedCellWidth(140);
+        
     }
 
     /**

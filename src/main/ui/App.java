@@ -46,7 +46,6 @@ public class App {
         setPaneUI();
         setListUI();
         setLabelUI();
-       // setSliderUI();
         setComboBoxUI();
         loadSequence();
     }
@@ -100,15 +99,6 @@ public class App {
 
     }
 
-//    /**
-//     * Helper to set up UI for app's JSlider
-//     */
-//    public void setSliderUI() {
-//        UIManager.put("Slider.tickColor", Color.white);
-//        UIManager.put("Slider.foreground", Color.white);
-//        UIManager.put("Slider.background", Color.lightGray);
-//
-//    }
 
     /**
      * Helper to set up UI for app's JLabels
