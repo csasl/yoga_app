@@ -44,7 +44,7 @@ public class Stages extends JPanel {
         initializePoseLists();
         this.myYogaSeq = sequence;
         setLayout(new GridLayout(2,2));
-        setBackground(Color.DARK_GRAY);
+        this.setBackground(Color.BLACK);
         makeIcons();
         breatheBtn = new JButton(breatheFinal);
         warmBtn = new JButton(warmUpFinal);
@@ -67,19 +67,19 @@ public class Stages extends JPanel {
     public void makeIcons() {
         ImageIcon flow = new ImageIcon("./data/flow.jpg");
         Image flowImage = flow.getImage();
-        Image flowResize = flowImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image flowResize = flowImage.getScaledInstance(475, 475, Image.SCALE_SMOOTH);
         flowFinal = new ImageIcon(flowResize);
         ImageIcon breathe = new ImageIcon("./data/breathe.jpg");
         Image breatheImage = breathe.getImage();
-        Image breatheResize = breatheImage.getScaledInstance(200,200,Image.SCALE_SMOOTH);
+        Image breatheResize = breatheImage.getScaledInstance(450,450,Image.SCALE_SMOOTH);
         breatheFinal = new ImageIcon(breatheResize);
         ImageIcon warmup = new ImageIcon("./data/warmup.jpg");
         Image warmImage = warmup.getImage();
-        Image warmResize = warmImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image warmResize = warmImage.getScaledInstance(450, 450, Image.SCALE_SMOOTH);
         warmUpFinal = new ImageIcon(warmResize);
         ImageIcon cool = new ImageIcon("./data/cool.jpg");
         Image coolImage = cool.getImage();
-        Image coolResize = coolImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image coolResize = coolImage.getScaledInstance(450, 450, Image.SCALE_SMOOTH);
         coolFinal = new ImageIcon(coolResize);
     }
 

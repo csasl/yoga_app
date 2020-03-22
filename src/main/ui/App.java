@@ -46,7 +46,7 @@ public class App {
         setPaneUI();
         setListUI();
         setLabelUI();
-        setSliderUI();
+       // setSliderUI();
         setComboBoxUI();
         loadSequence();
     }
@@ -74,8 +74,6 @@ public class App {
      * Helper to set up UI for app's JButtons
      */
     public void setButtonUI() {
-        UIManager.put("Button.background", Color.darkGray);
-        UIManager.put("Button.foreground", Color.white);
         UIManager.put("Button.font", appFont);
 
     }
@@ -102,15 +100,15 @@ public class App {
 
     }
 
-    /**
-     * Helper to set up UI for app's JSlider
-     */
-    public void setSliderUI() {
-        UIManager.put("Slider.tickColor", Color.black);
-        UIManager.put("Slider.foreground", Color.black);
-        UIManager.put("Slider.background", Color.lightGray);
-
-    }
+//    /**
+//     * Helper to set up UI for app's JSlider
+//     */
+//    public void setSliderUI() {
+//        UIManager.put("Slider.tickColor", Color.white);
+//        UIManager.put("Slider.foreground", Color.white);
+//        UIManager.put("Slider.background", Color.lightGray);
+//
+//    }
 
     /**
      * Helper to set up UI for app's JLabels

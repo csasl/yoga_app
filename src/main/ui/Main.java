@@ -7,10 +7,7 @@ package ui;
  * Class runs app
  */
 
-import model.YogaSequence;
-import persistence.Reader;
 
-import javax.swing.*;
 
 public class Main {
 
