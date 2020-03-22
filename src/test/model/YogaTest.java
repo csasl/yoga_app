@@ -24,6 +24,13 @@ class YogaTest {
     }
 
     @Test
+    public void testDefaultConstructor() {
+        YogaPose testPose2 = new YogaPose();
+        assertEquals(null, testPose2.getName());
+        assertEquals(0,testPose2.getTime());
+    }
+
+    @Test
     public void testSetTime() {
         assertEquals(testPose.getTime(), 0);
         testPose.setTime(10);

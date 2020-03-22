@@ -11,13 +11,9 @@ public  class YogaSequence {
     private Integer remainingTime;
 
 
-
-
 //EFFECTS: Constructs and empty list of exercises
     public YogaSequence() {
         exerciseSequence = new ArrayList<>();
-
-
     }
 
 
@@ -27,7 +23,7 @@ public  class YogaSequence {
     public void setAllocatedTime(Integer time) {
 
         this.allocatedTime = time;
-        remainingTime = allocatedTime;
+     //   remainingTime = allocatedTime;
     }
 
 //MODIFIES: this
@@ -124,7 +120,7 @@ public  class YogaSequence {
 //EFFECTS: subtracts
 
     public void updateRemainingTime(YogaPose pose) {
-        remainingTime = remainingTime - pose.getTime();
+        remainingTime = allocatedTime - totalTimeInSeq();
     }
 
 }

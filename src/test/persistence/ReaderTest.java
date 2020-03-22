@@ -1,5 +1,7 @@
 package persistence;
 
+import model.Stage;
+import model.YogaPose;
 import model.YogaSequence;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,16 +19,26 @@ public class ReaderTest {
     private Writer testWriter;
     private Reader testReader;
     private YogaSequence testSequence;
+    private YogaPose test1;
 
     @BeforeEach
     public void runBefore() {
+
+        test1 = new YogaPose("test", "test description", "All", Stage.BREATHING);
+        test1.setTime(5);
         testWriter = new Writer();
         testReader = new Reader();
         testSequence = new YogaSequence();
-        testSequence.addPose(PoseDescriptions.ALTERNATE);
-        testSequence.addPose(PoseDescriptions.COOLING);
-        testSequence.addPose(PoseDescriptions.KAPALABHATI);
         testSequence.setAllocatedTime(20);
+        testSequence.addPose(test1);
+
+//        testSequence.addPose(PoseDescriptions.ALTERNATE);
+//
+//        testSequence.addPose(PoseDescriptions.COOLING);
+//
+//        testSequence.addPose(PoseDescriptions.KAPALABHATI);
+
+
 
     }
 
@@ -48,9 +60,10 @@ public class ReaderTest {
             String readjson = testReader.readLines(TEST_FILE);
             testSequence = mapper2.readValue(readjson, YogaSequence.class);
             assertEquals(20, testSequence.getAllocatedTime());
-            assertEquals(3, testSequence.countPoses());
+            assertEquals(1, testSequence.countPoses());
+            assertEquals(15, testSequence.getRemainingTime());
 
-            assertTrue(testSequence.sequenceContainsPose("Kapalabhati"));
+            assertTrue(testSequence.sequenceContainsPose("test"));
 
 
         } catch (IOException e) {

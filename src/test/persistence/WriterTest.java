@@ -1,5 +1,7 @@
 package persistence;
 
+import model.Stage;
+import model.YogaPose;
 import model.YogaSequence;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,16 +18,17 @@ public class WriterTest {
     private Writer testWriter;
     private YogaSequence testSequence;
     private Reader testReader;
+    private YogaPose testPose;
 
     @BeforeEach
     public void runBefore() {
         testWriter = new Writer();
         testReader = new Reader();
         testSequence = new YogaSequence();
-//        testSequence.addPose(PoseDescriptions.ALTERNATE);
-//        testSequence.addPose(PoseDescriptions.COOLING);
-//        testSequence.addPose(PoseDescriptions.KAPALABHATI);
         testSequence.setAllocatedTime(20);
+        testPose= new YogaPose("test", "test", "All", Stage.BREATHING);
+        testPose.setTime(5);
+        testSequence.addPose(testPose);
 
     }
 
@@ -47,8 +50,9 @@ public class WriterTest {
             String readjson = testReader.readLines(TEST_FILE);
             testSequence = mapper2.readValue(readjson, YogaSequence.class);
             assertEquals(20, testSequence.getAllocatedTime() );
-            assertEquals(3, testSequence.countPoses());
-            assertTrue(testSequence.sequenceContainsPose("Kapalabhati"));
+            assertEquals(1, testSequence.countPoses());
+            assertEquals(15, testSequence.getRemainingTime());
+            assertTrue(testSequence.sequenceContainsPose("test"));
 
 
         } catch (IOException e) {
