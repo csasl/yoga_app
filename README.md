@@ -67,4 +67,4 @@ to indicate a successful add
 save on close, the save button must be clicked
 
 -The sequence will reload automatically once the app is opened again, to check you can click the view sequence/ manage 
-sequence button on the main menu to see all the loaded poses
+sequence button on the main menu to see all the loaded poses.

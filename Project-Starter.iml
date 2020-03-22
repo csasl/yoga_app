@@ -26,5 +26,6 @@
     </orderEntry>
     <orderEntry type="library" name="jackson-all-1.7.3" level="project" />
     <orderEntry type="library" name="json-20190722" level="project" />
+    <orderEntry type="library" name="jackson-all-1.7.3 (2)" level="project" />
   </component>
 </module>
