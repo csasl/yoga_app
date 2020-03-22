@@ -23,7 +23,7 @@ public  class YogaSequence {
     public void setAllocatedTime(Integer time) {
 
         this.allocatedTime = time;
-     //   remainingTime = allocatedTime;
+
     }
 
 //MODIFIES: this

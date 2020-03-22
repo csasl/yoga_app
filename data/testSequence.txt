@@ -1,1 +1,1 @@
-{"exerciseSequence":[{"name":"test","type":"BREATHING","time":5,"level":"All","description":"test"}],"remainingTime":15,"allocatedTime":20}
+{"remainingTime":15,"allocatedTime":20,"exerciseSequence":[{"name":"test","type":"BREATHING","time":5,"level":"All","description":"test"}]}

@@ -55,7 +55,7 @@ public class App {
      */
 
     public void setFont() {
-       // File font = new File("./data/Montserrat.otf");
+
         try {
             segoe = Font.createFont(Font.TRUETYPE_FONT, new File("./data/segoe.ttf")).deriveFont(20f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();

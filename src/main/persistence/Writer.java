@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+//Represents writer that writes data to text file
+
 public class Writer {
     public static final String SEQUENCE_FILE = "./data/sequence.txt";
     private FileWriter fileWriter;

@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+
 //Exercise class contains information about specific poses including name, description, difficulty level,
 // stage of workout and time pose will be practiced for
 
@@ -18,7 +20,7 @@ public  class YogaPose {
     protected String level;
     protected Stage type;
     protected int time;
-   // public BufferedImage image;
+
 
 
 //EFFECTS: Constructs a new exercise with input parameters and time 0
