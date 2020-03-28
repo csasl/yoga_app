@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.DuplicatePoseException;
 import model.Stage;
 import model.YogaPose;
 import model.YogaSequence;
@@ -28,7 +29,11 @@ public class WriterTest {
         testSequence.setAllocatedTime(20);
         testPose= new YogaPose("test", "test", "All", Stage.BREATHING);
         testPose.setTime(5);
-        testSequence.addPose(testPose);
+        try {
+            testSequence.addPose(testPose);
+        } catch (DuplicatePoseException e) {
+            fail();
+        }
 
     }
 

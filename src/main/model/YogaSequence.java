@@ -1,6 +1,8 @@
 package model;
 //ExerciseSequence class contains information about exercise sequences that the user can create
 
+import exceptions.DuplicatePoseException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +31,10 @@ public  class YogaSequence {
 //MODIFIES: this
 //EFFECTS: Given a pose, adds it to the list of poses
 
-    public void addPose(YogaPose pos) {
-
+    public void addPose(YogaPose pos) throws DuplicatePoseException {
+        if (sequenceContainsPose(pos.getName())) {
+            throw new DuplicatePoseException();
+        }
         exerciseSequence.add(pos);
         updateRemainingTime(pos);
 

@@ -6,6 +6,7 @@
 
 package ui;
 
+import exceptions.DuplicatePoseException;
 import model.YogaPose;
 import model.YogaSequence;
 import sun.audio.AudioPlayer;
@@ -91,7 +92,11 @@ public class PoseDetails extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setTime();
-                sequence.addPose(selectedPose);
+                try {
+                    sequence.addPose(selectedPose);
+                } catch (DuplicatePoseException ex) {
+                    ex.printStackTrace();
+                }
 
             }
         });

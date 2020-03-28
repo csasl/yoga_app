@@ -1,12 +1,13 @@
 package persistence;
 
+import exceptions.DuplicatePoseException;
 import model.Stage;
 import model.YogaPose;
 import model.YogaSequence;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ui.PoseDescriptions;
+
 
 import java.io.IOException;
 
@@ -30,15 +31,11 @@ public class ReaderTest {
         testReader = new Reader();
         testSequence = new YogaSequence();
         testSequence.setAllocatedTime(20);
-        testSequence.addPose(test1);
-
-//        testSequence.addPose(PoseDescriptions.ALTERNATE);
-//
-//        testSequence.addPose(PoseDescriptions.COOLING);
-//
-//        testSequence.addPose(PoseDescriptions.KAPALABHATI);
-
-
+        try {
+            testSequence.addPose(test1);
+        } catch (DuplicatePoseException e) {
+            fail();
+        }
 
     }
 
