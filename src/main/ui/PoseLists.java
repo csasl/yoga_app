@@ -75,7 +75,7 @@ public class PoseLists extends JPanel implements ListSelectionListener {
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             selected = poseList.getSelectedIndex();
-            new PoseDetails(selectedSeq, selected, sequence);
+            new PoseOptions(selectedSeq, selected, sequence);
             poseFrame.dispose();
 
         }

@@ -4,17 +4,15 @@
 
 package ui;
 
-import model.YogaPose;
 import model.YogaSequence;
-import org.codehaus.jackson.map.ObjectMapper;
-import persistence.Writer;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.List;
+
+
 
 /**
  * Represents the main menu that users interact with
@@ -27,7 +25,9 @@ public class MainMenu extends JFrame {
     private JButton save = new JButton("Save sequence");
     private JButton manage = new JButton("Manage sequence");
     private JButton view = new JButton("View sequence");
-    private static final String SEQUENCE_FILE = "./data/sequence.txt";
+    private ManageMenu manageMenu;
+    private SequenceViewer viewSeq;
+    private SequenceSaver saver;
 
 
     /**
@@ -37,6 +37,9 @@ public class MainMenu extends JFrame {
     public MainMenu(YogaSequence seq) {
         super("Home Yoga");
         this.sequence = seq;
+        saver = new SequenceSaver();
+        manageMenu = new ManageMenu(sequence);
+        viewSeq = new SequenceViewer();
         setLayout(new BorderLayout());
         toolbar = new JToolBar();
         toolbar.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -59,7 +62,7 @@ public class MainMenu extends JFrame {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                saveSeq();
+                saver.saveSeq(sequence);
                 JOptionPane.showMessageDialog(null, "Saved sequence!");
             }
         });
@@ -67,84 +70,19 @@ public class MainMenu extends JFrame {
         manage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ManageMenu menu = new ManageMenu(sequence);
-                menu.showGUI();
+                manageMenu.showGUI();
             }
         });
 
         view.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewSeq();
+                viewSeq.displaySequence(sequence);
             }
         });
     }
 
-    /**
-     * Saves sequence to text file when save button selected
-     */
-    public void saveSeq() {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            String jsonString = mapper.writeValueAsString(sequence);
-            Writer writer = new Writer();
-            writer.write(jsonString, SEQUENCE_FILE);
-            writer.close();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Sorry, could not save");
-        }
-    }
 
-    /**
-     * Creates window of sequence details so far
-     */
-    public void viewSeq() {
-
-        JFrame view = new JFrame("View Sequence");
-        view.setDefaultCloseOperation(HIDE_ON_CLOSE);
-        view.setLayout(new BorderLayout());
-        view.setSize(500,500);
-        view.add(new JLabel("Your sequence has "
-                    + sequence.countPoses() +  " poses"), BorderLayout.NORTH);
-        JLabel poseListLabel = new JLabel();
-        poseListLabel.setText("<html>" + getListPoses()
-                       .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
-        view.add(poseListLabel, BorderLayout.CENTER);
-        view.add(new JLabel(makeTimeText()), BorderLayout.SOUTH);
-        view.pack();
-        view.setVisible(true);
-    }
-
-    /**
-     * Helper to get the names and times set for each pose in the sequence so far for JLabel
-     * @return String of all pose names and set times
-     */
-
-    public String getListPoses() {
-        String allPoses = "";
-        List<YogaPose> poses = sequence.getExerciseSequence();
-        for (YogaPose p : poses) {
-            allPoses = allPoses + "\n" + p.getName() + " - " + p.getTime() + " minutes";
-        }
-        return allPoses;
-    }
-
-
-
-   /**
-//     * Helper to make text for JLabel of time remaining
-//     * @return Message of how much time is left to allocate
-//     */
-    public String makeTimeText() {
-        String timeLeft = "";
-
-        if (sequence.getRemainingTime() > 0) {
-            timeLeft = "You have " + sequence.getRemainingTime() + " minutes remaining to allocate";
-        } else {
-            timeLeft = "You have allocated all the time in your sequence!";
-        }
-        return timeLeft;
-    }
 }
 
 
