@@ -8,11 +8,14 @@ package ui;
 import model.Stage;
 import model.YogaPose;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents all the poses that the user can choose from to build their sequence
  */
 
-public class PoseDescriptions {
+public class PresetPoses {
 
     public static final YogaPose ALTERNATE = new YogaPose("Alternate Nostril Breathing",
             "\n 1.Sit comfortably in a cross legged position"
@@ -225,6 +228,92 @@ public class PoseDescriptions {
             + "\n 5.Exhale and bend your left knee over the left ankle, "
             + "\n so that the shin is perpendicular to the floor \n 6. Stretch arms out parallel to floor"
             + "\n 7. Repeat on other side", "All", Stage.MAIN);
+
+    private List<YogaPose> breathingPoses;
+    private List<YogaPose> warmUpPoses;
+    private List<YogaPose> mainPoses;
+    private List<YogaPose> warmDownPoses;
+
+
+    public PresetPoses() {
+        breathingPoses = new ArrayList<>();
+        warmUpPoses = new ArrayList<>();
+        mainPoses = new ArrayList<>();
+        warmDownPoses = new ArrayList<>();
+    }
+
+    /**
+     * Helper that populates the breathing exercises list with pre-defined exercises
+     */
+    public List<YogaPose> buildBreathingOptionsYoga() {
+
+        breathingPoses.add(PresetPoses.ALTERNATE);
+        breathingPoses.add(KAPALABHATI);
+        breathingPoses.add(PresetPoses.COOLING);
+        breathingPoses.add(LION);
+        breathingPoses.add(CONQUEROR);
+        breathingPoses.add(SOUND);
+        return breathingPoses;
+
+    }
+
+    /**
+     * Helper that populates the warm-up exercises list with pre-defined exercises
+     */
+    public List<YogaPose> buildWarmUpOptionsYoga() {
+
+        warmUpPoses.add(CATCOW);
+        warmUpPoses.add(BOAT);
+        warmUpPoses.add(SEATEDFORWARDBEND);
+        warmUpPoses.add(FISHTWIST);
+        warmUpPoses.add(PUPPY);
+        warmUpPoses.add(BUTTERFLY);
+        warmUpPoses.add(LOCUST);
+        return warmUpPoses;
+    }
+
+    /**
+     * Helper that populates the main exercises list with pre-defined exercises
+     */
+    public List<YogaPose> buildMainOptionsYoga() {
+
+        mainPoses.add(PLANK);
+        mainPoses.add(DOWNWARD_DOG);
+        mainPoses.add(CHAIR);
+        mainPoses.add(WARRIOR1);
+        mainPoses.add(WARRIORII);
+        mainPoses.add(EAGLE);
+        mainPoses.add(GATE);
+        mainPoses.add(LOW_LUNGE);
+        mainPoses.add(HIGH_LUNGE);
+        mainPoses.add(TRIANGLE);
+        mainPoses.add(GARLAND);
+        mainPoses.add(DOLPHIN);
+        mainPoses.add(DPLANK);
+        mainPoses.add(UPPLANK);
+        return mainPoses;
+
+
+    }
+
+    /**
+     * Helper that populates the warm-down exercises list with pre-defined exercises
+     */
+
+    public List<YogaPose> buildWarmDownOptionsYoga() {
+        warmDownPoses.add(BRIDGE);
+        warmDownPoses.add(CHILD);
+        warmDownPoses.add(CORPSE);
+        warmDownPoses.add(LOCUST);
+        warmDownPoses.add(BIGTOE);
+        warmDownPoses.add(STAFF);
+        warmDownPoses.add(BABY);
+        warmDownPoses.add(ANGLE);
+
+        return warmDownPoses;
+
+    }
+
 
 
 

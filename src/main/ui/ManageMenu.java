@@ -14,34 +14,29 @@ import java.util.List;
  * Represents menu to manage sequence, allows user to remove any unwanted poses
  */
 
-public class ManageMenu  implements ActionListener {
+public class ManageMenu  {
     private JList inSeq;
     private JList removed;
     private DefaultListModel inSeqModel;
     private DefaultListModel removedModel;
-    private List<YogaPose> poses;
-    private YogaSequence sequence;
-    private JPanel managePanel;
     private JPanel buttonPanel;
     private JButton removeBtn;
 
     /**
      * Constructor creates a new menu with sequence so far
-     * @param seq sequence built by the user so far
+
      */
 
-    public ManageMenu(YogaSequence seq) {
-        this.sequence = seq;
-        poses = seq.getExerciseSequence();
-    }
+    public ManageMenu() { }
 
     /**
      * Creates all components for the scroll pane of names of poses in sequence
      * @return
      */
 
-    public JPanel createPane() {
-        managePanel = new JPanel();
+    public JPanel createPane(YogaSequence sequence) {
+        List<YogaPose> poses = sequence.getExerciseSequence();
+        JPanel managePanel = new JPanel();
         inSeqModel = new DefaultListModel();
         removedModel = new DefaultListModel();
         for (YogaPose p: poses) {
@@ -54,13 +49,40 @@ public class ManageMenu  implements ActionListener {
         formatRemovedList();
         JScrollPane list2 = new JScrollPane(removed);
         buttonPanel = new JPanel();
-        removeBtn = new JButton("Remove >>");
-        removeBtn.addActionListener(this);
-        buttonPanel.add(removeBtn);
+        buttonPanel.add(createRemoveButton(sequence));
         managePanel.add(createBottomPanel(list1, list2));
         managePanel.setOpaque(true);
         return managePanel;
     }
+
+    public JButton createRemoveButton(YogaSequence sequence) {
+        removeBtn = new JButton("Remove");
+        removeBtn.addActionListener(new ActionListener() {
+            /**
+             * Removes the pose that the user has selected once the remove button is clicked
+             * @param e The pose that the user has selected on the JList of poses in the sequence
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<YogaPose> poses = sequence.getExerciseSequence();
+
+                if (e.getSource() == removeBtn) {
+                    Object to = inSeq.getSelectedValue();
+                    int toIndex = inSeq.getSelectedIndex();
+                    sequence.removePose(poses.get(toIndex).getName());
+                    removedModel.addElement(to);
+                    inSeqModel.remove(toIndex);
+                }
+            }
+        });
+        return removeBtn;
+    }
+
+
+
+
+
+
 
     /**
      * Helper to format the JList of poses in the sequence so far
@@ -103,33 +125,19 @@ public class ManageMenu  implements ActionListener {
         return bottomPanel;
     }
 
-    /**
-     * Removes the pose that the user has selected once the remove button is clicked
-     * @param e The pose that the user has selected on the JList of poses in the sequence
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == removeBtn) {
-            Object to = inSeq.getSelectedValue();
-            int toIndex = inSeq.getSelectedIndex();
-            sequence.removePose(poses.get(toIndex).getName());
-            removedModel.addElement(to);
-            inSeqModel.remove(toIndex);
-        }
 
-    }
 
     /**
      * Displays the scroll panes with the JLists
      */
 
-    public void showGUI() {
+    public void showGUI(YogaSequence sequence) {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("Manage Sequence");
-        ManageMenu menu = new ManageMenu(sequence);
+        ManageMenu menu = new ManageMenu();
         frame.setLayout(new BorderLayout());
-        frame.setContentPane(menu.createPane());
+        frame.setContentPane(menu.createPane(sequence));
         frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         frame.setSize(500, 500);
         frame.setVisible(true);

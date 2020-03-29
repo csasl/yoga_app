@@ -13,7 +13,6 @@ public class SequenceSaver {
 
     public SequenceSaver() {
         writer = new Writer();
-
     }
 
     /**

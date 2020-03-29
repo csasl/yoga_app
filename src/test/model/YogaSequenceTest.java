@@ -1,5 +1,6 @@
 package model;
 import exceptions.DuplicatePoseException;
+import exceptions.EmptySequenceException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -100,8 +101,12 @@ public class YogaSequenceTest {
 
     }
 
+
+
+
+
     @Test
-    public void testTotalTimeInSeq() {
+    public void testTotalTimeInSeqNoException() {
         try {
             testSequence.addPose(POSE_1);
             testSequence.addPose(POSE_2);
@@ -114,7 +119,22 @@ public class YogaSequenceTest {
         POSE_2.setTime(5);
         POSE_3.setTime(5);
         POSE_4.setTime(3);
-        assertEquals(testSequence.totalTimeInSeq(), (2 + 5+ 5 + 3));
+        try {
+            assertEquals(testSequence.totalTimeInSeq(), (2 + 5+ 5 + 3));
+        } catch (EmptySequenceException e) {
+            fail("Sequence not empty");
+        }
+    }
+
+    @Test
+    public void testTotalTimeInSeqSequenceEmptyException() {
+        assertEquals(testSequence.countPoses(), 0);
+        try {
+            assertEquals(0, testSequence.totalTimeInSeq());
+        } catch (EmptySequenceException e) {
+            //expected
+        }
+
     }
 
     @Test
@@ -143,20 +163,32 @@ public class YogaSequenceTest {
     }
 
     @Test
-    public void testUpdateTime() {
+    public void testUpdateTimeNoException() {
         POSE_1.setTime(5);
-    try {
-        testSequence.addPose(POSE_1);
-    } catch (DuplicatePoseException e) {
-        fail();
-    }
-    assertEquals(20, testSequence.getRemainingTime());
+        try {
+            testSequence.addPose(POSE_1);
+        } catch (DuplicatePoseException e) {
+            fail();
+        }
+        assertEquals(20, testSequence.getRemainingTime());
         POSE_2.setTime(3);
-    try {
-        testSequence.addPose(POSE_2);
-    } catch (DuplicatePoseException e) {
-        fail();
+        try {
+            testSequence.addPose(POSE_2);
+        } catch (DuplicatePoseException e) {
+            fail();
+        }
+        assertEquals(17, testSequence.updateRemainingTime());
     }
-    assertEquals(17, testSequence.getRemainingTime());
-}
+
+
+    @Test
+    public void testUpdateTimeException() {
+        assertEquals(0, testSequence.countPoses());
+        assertEquals(25, testSequence.updateRemainingTime());
+    }
+
+
+
+
+
 }

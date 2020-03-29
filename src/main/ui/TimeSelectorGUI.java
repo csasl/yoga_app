@@ -1,6 +1,6 @@
 package ui;
 
-import exceptions.DuplicatePoseException;
+
 import model.YogaPose;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -9,16 +9,13 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 
-public class TimeSliderGUI {
+public class TimeSelectorGUI {
     private JSlider timeSlider;
     private int selectedTime;
-    private JFrame popUp;
 
-    public TimeSliderGUI() {
+    public TimeSelectorGUI() {
         timeSlider = new JSlider(0,30);
         selectedTime = 0;
     }
@@ -31,18 +28,6 @@ public class TimeSliderGUI {
         timeSlider.setPaintTicks(true);
         timeSlider.setPaintLabels(true);
         sliderAddChangeListener();
-//        setBtn.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                setTime();
-//                try {
-//                    sequence.addPose(selectedPose);
-//                } catch (DuplicatePoseException ex) {
-//                    ex.printStackTrace();
-//                }
-//
-//            }
-//        });
         return timeSlider;
     }
 
@@ -65,8 +50,7 @@ public class TimeSliderGUI {
      */
     public void setTime(YogaPose selectedPose) {
         selectedPose.setTime(selectedTime);
-     //   poseWindow.dispose();
-        popUp = new JFrame("Success!");
+        JFrame popUp = new JFrame("Success!");
         popUp.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         popUp.setLayout(new BorderLayout());
         popUp.add(new JLabel(selectedPose.getName()

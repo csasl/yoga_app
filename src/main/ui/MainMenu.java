@@ -19,9 +19,7 @@ import java.awt.event.ActionListener;
  */
 
 public class MainMenu extends JFrame {
-    private JToolBar toolbar;
-    private Stages poses;
-    private YogaSequence sequence;
+
     private JButton save = new JButton("Save sequence");
     private JButton manage = new JButton("Manage sequence");
     private JButton view = new JButton("View sequence");
@@ -32,22 +30,20 @@ public class MainMenu extends JFrame {
 
     /**
      * Constructor initializes sequence and components on main menu
-     * @param seq the sequence being built by user
      */
-    public MainMenu(YogaSequence seq) {
+    public MainMenu(YogaSequence sequence) {
         super("Home Yoga");
-        this.sequence = seq;
         saver = new SequenceSaver();
-        manageMenu = new ManageMenu(sequence);
+        manageMenu = new ManageMenu();
         viewSeq = new SequenceViewer();
         setLayout(new BorderLayout());
-        toolbar = new JToolBar();
+        JToolBar toolbar = new JToolBar();
         toolbar.setLayout(new FlowLayout(FlowLayout.LEFT));
         toolbar.add(save);
         toolbar.add(manage);
         toolbar.add(view);
-        addListeners();
-        poses = new Stages(sequence);
+        addListeners(sequence);
+        StageViewer poses = new StageViewer(sequence);
         add(toolbar, BorderLayout.NORTH);
         add(poses);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,7 +54,7 @@ public class MainMenu extends JFrame {
     /**
      * Helper to set up action listeners for buttons on main menu
      */
-    public void addListeners() {
+    public void addListeners(YogaSequence sequence) {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,7 +66,7 @@ public class MainMenu extends JFrame {
         manage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                manageMenu.showGUI();
+                manageMenu.showGUI(sequence);
             }
         });
 

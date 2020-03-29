@@ -20,12 +20,9 @@ import java.util.List;
 
 public class PoseOptions extends JPanel {
     private  JButton setBtn;
-    private List<YogaPose> selectedPoses;
-    private int selected;
-    private YogaPose selectedPose;
     private JFrame poseWindow;
-    private TimeSliderGUI timeGUI;
-    private YogaSequence sequence;
+    private TimeSelectorGUI timeGUI;
+
 
     /**
      * Initializes the window that displays the details of the pose
@@ -35,10 +32,8 @@ public class PoseOptions extends JPanel {
      */
 
     public PoseOptions(List<YogaPose> poses, int selected, YogaSequence seq) {
-        this.selectedPoses = poses;
-        this.selected = selected;
-        this.sequence = seq;
-        selectedPose = selectedPoses.get(selected);
+
+        YogaPose selectedPose = poses.get(selected);
         poseWindow = new JFrame(selectedPose.getName());
         poseWindow.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         poseWindow. setLayout(new BorderLayout());
@@ -49,15 +44,15 @@ public class PoseOptions extends JPanel {
         Image bannerResize = bannerImage.getScaledInstance(1000, 200, Image.SCALE_SMOOTH);
         ImageIcon finalBanner = new ImageIcon(bannerResize);
         poseWindow.add(new JLabel(finalBanner), BorderLayout.NORTH);
-        timeGUI = new TimeSliderGUI();
-        showDetails();
+        timeGUI = new TimeSelectorGUI();
+        showDetails(selectedPose, seq);
     }
 
 
     /**
      * Adds JLabel of pose instructions and time slider for user to choose time
      */
-    public void showDetails() {
+    public void showDetails(YogaPose selectedPose, YogaSequence sequence) {
         JLabel poseDescription = new JLabel();
         poseDescription.setText("<html>" + selectedPose.getDescription()
                 .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");

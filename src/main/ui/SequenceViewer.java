@@ -56,7 +56,7 @@ public class SequenceViewer {
     public String makeTimeText(YogaSequence sequence) {
         String timeLeft = "";
 
-        if (sequence.getRemainingTime() > 0) {
+        if (sequence.updateRemainingTime() > 0) {
             timeLeft = "You have " + sequence.getRemainingTime() + " minutes remaining to allocate";
         } else {
             timeLeft = "You have allocated all the time in your sequence!";
