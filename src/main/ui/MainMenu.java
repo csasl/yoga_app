@@ -23,32 +23,45 @@ public class MainMenu extends JFrame {
     private JButton save = new JButton("Save sequence");
     private JButton manage = new JButton("Manage sequence");
     private JButton view = new JButton("View sequence");
+    private JToolBar toolBar;
     private ManageMenu manageMenu;
     private SequenceViewer viewSeq;
     private SequenceSaver saver;
+    private StageViewer poses;
 
 
     /**
      * Constructor initializes sequence and components on main menu
      */
-    public MainMenu(YogaSequence sequence) {
+    public MainMenu() {
         super("Home Yoga");
         saver = new SequenceSaver();
         manageMenu = new ManageMenu();
         viewSeq = new SequenceViewer();
+    }
+
+    public void initializeMainMenu(YogaSequence sequence) {
         setLayout(new BorderLayout());
-        JToolBar toolbar = new JToolBar();
-        toolbar.setLayout(new FlowLayout(FlowLayout.LEFT));
-        toolbar.add(save);
-        toolbar.add(manage);
-        toolbar.add(view);
+        toolBar = new JToolBar();
+        toolBar.setLayout(new FlowLayout(FlowLayout.LEFT));
+        poses = new StageViewer(sequence);
+        addComponents();
         addListeners(sequence);
-        StageViewer poses = new StageViewer(sequence);
-        add(toolbar, BorderLayout.NORTH);
-        add(poses);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 1000);
         setVisible(true);
+    }
+
+    /**
+     * Helper to add components to frame
+     */
+
+    public void addComponents() {
+        add(toolBar, BorderLayout.NORTH);
+        toolBar.add(save);
+        toolBar.add(manage);
+        toolBar.add(view);
+        add(poses);
     }
 
     /**

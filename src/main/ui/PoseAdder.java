@@ -7,34 +7,37 @@
 package ui;
 
 import exceptions.DuplicatePoseException;
+import exceptions.OutOfTimeException;
 import model.YogaPose;
 import model.YogaSequence;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 /**
  * Represents the window that displays pose details
  */
 
-public class PoseOptions extends JPanel {
+public class PoseAdder extends JPanel {
     private  JButton setBtn;
     private JFrame poseWindow;
-    private TimeSelectorGUI timeGUI;
+    private TimeSetter timeGUI;
 
 
     /**
      * Initializes the window that displays the details of the pose
-     * @param poses List contains all exercises in the stage the user has chosen
-     * @param selected the index of the pose the user chose from the poseList
-     * @param seq the sequence the user has built so far
      */
 
-    public PoseOptions(List<YogaPose> poses, int selected, YogaSequence seq) {
-
-        YogaPose selectedPose = poses.get(selected);
-        poseWindow = new JFrame(selectedPose.getName());
+    public PoseAdder() {
+        poseWindow = new JFrame();
         poseWindow.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         poseWindow. setLayout(new BorderLayout());
         setBtn = new JButton("Add");
@@ -44,15 +47,18 @@ public class PoseOptions extends JPanel {
         Image bannerResize = bannerImage.getScaledInstance(1000, 200, Image.SCALE_SMOOTH);
         ImageIcon finalBanner = new ImageIcon(bannerResize);
         poseWindow.add(new JLabel(finalBanner), BorderLayout.NORTH);
-        timeGUI = new TimeSelectorGUI();
-        showDetails(selectedPose, seq);
+        timeGUI = new TimeSetter();
     }
+
 
 
     /**
      * Adds JLabel of pose instructions and time slider for user to choose time
      */
-    public void showDetails(YogaPose selectedPose, YogaSequence sequence) {
+    public void showDetails(List<YogaPose> poses, int selected, YogaSequence sequence) {
+        YogaPose selectedPose = poses.get(selected);
+        poseWindow.setTitle(selectedPose.getName());
+
         JLabel poseDescription = new JLabel();
         poseDescription.setText("<html>" + selectedPose.getDescription()
                 .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
@@ -66,8 +72,11 @@ public class PoseOptions extends JPanel {
                 timeGUI.setTime(selectedPose);
                 try {
                     sequence.addPose(selectedPose);
+                    sucessPopup(selectedPose);
                 } catch (DuplicatePoseException ex) {
-                    ex.printStackTrace();
+                    createWarning();
+                } catch (OutOfTimeException ex) {
+                    //
                 }
 
             }
@@ -76,5 +85,48 @@ public class PoseOptions extends JPanel {
         poseWindow.setVisible(true);
     }
 
+    /**
+     * Helper to create popUp that informs user, pose is already in sequence
+     */
+
+    public void createWarning() {
+        JOptionPane.showMessageDialog(null, "This pose is already in your sequence!");
+
+    }
+
+    /**
+     * creates popUp to indicate that add was successful
+     * @param selectedPose pose that was added to sequence
+     */
+
+    public void sucessPopup(YogaPose selectedPose) {
+        JFrame popUp = new JFrame("Success!");
+        popUp.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        popUp.setLayout(new BorderLayout());
+        popUp.add(new JLabel(selectedPose.getName()
+                        + " was added for " + selectedPose.getTime() + " minutes!", SwingConstants.CENTER),
+                BorderLayout.NORTH);
+        ImageIcon success = new ImageIcon("./data/success.png");
+        popUp.add(new JLabel(success), BorderLayout.CENTER);
+        popUp.setSize(600,600);
+        playMusic();
+        popUp.setVisible(true);
+    }
+
+    /**
+     * Plays sound when popup that indicates add is successful is displayed
+     */
+
+    public static void playMusic() {
+        InputStream music;
+        try {
+            music = new FileInputStream(new File("./data/sound.wav"));
+            AudioStream audio = new AudioStream(music);
+            AudioPlayer.player.start(audio);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error");
+
+        }
+    }
 
 }

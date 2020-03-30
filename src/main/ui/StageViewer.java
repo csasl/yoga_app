@@ -17,12 +17,12 @@ import java.util.List;
 import static ui.PresetPoses.*;
 
 /**
- * Represents JButtons for each of the four workout stages
+ * Represents Menu for the 4 stages of the workout
  */
 
 public class StageViewer extends JPanel {
 
-    private PresetPoses presetPoses;
+
     private JButton breatheBtn;
     private JButton warmBtn;
     private JButton mainBtn;
@@ -31,13 +31,17 @@ public class StageViewer extends JPanel {
     private ImageIcon breatheFinal;
     private ImageIcon warmUpFinal;
     private ImageIcon coolFinal;
+    private PoseLists poseList;
+    private PoseLists warmList;
+    private PoseLists mainList;
+    private PoseLists coolList;
 
     /**
      * Constructor builds the list of poses and buttons for each stage of the workout
      * @param sequence the sequence the user has built so far
      */
     public StageViewer(YogaSequence sequence) {
-        presetPoses = new PresetPoses();
+
         setLayout(new GridLayout(2,2));
         this.setBackground(Color.BLACK);
         makeIcons();
@@ -86,8 +90,8 @@ public class StageViewer extends JPanel {
         breatheBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PoseLists poseList = new PoseLists();
-                poseList.createExercisesMenu(presetPoses.buildBreathingOptionsYoga(), myYogaSeq);
+                poseList = new PoseLists();
+                poseList.createExercisesMenu(PresetPoses.buildBreathingOptionsYoga(), myYogaSeq);
             }
         });
     }
@@ -100,8 +104,8 @@ public class StageViewer extends JPanel {
         warmBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PoseLists warmList = new PoseLists();
-                warmList.createExercisesMenu(presetPoses.buildWarmUpOptionsYoga(), myYogaSeq);
+                warmList = new PoseLists();
+                warmList.createExercisesMenu(PresetPoses.buildWarmUpOptionsYoga(), myYogaSeq);
             }
         });
 
@@ -115,8 +119,8 @@ public class StageViewer extends JPanel {
         mainBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PoseLists mainList = new PoseLists();
-                mainList.createExercisesMenu(presetPoses.buildMainOptionsYoga(), myYogaSeq);
+                mainList = new PoseLists();
+                mainList.createExercisesMenu(PresetPoses.buildMainOptionsYoga(), myYogaSeq);
             }
         });
     }
@@ -130,8 +134,8 @@ public class StageViewer extends JPanel {
         coolBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PoseLists coolList = new PoseLists();
-                coolList.createExercisesMenu(presetPoses.buildWarmDownOptionsYoga(), myYogaSeq);
+                coolList = new PoseLists();
+                coolList.createExercisesMenu(PresetPoses.buildWarmDownOptionsYoga(), myYogaSeq);
             }
         });
     }

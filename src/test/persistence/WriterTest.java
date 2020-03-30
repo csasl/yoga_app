@@ -31,7 +31,7 @@ public class WriterTest {
         testPose.setTime(5);
         try {
             testSequence.addPose(testPose);
-        } catch (DuplicatePoseException e) {
+        } catch (Exception e) {
             fail();
         }
 

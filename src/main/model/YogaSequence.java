@@ -3,6 +3,7 @@ package model;
 
 import exceptions.DuplicatePoseException;
 import exceptions.EmptySequenceException;
+import exceptions.OutOfTimeException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +31,16 @@ public  class YogaSequence {
 
     //MODIFIES: this
     //EFFECTS: Given a pose, adds it to the list of poses
-
-    public void addPose(YogaPose pos) throws DuplicatePoseException {
+    public void addPose(YogaPose pos) throws DuplicatePoseException, OutOfTimeException {
         if (sequenceContainsPose(pos.getName())) {
             throw new DuplicatePoseException();
-        }
-        exerciseSequence.add(pos);
-        updateRemainingTime();
+        } else if (updateRemainingTime() - pos.getTime() < 0) {
+            throw new OutOfTimeException();
+        } else {
+            exerciseSequence.add(pos);
+            updateRemainingTime();
 
+        }
     }
 
     //MODIFIES: this
@@ -57,11 +60,15 @@ public  class YogaSequence {
     //MODIFIES: this
     //EFFECTS: Given a pose, removes the pose from the list if it is in the list, otherwise does not modify the list
 
-    public void removePose(String pose) {
-        for (int i = 0; i < exerciseSequence.size(); i++) {
-            if (exerciseSequence.get(i).getName().equals(pose)) {
-                exerciseSequence.remove(i);
-                i--;
+    public void removePose(String pose) throws EmptySequenceException {
+        if (exerciseSequence.size() == 0) {
+            throw new EmptySequenceException();
+        } else {
+            for (int i = 0; i < exerciseSequence.size(); i++) {
+                if (exerciseSequence.get(i).getName().equals(pose)) {
+                    exerciseSequence.remove(i);
+                    i--;
+                }
             }
         }
     }
@@ -84,13 +91,14 @@ public  class YogaSequence {
 
     //EFFECTS: Returns the total number of poses in the sequence
     public int countPoses() {
+
         int numberOfPoses = exerciseSequence.size();
         return numberOfPoses;
     }
 
 
     //EFFECTS: returns true if sequence contains given pose name
-    public Boolean sequenceContainsPose(String pose) {
+    public Boolean sequenceContainsPose(String pose)  {
         boolean contains = false;
 
         for (YogaPose nextPose : exerciseSequence) {
@@ -135,7 +143,6 @@ public  class YogaSequence {
     public Integer getRemainingTime() {
         return  remainingTime;
     }
-
 
 
 }

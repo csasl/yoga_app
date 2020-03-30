@@ -28,6 +28,7 @@ public class App {
     private static final String SEQUENCE_FILE = "./data/sequence.txt";
     private Font appFont;
     private Font segoe;
+    private MainMenu mainMenu;
 
 
     /**
@@ -47,7 +48,9 @@ public class App {
         setListUI();
         setLabelUI();
         setComboBoxUI();
+        mainMenu = new MainMenu();
         loadSequence();
+
     }
 
     /**
@@ -205,7 +208,7 @@ public class App {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainMenu(myYogaSequence);
+                mainMenu.initializeMainMenu(myYogaSequence);
             }
         });
 

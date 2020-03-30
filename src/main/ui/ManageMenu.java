@@ -1,6 +1,7 @@
 package ui;
 //https://www.macs.hw.ac.uk/cs/java-swing-guidebook/?name=JList&page=3
 
+import exceptions.EmptySequenceException;
 import model.YogaPose;
 import model.YogaSequence;
 
@@ -69,7 +70,11 @@ public class ManageMenu  {
                 if (e.getSource() == removeBtn) {
                     Object to = inSeq.getSelectedValue();
                     int toIndex = inSeq.getSelectedIndex();
-                    sequence.removePose(poses.get(toIndex).getName());
+                    try {
+                        sequence.removePose(poses.get(toIndex).getName());
+                    } catch (EmptySequenceException ex) {
+                        ex.printStackTrace();
+                    }
                     removedModel.addElement(to);
                     inSeqModel.remove(toIndex);
                 }
@@ -77,11 +82,6 @@ public class ManageMenu  {
         });
         return removeBtn;
     }
-
-
-
-
-
 
 
     /**

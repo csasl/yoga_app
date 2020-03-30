@@ -33,7 +33,7 @@ public class ReaderTest {
         testSequence.setAllocatedTime(20);
         try {
             testSequence.addPose(test1);
-        } catch (DuplicatePoseException e) {
+        } catch (Exception e) {
             fail();
         }
 

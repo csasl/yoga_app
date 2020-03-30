@@ -9,15 +9,14 @@ import java.io.PrintWriter;
 //Represents writer that writes data to text file
 
 public class Writer {
-    public static final String SEQUENCE_FILE = "./data/sequence.txt";
-    private FileWriter fileWriter;
+    //public static final String SEQUENCE_FILE = "./data/sequence.txt";
     private PrintWriter printWriter;
 
 
 //EFFECTS: Saves sequence to a file
     //Code obtained from: https://www.baeldung.com/java-write-to-file
     public void write(String jsonString, String path) throws IOException {
-        fileWriter = new FileWriter(path);
+        FileWriter fileWriter = new FileWriter(path);
         printWriter = new PrintWriter(fileWriter);
         printWriter.print(jsonString);
 

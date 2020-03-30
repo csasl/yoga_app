@@ -24,6 +24,7 @@ public class PoseLists extends JPanel {
     private DefaultListModel poseListModel;
     private int selected;
     private JFrame poseFrame;
+    private PoseAdder options;
 
     /**
      * Constructs JList and DefaultListModel to contain poses in the stage of workout chosen
@@ -62,19 +63,21 @@ public class PoseLists extends JPanel {
         poseFrame.setVisible(true);
     }
 
+    /**
+     *  creates listener for selected pose on JList
+     * @param selectedSeq the stage of workout the user selected
+     * @param sequence the user's sequence so far
+     */
+
     public void createListener(List<YogaPose> selectedSeq, YogaSequence sequence) {
         poseList.addListSelectionListener(new ListSelectionListener() {
             @Override
-            /**
-             * Detects which pose in the list the user has selected to view, deploys description window
-             *
-             * @param e the selection the user has made on the pose list
-             */
             public void valueChanged(ListSelectionEvent e) {
 
                 if (!e.getValueIsAdjusting()) {
                     selected = poseList.getSelectedIndex();
-                    new PoseOptions(selectedSeq, selected, sequence);
+                    options = new PoseAdder();
+                    options.showDetails(selectedSeq, selected, sequence);
                     poseFrame.dispose();
 
                 }
