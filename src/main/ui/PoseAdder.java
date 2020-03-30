@@ -42,11 +42,8 @@ public class PoseAdder extends JPanel {
         poseWindow. setLayout(new BorderLayout());
         setBtn = new JButton("Add");
         poseWindow.getRootPane().setDefaultButton(setBtn);
-        ImageIcon banner = new ImageIcon("./data/banner.jpg");
-        Image bannerImage = banner.getImage();
-        Image bannerResize = bannerImage.getScaledInstance(1000, 200, Image.SCALE_SMOOTH);
-        ImageIcon finalBanner = new ImageIcon(bannerResize);
-        poseWindow.add(new JLabel(finalBanner), BorderLayout.NORTH);
+        poseWindow.add(new JLabel(IconCreator.makeIcon("./data/banner.jpg", 1000, 200)),
+                BorderLayout.NORTH);
         timeGUI = new TimeSetter();
     }
 
@@ -55,7 +52,7 @@ public class PoseAdder extends JPanel {
     /**
      * Adds JLabel of pose instructions and time slider for user to choose time
      */
-    public void showDetails(List<YogaPose> poses, int selected, YogaSequence sequence) {
+    public void displayComponents(List<YogaPose> poses, int selected, YogaSequence sequence) {
         YogaPose selectedPose = poses.get(selected);
         poseWindow.setTitle(selectedPose.getName());
 

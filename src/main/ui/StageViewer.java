@@ -5,16 +5,14 @@
 package ui;
 
 
-import model.YogaPose;
+
 import model.YogaSequence;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import static ui.PresetPoses.*;
+
 
 /**
  * Represents Menu for the 4 stages of the workout
@@ -27,10 +25,6 @@ public class StageViewer extends JPanel {
     private JButton warmBtn;
     private JButton mainBtn;
     private JButton coolBtn;
-    private ImageIcon flowFinal;
-    private ImageIcon breatheFinal;
-    private ImageIcon warmUpFinal;
-    private ImageIcon coolFinal;
     private PoseLists poseList;
     private PoseLists warmList;
     private PoseLists mainList;
@@ -44,11 +38,11 @@ public class StageViewer extends JPanel {
 
         setLayout(new GridLayout(2,2));
         this.setBackground(Color.BLACK);
-        makeIcons();
-        breatheBtn = new JButton(breatheFinal);
-        warmBtn = new JButton(warmUpFinal);
-        mainBtn = new JButton(flowFinal);
-        coolBtn = new JButton(coolFinal);
+
+        breatheBtn = new JButton(IconCreator.makeIcon("./data/breathe.jpg", 470, 470));
+        warmBtn = new JButton(IconCreator.makeIcon("./data/warmup.jpg", 470, 470));
+        mainBtn = new JButton(IconCreator.makeIcon("./data/flow.jpg", 470, 470));
+        coolBtn = new JButton(IconCreator.makeIcon("./data/cool.jpg", 470, 470));
         add(breatheBtn);
         add(warmBtn);
         add(mainBtn);
@@ -59,28 +53,6 @@ public class StageViewer extends JPanel {
         addCoolButtonListeners(sequence);
     }
 
-    /**
-     * Helper method to make the icons for the JButtons
-     */
-
-    public void makeIcons() {
-        ImageIcon flow = new ImageIcon("./data/flow.jpg");
-        Image flowImage = flow.getImage();
-        Image flowResize = flowImage.getScaledInstance(470, 470, Image.SCALE_SMOOTH);
-        flowFinal = new ImageIcon(flowResize);
-        ImageIcon breathe = new ImageIcon("./data/breathe.jpg");
-        Image breatheImage = breathe.getImage();
-        Image breatheResize = breatheImage.getScaledInstance(470,470,Image.SCALE_SMOOTH);
-        breatheFinal = new ImageIcon(breatheResize);
-        ImageIcon warmup = new ImageIcon("./data/warmup.jpg");
-        Image warmImage = warmup.getImage();
-        Image warmResize = warmImage.getScaledInstance(470, 470, Image.SCALE_SMOOTH);
-        warmUpFinal = new ImageIcon(warmResize);
-        ImageIcon cool = new ImageIcon("./data/cool.jpg");
-        Image coolImage = cool.getImage();
-        Image coolResize = coolImage.getScaledInstance(465, 465, Image.SCALE_SMOOTH);
-        coolFinal = new ImageIcon(coolResize);
-    }
 
     /**
      * Helper to detect when the breathe JButton is selected, deploys exercise menu with breathing exercises

@@ -77,7 +77,7 @@ public class PoseLists extends JPanel {
                 if (!e.getValueIsAdjusting()) {
                     selected = poseList.getSelectedIndex();
                     options = new PoseAdder();
-                    options.showDetails(selectedSeq, selected, sequence);
+                    options.displayComponents(selectedSeq, selected, sequence);
                     poseFrame.dispose();
 
                 }

@@ -38,8 +38,6 @@ public class YogaSequenceTest {
 
     }
 
-
-
     @Test
     public void testSetAllocatedTime() {
         assertEquals(25, testSequence.getAllocatedTime());

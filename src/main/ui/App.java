@@ -26,6 +26,7 @@ import java.io.IOException;
 public class App {
     private YogaSequence myYogaSequence;
     private static final String SEQUENCE_FILE = "./data/sequence.txt";
+    private static final String HOME_ICON = "./data/lotus.png";
     private Font appFont;
     private Font segoe;
     private MainMenu mainMenu;
@@ -140,7 +141,7 @@ public class App {
     public void welcomeBackScreen() {
         JLabel welcomeMsg = new JLabel("Welcome back! Let's keep building");
         JOptionPane.showMessageDialog(null, welcomeMsg, "Home Yoga", JOptionPane.PLAIN_MESSAGE,
-                makeIcon());
+                IconCreator.makeIcon(HOME_ICON, 150, 150));
         runMain();
     }
 
@@ -167,18 +168,6 @@ public class App {
 
 
     /**
-     * Helper to make icon for welcome screen
-     * Code from: http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
-     */
-    public ImageIcon makeIcon() {
-        ImageIcon lotus = new ImageIcon("./data/lotus.png");
-        Image lotusImage = lotus.getImage();
-        Image lotusResize = lotusImage.getScaledInstance(150,150, Image.SCALE_SMOOTH);
-        ImageIcon finalLotus = new ImageIcon(lotusResize);
-        return finalLotus;
-    }
-
-    /**
      * Initializes new sequence and welcome screen when no data was saved
      */
     public void initializeNewSequence() {
@@ -187,7 +176,9 @@ public class App {
         JOptionPane timePane = new JOptionPane();
         Integer i = (Integer) timePane.showInputDialog(null,
                 "Please select the number of minutes you want to work out for:", "Welcome"
-                        + " to HomeYoga!", JOptionPane.PLAIN_MESSAGE, makeIcon(), times, 20);
+                        + " to HomeYoga!", JOptionPane.PLAIN_MESSAGE,
+                IconCreator.makeIcon(HOME_ICON, 150, 150),
+                times, 20);
         switch (i) {
             case 20:
                 myYogaSequence.setAllocatedTime(20);

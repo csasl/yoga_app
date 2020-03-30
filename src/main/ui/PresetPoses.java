@@ -230,12 +230,7 @@ public class PresetPoses {
             + "\n 7. Repeat on other side", "All", Stage.MAIN);
 
 
-    public PresetPoses() {
-
-
-
-
-    }
+    public PresetPoses() { }
 
     /**
      * Helper that populates the breathing exercises list with pre-defined exercises

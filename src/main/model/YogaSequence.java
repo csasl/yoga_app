@@ -123,7 +123,6 @@ public  class YogaSequence {
     //EFFECTS: Returns allocated time
     public Integer getAllocatedTime() {
         return allocatedTime;
-
     }
 
     //EFFECTS: returns sequence
