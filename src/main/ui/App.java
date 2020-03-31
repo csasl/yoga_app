@@ -43,53 +43,32 @@ public class App {
 
     public void runApp() {
         setFont();
-        setButtonUI();
-        setPanelUI();
+        UIManager.put("Button.font", appFont);
+        UIManager.put("ComboBox.font", appFont);
+        setUI("Panel");
         setPaneUI();
-        setListUI();
-        setLabelUI();
-        setComboBoxUI();
+        setUI("List");
+        UIManager.put("List.cellHeight", 100);
+        setUI("Label");
         mainMenu = new MainMenu();
         loadSequence();
-
     }
 
     /**
      * Helper to set up font used in app
      */
-
     public void setFont() {
-
         try {
             segoe = Font.createFont(Font.TRUETYPE_FONT, new File("./data/segoe.ttf")).deriveFont(20f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("./data/segoe.ttf")));
-        } catch (FontFormatException e) {
-            appFont = new Font("Arial", Font.PLAIN, 20);
-        } catch (IOException e) {
+        } catch (FontFormatException | IOException e) {
             appFont = new Font("Arial", Font.PLAIN, 20);
         }
         appFont = segoe;
 
     }
 
-    /**
-     * Helper to set up UI for app's JButtons
-     */
-    public void setButtonUI() {
-        UIManager.put("Button.font", appFont);
-
-    }
-
-
-    /**
-     * Helper to set up UI for app's JPanels
-     */
-    public void setPanelUI() {
-        UIManager.put("Panel.background", Color.darkGray);
-        UIManager.put("Panel.foreground", Color.white);
-        UIManager.put("Panel.font", appFont);
-    }
 
     /**
      * Helper to set up UI for app's JPanes
@@ -103,37 +82,11 @@ public class App {
 
     }
 
-
-    /**
-     * Helper to set up UI for app's JLabels
-     */
-    public void setLabelUI() {
-        UIManager.put("Label.background", Color.darkGray);
-        UIManager.put("Label.foreground", Color.white);
-        UIManager.put("Label.font", appFont);
-
-
+    public void setUI(String component) {
+        UIManager.put(component + ".background", Color.darkGray);
+        UIManager.put(component + ".foreground", Color.white);
+        UIManager.put(component + ".font", appFont);
     }
-
-    /**
-     * Helper to set up UI for app's JLists
-     */
-    public void setListUI() {
-        UIManager.put("List.background", Color.darkGray);
-        UIManager.put("List.foreground", Color.white);
-        UIManager.put("List.font", appFont);
-        UIManager.put("List.cellHeight", 100);
-    }
-
-    /**
-     * Helper to set up UI for app's JComboBox
-     */
-
-    public void setComboBoxUI() {
-        UIManager.put("ComboBox.font", appFont);
-    }
-
-
 
     /**
      * Displays welcome screen when sequence already saved to file
@@ -144,8 +97,6 @@ public class App {
                 IconCreator.makeIcon(HOME_ICON, 150, 150));
         runMain();
     }
-
-
 
     /**
      * Loads data saved from sequence file if it exists
@@ -164,8 +115,6 @@ public class App {
             initializeNewSequence();
         }
     }
-
-
 
     /**
      * Initializes new sequence and welcome screen when no data was saved

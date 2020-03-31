@@ -31,7 +31,7 @@ public class MainMenu extends JFrame {
 
 
     /**
-     * Constructor initializes sequence and components on main menu
+     * Constructs main menu
      */
     public MainMenu() {
         super("Home Yoga");
@@ -39,6 +39,11 @@ public class MainMenu extends JFrame {
         manageMenu = new ManageMenu();
         viewSeq = new SequenceViewer();
     }
+
+    /**
+     * Initializes components of main menu
+     * @param sequence Sequence user has created so far
+     */
 
     public void initializeMainMenu(YogaSequence sequence) {
         setLayout(new BorderLayout());

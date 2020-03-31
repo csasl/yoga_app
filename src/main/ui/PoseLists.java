@@ -11,7 +11,6 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,11 +30,10 @@ public class PoseLists extends JPanel {
      */
     public PoseLists() {
         super(new BorderLayout());
+        poseFrame = new JFrame();
         poseListModel = new DefaultListModel();
         selected = 0;
-
     }
-
 
     /**
      * Displays all poses in selected stage of workout on a window
@@ -44,10 +42,8 @@ public class PoseLists extends JPanel {
      * @param sequence the yoga sequence built by the user so far
      */
     public void createExercisesMenu(List<YogaPose> poses, YogaSequence sequence) {
-        poseFrame = new JFrame();
         poseFrame.setLayout(new BorderLayout());
         poseFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        List<String> names = new ArrayList<>();
         for (YogaPose p : poses) {
             poseListModel.addElement(p.getName());
         }
@@ -79,13 +75,8 @@ public class PoseLists extends JPanel {
                     options = new PoseAdder();
                     options.displayComponents(selectedSeq, selected, sequence);
                     poseFrame.dispose();
-
                 }
-
             }
         });
-
     }
-
-
 }

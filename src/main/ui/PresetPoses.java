@@ -303,7 +303,6 @@ public class PresetPoses {
         warmDownPoses.add(STAFF);
         warmDownPoses.add(BABY);
         warmDownPoses.add(ANGLE);
-
         return warmDownPoses;
 
     }

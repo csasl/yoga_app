@@ -30,6 +30,7 @@ public class PoseAdder extends JPanel {
     private  JButton setBtn;
     private JFrame poseWindow;
     private TimeSetter timeGUI;
+    private JLabel poseDescription;
 
 
     /**
@@ -38,6 +39,7 @@ public class PoseAdder extends JPanel {
 
     public PoseAdder() {
         poseWindow = new JFrame();
+        poseDescription = new JLabel();
         poseWindow.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         poseWindow. setLayout(new BorderLayout());
         setBtn = new JButton("Add");
@@ -55,8 +57,6 @@ public class PoseAdder extends JPanel {
     public void displayComponents(List<YogaPose> poses, int selected, YogaSequence sequence) {
         YogaPose selectedPose = poses.get(selected);
         poseWindow.setTitle(selectedPose.getName());
-
-        JLabel poseDescription = new JLabel();
         poseDescription.setText("<html>" + selectedPose.getDescription()
                 .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
 
@@ -71,11 +71,10 @@ public class PoseAdder extends JPanel {
                     sequence.addPose(selectedPose);
                     sucessPopup(selectedPose);
                 } catch (DuplicatePoseException ex) {
-                    createWarning();
+                    createWarning("This pose is already in your sequence!");
                 } catch (OutOfTimeException ex) {
-                    //
+                    createWarning("You have already allocated all your time in this sequence!");
                 }
-
             }
         });
         poseWindow.setSize(1000,600);
@@ -86,8 +85,8 @@ public class PoseAdder extends JPanel {
      * Helper to create popUp that informs user, pose is already in sequence
      */
 
-    public void createWarning() {
-        JOptionPane.showMessageDialog(null, "This pose is already in your sequence!");
+    public void createWarning(String message) {
+        JOptionPane.showMessageDialog(null, message);
 
     }
 

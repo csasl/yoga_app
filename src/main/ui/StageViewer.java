@@ -20,7 +20,6 @@ import java.awt.event.ActionListener;
 
 public class StageViewer extends JPanel {
 
-
     private JButton breatheBtn;
     private JButton warmBtn;
     private JButton mainBtn;
@@ -35,10 +34,8 @@ public class StageViewer extends JPanel {
      * @param sequence the sequence the user has built so far
      */
     public StageViewer(YogaSequence sequence) {
-
         setLayout(new GridLayout(2,2));
         this.setBackground(Color.BLACK);
-
         breatheBtn = new JButton(IconCreator.makeIcon("./data/breathe.jpg", 470, 470));
         warmBtn = new JButton(IconCreator.makeIcon("./data/warmup.jpg", 470, 470));
         mainBtn = new JButton(IconCreator.makeIcon("./data/flow.jpg", 470, 470));

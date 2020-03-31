@@ -12,14 +12,21 @@ public class TimeSetter {
     private JSlider timeSlider;
     private int selectedTime;
 
+    /**
+     * Constructs time setter
+     */
     public TimeSetter() {
         timeSlider = new JSlider(0,30);
         selectedTime = 0;
     }
 
+    /**
+     *  Sets up time slider component
+     * @return Slider to set time of pose
+     */
+
 
     public JSlider createTimeSlider() {
-
         timeSlider.setMajorTickSpacing(10);
         timeSlider.setMinorTickSpacing(1);
         timeSlider.setPaintTicks(true);
@@ -46,11 +53,7 @@ public class TimeSetter {
      */
     public void setTime(YogaPose selectedPose) {
         selectedPose.setTime(selectedTime);
-
     }
-
-
-
 
 
 }

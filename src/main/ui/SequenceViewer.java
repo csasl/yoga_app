@@ -31,7 +31,6 @@ public class SequenceViewer {
         view.add(new JLabel(makeTimeText(sequence)), BorderLayout.SOUTH);
         view.pack();
         view.setVisible(true);
-
     }
 
     /**
@@ -55,7 +54,6 @@ public class SequenceViewer {
 
     public String makeTimeText(YogaSequence sequence) {
         String timeLeft = "";
-
         if (sequence.updateRemainingTime() > 0) {
             timeLeft = "You have " + sequence.getRemainingTime() + " minutes remaining to allocate";
         } else {
