@@ -152,23 +152,10 @@ public class YogaSequenceTest {
         POSE_2.setTime(5);
         POSE_3.setTime(5);
         POSE_4.setTime(3);
-        try {
+
             assertEquals(15, testSequence.totalTimeInSeq());
-        } catch (EmptySequenceException e) {
-            fail("Sequence not empty");
-        }
     }
 
-    @Test
-    public void testTotalTimeInSeqSequenceEmptyException() {
-        assertEquals(testSequence.countPoses(), 0);
-        try {
-            assertEquals(0, testSequence.totalTimeInSeq());
-        } catch (EmptySequenceException e) {
-            //expected
-        }
-
-    }
 
     @Test
     public void testSequenceContainsPose() {
@@ -203,7 +190,7 @@ public class YogaSequenceTest {
         } catch (Exception e) {
             fail();
         }
-        assertEquals(20, testSequence.getRemainingTime());
+        assertEquals(20, testSequence.updateRemainingTime());
         POSE_2.setTime(3);
         try {
             testSequence.addPose(POSE_2);

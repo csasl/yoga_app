@@ -87,7 +87,6 @@ public class PoseAdder extends JPanel {
 
     public void createWarning(String message) {
         JOptionPane.showMessageDialog(null, message);
-
     }
 
     /**

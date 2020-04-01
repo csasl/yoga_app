@@ -15,7 +15,7 @@ import java.util.List;
  * Represents menu to manage sequence, allows user to remove any unwanted poses
  */
 
-public class ManageMenu  {
+public class SequenceManager {
     private JList inSeq;
     private JList removed;
     private DefaultListModel inSeqModel;
@@ -28,7 +28,7 @@ public class ManageMenu  {
 
      */
 
-    public ManageMenu() { }
+    public SequenceManager() { }
 
     /**
      * Creates all components for the scroll pane of names of poses in sequence
@@ -126,8 +126,6 @@ public class ManageMenu  {
     }
 
 
-
-
     /**
      * Displays the scroll panes with the JLists
      */
@@ -135,7 +133,7 @@ public class ManageMenu  {
     public void showGUI(YogaSequence sequence) {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("Manage Sequence");
-        ManageMenu menu = new ManageMenu();
+        SequenceManager menu = new SequenceManager();
         frame.setLayout(new BorderLayout());
         frame.setContentPane(menu.createPane(sequence));
         frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);

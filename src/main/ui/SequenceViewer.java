@@ -25,7 +25,7 @@ public class SequenceViewer {
         view.add(new JLabel("Your sequence has "
                 + sequence.countPoses() +  " poses"), BorderLayout.NORTH);
         JLabel poseListLabel = new JLabel();
-        poseListLabel.setText("<html>" + getListPoses(sequence)
+        poseListLabel.setText("<html>" + getNamesOfPoses(sequence)
                 .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
         view.add(poseListLabel, BorderLayout.CENTER);
         view.add(new JLabel(makeTimeText(sequence)), BorderLayout.SOUTH);
@@ -38,7 +38,7 @@ public class SequenceViewer {
      * @return String of all pose names and set times
      */
 
-    public String getListPoses(YogaSequence sequence) {
+    public String getNamesOfPoses(YogaSequence sequence) {
         String allPoses = "";
         List<YogaPose> poses = sequence.getExerciseSequence();
         for (YogaPose p : poses) {

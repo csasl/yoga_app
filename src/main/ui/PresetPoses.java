@@ -231,10 +231,10 @@ public class PresetPoses {
 
 
     public PresetPoses() { }
-
     /**
      * Helper that populates the breathing exercises list with pre-defined exercises
      */
+
     public static List<YogaPose> buildBreathingOptionsYoga() {
         List<YogaPose> breathingPoses = new ArrayList<>();
 
@@ -245,7 +245,6 @@ public class PresetPoses {
         breathingPoses.add(CONQUEROR);
         breathingPoses.add(SOUND);
         return breathingPoses;
-
     }
 
     /**

@@ -24,7 +24,7 @@ public class MainMenu extends JFrame {
     private JButton manage = new JButton("Manage sequence");
     private JButton view = new JButton("View sequence");
     private JToolBar toolBar;
-    private ManageMenu manageMenu;
+    private SequenceManager manageMenu;
     private SequenceViewer viewSeq;
     private SequenceSaver saver;
     private StageViewer poses;
@@ -36,7 +36,7 @@ public class MainMenu extends JFrame {
     public MainMenu() {
         super("Home Yoga");
         saver = new SequenceSaver();
-        manageMenu = new ManageMenu();
+        manageMenu = new SequenceManager();
         viewSeq = new SequenceViewer();
     }
 

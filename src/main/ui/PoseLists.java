@@ -41,7 +41,7 @@ public class PoseLists extends JPanel {
      * @param poses    the list of poses in the selected stage of workout
      * @param sequence the yoga sequence built by the user so far
      */
-    public void createExercisesMenu(List<YogaPose> poses, YogaSequence sequence) {
+    public void createPoseMenu(List<YogaPose> poses, YogaSequence sequence) {
         poseFrame.setLayout(new BorderLayout());
         poseFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         for (YogaPose p : poses) {

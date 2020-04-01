@@ -1,5 +1,8 @@
 package model;
-//ExerciseSequence class contains information about exercise sequences that the user can create
+
+/**
+ * Represents a yoga sequence that user can set an allocated time for and add yoga poses to
+ */
 
 import exceptions.DuplicatePoseException;
 import exceptions.EmptySequenceException;
@@ -24,9 +27,7 @@ public  class YogaSequence {
     //MODIFIES: this
     //EFFECTS: Sets allocated time to given time in mins
     public void setAllocatedTime(Integer time) {
-
         this.allocatedTime = time;
-
     }
 
     //MODIFIES: this
@@ -47,12 +48,7 @@ public  class YogaSequence {
     //EFFECTS: if sequence is not empty, remaining time is allocated time, else subtracts allocated time from total time
 
     public int updateRemainingTime()  {
-        remainingTime = 0;
-        try {
-            remainingTime = allocatedTime - totalTimeInSeq();
-        } catch (EmptySequenceException e) {
-            remainingTime = allocatedTime;
-        }
+        remainingTime = allocatedTime - totalTimeInSeq();
         return remainingTime;
     }
 
@@ -75,23 +71,19 @@ public  class YogaSequence {
 
 
     //EFFECTS: returns the total time the sequence will take
-    public Integer totalTimeInSeq() throws EmptySequenceException {
-        if (exerciseSequence.size() == 0) {
-            throw new EmptySequenceException();
-        } else {
-            int totalTime = 0;
-            for (YogaPose nextPos : exerciseSequence) {
-                totalTime = totalTime + nextPos.getTime();
-            }
-            return totalTime;
+    public Integer totalTimeInSeq()  {
+        int totalTime = 0;
+        for (YogaPose nextPos : exerciseSequence) {
+            totalTime = totalTime + nextPos.getTime();
         }
+        return totalTime;
     }
+
 
 
 
     //EFFECTS: Returns the total number of poses in the sequence
     public int countPoses() {
-
         int numberOfPoses = exerciseSequence.size();
         return numberOfPoses;
     }

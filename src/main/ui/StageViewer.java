@@ -60,7 +60,7 @@ public class StageViewer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 poseList = new PoseLists();
-                poseList.createExercisesMenu(PresetPoses.buildBreathingOptionsYoga(), myYogaSeq);
+                poseList.createPoseMenu(PresetPoses.buildBreathingOptionsYoga(), myYogaSeq);
             }
         });
     }
@@ -74,7 +74,7 @@ public class StageViewer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 warmList = new PoseLists();
-                warmList.createExercisesMenu(PresetPoses.buildWarmUpOptionsYoga(), myYogaSeq);
+                warmList.createPoseMenu(PresetPoses.buildWarmUpOptionsYoga(), myYogaSeq);
             }
         });
 
@@ -89,7 +89,7 @@ public class StageViewer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainList = new PoseLists();
-                mainList.createExercisesMenu(PresetPoses.buildMainOptionsYoga(), myYogaSeq);
+                mainList.createPoseMenu(PresetPoses.buildMainOptionsYoga(), myYogaSeq);
             }
         });
     }
@@ -104,7 +104,7 @@ public class StageViewer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 coolList = new PoseLists();
-                coolList.createExercisesMenu(PresetPoses.buildWarmDownOptionsYoga(), myYogaSeq);
+                coolList.createPoseMenu(PresetPoses.buildWarmDownOptionsYoga(), myYogaSeq);
             }
         });
     }

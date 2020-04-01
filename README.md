@@ -1,7 +1,8 @@
-#Home Yoga#
-A sequence builder and tracker for yoga and poses
+**Home Yoga**
 
-Description of Project**
+*A sequence builder and tracker for yoga and poses*
+
+**Description of Project**
 
 The primary purpose of the app will be to enable users to browse yoga poses, view the pose description and add it to a list of poses to create a personalized yoga sequence. 
 The poses will be categorized by stage of workout: breathing, warm-up, main and warm-down.
@@ -24,7 +25,54 @@ The target audience for the application is people who currently practice or are 
 -As a user, I want my saved sequence to reload once I re-open the app
 
 
-**Instructions for Grader**
+
+
+**Phase 4 Task 2**
+
+I chose to design a robust class
+
+The YogaSequence class in the model package is robust, the tests are in the YogaSequenceTest class in test package. 
+
+The addPose methods throws the following exceptions:
+
+1. Duplicate pose exception - we want to maintain the order of the sequence but don't want duplicates so created 
+a duplicate pose exception to alert the user of the duplicate. It is caught in the PoseAdder class of the GUI. 
+
+2. Out of time exception - we don't want to add more poses to the sequence once all the allocated time has been assigned 
+so created an out of time exception to alert the user that all the time has been assigned. It is caught in the PoseAdder
+class of the GUI.
+
+The removePose method throws an empty sequence exception if there are no poses in the sequence, this is handled in the
+PoseManager class in the GUI.
+
+
+**Phase 4 Task 3**
+
+
+*Increasing cohesion*
+
+1. Previously, my MainMenu class was displaying all the components of the menu, had methods to manage
+the sequence, view the sequence and save the sequence. I created the following new classes to divide the responsibilities:
+SequenceSaver, SequenceViewer and SequenceManager.
+
+2. My PoseAdder class was previously adding poses to the sequence and setting the time for each pose, I created the TimeSetter
+class to handle setting the time for each individual pose and kept the adding functionality in the PoseAdder.
+
+3. Created the IconCreator class as multiple other classes in the GUI were individually handling this responsibility
+so factored it into one class instead. 
+
+
+*Reducing coupling*
+
+ Previously, most classes in my GUI were associated with both the YogaPose and YogaSequence classes.
+I removed the redundant associations to YogaPose from these classes since YogaSequence is already associated with YogaPose.
+As well, now only the App class is associated with the YogaSequence class and provides sequence functionality to the 
+'downstream' classes of the GUI as shown in the UML.
+
+
+
+
+**Phase 3: Instructions for Grader**
 
 **General navigation:**
 - The welcome screen has a drop down menu to select the total amount of time you want to work out for

@@ -30,15 +30,16 @@ public class App {
     private Font appFont;
     private Font segoe;
     private MainMenu mainMenu;
+    private Reader reader;
 
 
     /**
-     * Constructor creates a new app
+     * Constructs and app
      */
     public App() { }
 
     /**
-     *Initializes UI formats and sequence
+     *Initializes UI formats and loads sequence
      */
 
     public void runApp() {
@@ -51,6 +52,7 @@ public class App {
         UIManager.put("List.cellHeight", 100);
         setUI("Label");
         mainMenu = new MainMenu();
+        reader = new Reader();
         loadSequence();
     }
 
@@ -103,7 +105,7 @@ public class App {
      * Code from: https://mkyong.com/java/how-to-convert-java-object-to-from-json-jackson/
      */
     public void loadSequence() {
-        Reader reader = new Reader();
+
         try {
             String jsonString = reader.readLines(SEQUENCE_FILE);
             ObjectMapper mapper = new ObjectMapper();
