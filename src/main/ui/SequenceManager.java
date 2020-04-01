@@ -70,7 +70,7 @@ public class SequenceManager {
                     Object to = inSeq.getSelectedValue();
                     int toIndex = inSeq.getSelectedIndex();
                     try {
-                        App.getInstance().getSequence().removePose(poses.get(toIndex).getName());
+                        App.getInstance().removePoseFromAppSeq(poses.get(toIndex));
                     } catch (Exception ex) {
                         DialogCreator.createWarning("You do not have any poses in your sequence");
                     }

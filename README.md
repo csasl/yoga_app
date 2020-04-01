@@ -36,7 +36,8 @@ The YogaSequence class in the model package is robust, the tests are in the Yoga
 The addPose methods throws the following exceptions:
 
 1. Duplicate pose exception - we want to maintain the order of the sequence but don't want duplicates so created 
-a duplicate pose exception to alert the user of the duplicate. It is caught in the PoseAdder class of the GUI. 
+a duplicate pose exception to alert the user that the sequence already contains the pose. 
+It is caught in the PoseAdder class of the GUI. 
 
 2. Out of time exception - we don't want to add more poses to the sequence once all the allocated time has been assigned 
 so created an out of time exception to alert the user that all the time has been assigned. It is caught in the PoseAdder
@@ -62,13 +63,15 @@ GUI were individually handling these responsibilities so factored it into one cl
 
 *Reducing coupling*
 
- Previously, most classes in my GUI were associated with both the YogaPose and YogaSequence classes.
-I removed the redundant associations to YogaPose from these classes since YogaSequence is already associated with YogaPose.
-As well, now only the App class is associated with the YogaSequence class and provides sequence functionality to other 
-classes.
+ -Previously, most classes in the GUI were associated with both YogaPose and YogaSequence. Most methods in the GUI classes
+ also had parameters of type YogaPose and YogaSequence even though they were not used in the method, but instead passed
+ on as parameters to other methods. To reduce these associations and dependencies, all redundant associations to YogaPose
+ were removed since YogaSequence is already associated to YogaPose. As well, only the App class in the GUI is now associated
+ to YogaSequence and has functionality to modify this field which it provides to other GUI classes. 
+ There is still coupling but there are no unneeded parameters or fields so has reduced.
 
-Note: could not apply singleton pattern to YogaSequence directly, as private constructor prevented deserialization by
-Jackson.
+Note: could not apply singleton pattern to YogaSequence directly, as private constructor prevented Jackson deserialization 
+for persistence. 
 
 
 

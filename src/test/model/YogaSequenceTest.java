@@ -53,6 +53,10 @@ public class YogaSequenceTest {
         assertEquals(1, testSequence.countPoses());
     }
 
+    /**
+     * Test add pose where it is not expected to throw any exceptions
+     */
+
     @Test
     public void testAddMultiplePosesNoExceptionExpected() {
         assertEquals(0, testSequence.countPoses());
@@ -68,6 +72,10 @@ public class YogaSequenceTest {
         }
         assertEquals(4, testSequence.countPoses());
     }
+
+    /**
+     * Test add pose when a duplicate exception is expected
+     */
 
     @Test
     public void testAddMultiplePosesDuplicateExceptionExpected() {
@@ -85,6 +93,10 @@ public class YogaSequenceTest {
         assertEquals(2, testSequence.countPoses());
     }
 
+    /**
+     * Test add pose where out of time exception is expected
+     */
+
     @Test
     public void testAddPoseOutOfTimeExceptionExpected() {
         POSE_4.setTime(20);
@@ -99,6 +111,10 @@ public class YogaSequenceTest {
             fail();
         }
     }
+
+    /**
+     * Test add pose when both exceptions are expected
+     */
 
     @Test
     public void testAddPoseDuplicateAndOutOfTime() {

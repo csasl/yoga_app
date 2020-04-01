@@ -11,6 +11,9 @@
 
 package ui;
 
+import exceptions.DuplicatePoseException;
+import exceptions.OutOfTimeException;
+import model.YogaPose;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import persistence.Reader;
@@ -24,7 +27,7 @@ import java.io.IOException;
 
 
 public class App {
-    private YogaSequence myYogaSequence;
+    private YogaSequence sequence;
     private static final String SEQUENCE_FILE = "./data/sequence.txt";
     private static final String HOME_ICON = "./data/lotus.png";
     private Font appFont;
@@ -122,7 +125,7 @@ public class App {
             String jsonString = reader.readLines(SEQUENCE_FILE);
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            myYogaSequence =  mapper.readValue(jsonString,YogaSequence.class);
+            sequence =  mapper.readValue(jsonString,YogaSequence.class);
             welcomeBackScreen();
 
         } catch (IOException e) {
@@ -136,7 +139,7 @@ public class App {
      * Initializes new sequence and welcome screen when no data was saved
      */
     public void initializeNewSequence() {
-        myYogaSequence = new YogaSequence();
+        sequence = new YogaSequence();
         Object[] times = {20, 45, 60};
         JOptionPane timePane = new JOptionPane();
         Integer i = (Integer) timePane.showInputDialog(null,
@@ -146,13 +149,13 @@ public class App {
                 times, 20);
         switch (i) {
             case 20:
-                myYogaSequence.setAllocatedTime(20);
+                sequence.setAllocatedTime(20);
                 break;
             case 45:
-                myYogaSequence.setAllocatedTime(45);
+                sequence.setAllocatedTime(45);
                 break;
             case 60:
-                myYogaSequence.setAllocatedTime(60);
+                sequence.setAllocatedTime(60);
         }
         runMain();
     }
@@ -176,7 +179,27 @@ public class App {
      */
 
     public YogaSequence getSequence() {
-        return myYogaSequence;
+        return sequence;
+    }
+
+
+    /**
+     *
+     * @param pose to add to sequence
+     * @throws OutOfTimeException if allotted time is exceeded
+     * @throws DuplicatePoseException if pose already in sequence
+     */
+    public void addPoseToAppSeq(YogaPose pose) throws OutOfTimeException, DuplicatePoseException {
+        sequence.addPose(pose);
+    }
+
+    /**
+     * Removed pose from sequence
+     * @param pose to remove from sequence
+     */
+
+    public void removePoseFromAppSeq(YogaPose pose) {
+        sequence.removePose(pose.getName());
     }
 
 }

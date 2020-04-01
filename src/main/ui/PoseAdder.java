@@ -77,7 +77,7 @@ public class PoseAdder extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 timeGUI.setTime(selectedPose);
                 try {
-                    App.getInstance().getSequence().addPose(selectedPose);
+                    App.getInstance().addPoseToAppSeq(selectedPose);
                     sucessPopup(selectedPose);
                 } catch (DuplicatePoseException ex) {
                     DialogCreator.createWarning("This pose is already in your sequence!");
