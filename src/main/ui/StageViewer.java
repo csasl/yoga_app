@@ -24,9 +24,7 @@ public class StageViewer extends JPanel {
     private JButton mainBtn;
     private JButton coolBtn;
     private PoseLists poseList;
-    private PoseLists warmList;
-    private PoseLists mainList;
-    private PoseLists coolList;
+
 
     /**
      * Constructor builds the list of poses and buttons for each stage of the workout
@@ -72,8 +70,8 @@ public class StageViewer extends JPanel {
         warmBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                warmList = new PoseLists();
-                warmList.createPoseMenu(PresetPoses.buildWarmUpOptionsYoga());
+                poseList = new PoseLists();
+                poseList.createPoseMenu(PresetPoses.buildWarmUpOptionsYoga());
             }
         });
 
@@ -87,8 +85,8 @@ public class StageViewer extends JPanel {
         mainBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainList = new PoseLists();
-                mainList.createPoseMenu(PresetPoses.buildMainOptionsYoga());
+                poseList = new PoseLists();
+                poseList.createPoseMenu(PresetPoses.buildMainOptionsYoga());
             }
         });
     }
@@ -102,8 +100,8 @@ public class StageViewer extends JPanel {
         coolBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                coolList = new PoseLists();
-                coolList.createPoseMenu(PresetPoses.buildWarmDownOptionsYoga());
+                poseList = new PoseLists();
+                poseList.createPoseMenu(PresetPoses.buildWarmDownOptionsYoga());
             }
         });
     }

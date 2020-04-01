@@ -30,7 +30,7 @@ public class SequenceManager {
 
     /**
      * Creates all components for the scroll pane of names of poses in sequence
-     * @return
+     * @return JPanel that contains scrollPanes
      */
 
     public JPanel createPane() {
