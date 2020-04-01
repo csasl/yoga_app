@@ -4,8 +4,6 @@
 
 package ui;
 
-import model.YogaSequence;
-
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +17,6 @@ import java.awt.event.ActionListener;
  */
 
 public class MainMenu extends JFrame {
-
     private JButton save = new JButton("Save sequence");
     private JButton manage = new JButton("Manage sequence");
     private JButton view = new JButton("View sequence");
@@ -42,16 +39,16 @@ public class MainMenu extends JFrame {
 
     /**
      * Initializes components of main menu
-     * @param sequence Sequence user has created so far
+     *
      */
 
-    public void initializeMainMenu(YogaSequence sequence) {
+    public void initializeMainMenu() {
         setLayout(new BorderLayout());
         toolBar = new JToolBar();
         toolBar.setLayout(new FlowLayout(FlowLayout.LEFT));
-        poses = new StageViewer(sequence);
+        poses = new StageViewer();
         addComponents();
-        addListeners(sequence);
+        addListeners();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 1000);
         setVisible(true);
@@ -72,26 +69,26 @@ public class MainMenu extends JFrame {
     /**
      * Helper to set up action listeners for buttons on main menu
      */
-    public void addListeners(YogaSequence sequence) {
+    public void addListeners() {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                saver.saveSeq(sequence);
-                JOptionPane.showMessageDialog(null, "Saved sequence!");
+                saver.saveSeq();
+
             }
         });
 
         manage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                manageMenu.showGUI(sequence);
+                manageMenu.showGUI();
             }
         });
 
         view.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewSeq.displaySequence(sequence);
+                viewSeq.displaySequence();
             }
         });
     }

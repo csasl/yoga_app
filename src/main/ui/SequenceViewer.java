@@ -17,18 +17,18 @@ public class SequenceViewer {
      * Creates window of sequence details so far
      */
 
-    public void displaySequence(YogaSequence sequence) {
+    public void displaySequence() {
         JFrame view = new JFrame("View Sequence");
         view.setDefaultCloseOperation(HIDE_ON_CLOSE);
         view.setLayout(new BorderLayout());
         view.setSize(500,500);
         view.add(new JLabel("Your sequence has "
-                + sequence.countPoses() +  " poses"), BorderLayout.NORTH);
+                + App.getInstance().getSequence().countPoses() +  " poses"), BorderLayout.NORTH);
         JLabel poseListLabel = new JLabel();
-        poseListLabel.setText("<html>" + getNamesOfPoses(sequence)
+        poseListLabel.setText("<html>" + getNamesOfPoses()
                 .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
         view.add(poseListLabel, BorderLayout.CENTER);
-        view.add(new JLabel(makeTimeText(sequence)), BorderLayout.SOUTH);
+        view.add(new JLabel(makeTimeText()), BorderLayout.SOUTH);
         view.pack();
         view.setVisible(true);
     }
@@ -38,9 +38,9 @@ public class SequenceViewer {
      * @return String of all pose names and set times
      */
 
-    public String getNamesOfPoses(YogaSequence sequence) {
+    public String getNamesOfPoses() {
         String allPoses = "";
-        List<YogaPose> poses = sequence.getExerciseSequence();
+        List<YogaPose> poses = App.getInstance().getSequence().getExerciseSequence();
         for (YogaPose p : poses) {
             allPoses = allPoses + "\n" + p.getName() + " - " + p.getTime() + " minutes";
         }
@@ -52,7 +52,8 @@ public class SequenceViewer {
      //     * @return Message of how much time is left to allocate
      //     */
 
-    public String makeTimeText(YogaSequence sequence) {
+    public String makeTimeText() {
+        YogaSequence sequence = App.getInstance().getSequence();
         String timeLeft = "";
         if (sequence.updateRemainingTime() > 0) {
             timeLeft = "You have " + sequence.getRemainingTime() + " minutes remaining to allocate";

@@ -1,9 +1,7 @@
 package ui;
 //https://www.macs.hw.ac.uk/cs/java-swing-guidebook/?name=JList&page=3
 
-import exceptions.EmptySequenceException;
 import model.YogaPose;
-import model.YogaSequence;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,8 +33,8 @@ public class SequenceManager {
      * @return
      */
 
-    public JPanel createPane(YogaSequence sequence) {
-        List<YogaPose> poses = sequence.getExerciseSequence();
+    public JPanel createPane() {
+        List<YogaPose> poses = App.getInstance().getSequence().getExerciseSequence();
         JPanel managePanel = new JPanel();
         inSeqModel = new DefaultListModel();
         removedModel = new DefaultListModel();
@@ -50,14 +48,14 @@ public class SequenceManager {
         formatRemovedList();
         JScrollPane list2 = new JScrollPane(removed);
         buttonPanel = new JPanel();
-        buttonPanel.add(createRemoveButton(sequence));
+        buttonPanel.add(createRemoveButton());
         managePanel.add(createBottomPanel(list1, list2));
         managePanel.setOpaque(true);
         return managePanel;
     }
 
-    public JButton createRemoveButton(YogaSequence sequence) {
-        removeBtn = new JButton("Remove");
+    public JButton createRemoveButton() {
+        removeBtn = new JButton("Remove>>");
         removeBtn.addActionListener(new ActionListener() {
             /**
              * Removes the pose that the user has selected once the remove button is clicked
@@ -65,15 +63,16 @@ public class SequenceManager {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<YogaPose> poses = sequence.getExerciseSequence();
+
+                List<YogaPose> poses = App.getInstance().getSequence().getExerciseSequence();
 
                 if (e.getSource() == removeBtn) {
                     Object to = inSeq.getSelectedValue();
                     int toIndex = inSeq.getSelectedIndex();
                     try {
-                        sequence.removePose(poses.get(toIndex).getName());
-                    } catch (EmptySequenceException ex) {
-                        ex.printStackTrace();
+                        App.getInstance().getSequence().removePose(poses.get(toIndex).getName());
+                    } catch (Exception ex) {
+                        DialogCreator.createWarning("You do not have any poses in your sequence");
                     }
                     removedModel.addElement(to);
                     inSeqModel.remove(toIndex);
@@ -130,12 +129,12 @@ public class SequenceManager {
      * Displays the scroll panes with the JLists
      */
 
-    public void showGUI(YogaSequence sequence) {
+    public void showGUI() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("Manage Sequence");
         SequenceManager menu = new SequenceManager();
         frame.setLayout(new BorderLayout());
-        frame.setContentPane(menu.createPane(sequence));
+        frame.setContentPane(menu.createPane());
         frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         frame.setSize(500, 500);
         frame.setVisible(true);

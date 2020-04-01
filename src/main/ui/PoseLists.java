@@ -6,7 +6,6 @@ package ui;
 
 
 import model.YogaPose;
-import model.YogaSequence;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -33,15 +32,16 @@ public class PoseLists extends JPanel {
         poseFrame = new JFrame();
         poseListModel = new DefaultListModel();
         selected = 0;
+        options = new PoseAdder();
     }
 
     /**
      * Displays all poses in selected stage of workout on a window
      *
      * @param poses    the list of poses in the selected stage of workout
-     * @param sequence the yoga sequence built by the user so far
+     *
      */
-    public void createPoseMenu(List<YogaPose> poses, YogaSequence sequence) {
+    public void createPoseMenu(List<YogaPose> poses) {
         poseFrame.setLayout(new BorderLayout());
         poseFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         for (YogaPose p : poses) {
@@ -52,7 +52,7 @@ public class PoseLists extends JPanel {
         renderer.setHorizontalAlignment(SwingConstants.CENTER);
         poseList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         poseList.setSelectedIndex(0);
-        createListener(poses, sequence);
+        createListener(poses);
         poseFrame.add(new JLabel("Click on a pose to view its description", SwingConstants.CENTER), BorderLayout.NORTH);
         poseFrame.add(poseList, BorderLayout.CENTER);
         poseFrame.setSize(800, 800);
@@ -62,18 +62,17 @@ public class PoseLists extends JPanel {
     /**
      *  creates listener for selected pose on JList
      * @param selectedSeq the stage of workout the user selected
-     * @param sequence the user's sequence so far
+     *
      */
 
-    public void createListener(List<YogaPose> selectedSeq, YogaSequence sequence) {
+    public void createListener(List<YogaPose> selectedSeq) {
         poseList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
                 if (!e.getValueIsAdjusting()) {
                     selected = poseList.getSelectedIndex();
-                    options = new PoseAdder();
-                    options.displayComponents(selectedSeq, selected, sequence);
+                    options.displayComponents(selectedSeq, selected);
                     poseFrame.dispose();
                 }
             }

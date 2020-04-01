@@ -14,8 +14,9 @@ public class Main {
      *Runs the app
      */
     public static void main(String[] args) {
-        App yogaApp = new App();
-        yogaApp.runApp();
+        App app = App.getInstance();
+        app.runApp();
+
     }
 
 }

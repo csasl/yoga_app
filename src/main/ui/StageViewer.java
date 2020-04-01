@@ -6,7 +6,6 @@ package ui;
 
 
 
-import model.YogaSequence;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,9 +30,9 @@ public class StageViewer extends JPanel {
 
     /**
      * Constructor builds the list of poses and buttons for each stage of the workout
-     * @param sequence the sequence the user has built so far
+     *
      */
-    public StageViewer(YogaSequence sequence) {
+    public StageViewer() {
         setLayout(new GridLayout(2,2));
         this.setBackground(Color.BLACK);
         breatheBtn = new JButton(IconCreator.makeIcon("./data/breathe.jpg", 470, 470));
@@ -44,10 +43,10 @@ public class StageViewer extends JPanel {
         add(warmBtn);
         add(mainBtn);
         add(coolBtn);
-        addBreatheBtnListener(sequence);
-        addWarmBtnListener(sequence);
-        addMainBtnListener(sequence);
-        addCoolButtonListeners(sequence);
+        addBreatheBtnListener();
+        addWarmBtnListener();
+        addMainBtnListener();
+        addCoolButtonListeners();
     }
 
 
@@ -55,12 +54,12 @@ public class StageViewer extends JPanel {
      * Helper to detect when the breathe JButton is selected, deploys exercise menu with breathing exercises
      */
 
-    public void addBreatheBtnListener(YogaSequence myYogaSeq) {
+    public void addBreatheBtnListener() {
         breatheBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 poseList = new PoseLists();
-                poseList.createPoseMenu(PresetPoses.buildBreathingOptionsYoga(), myYogaSeq);
+                poseList.createPoseMenu(PresetPoses.buildBreathingOptionsYoga());
             }
         });
     }
@@ -69,12 +68,12 @@ public class StageViewer extends JPanel {
      * Helper to detect when the warm-up JButton is selected, deploys exercise menu with warm up exercises
      */
 
-    public void addWarmBtnListener(YogaSequence myYogaSeq) {
+    public void addWarmBtnListener() {
         warmBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 warmList = new PoseLists();
-                warmList.createPoseMenu(PresetPoses.buildWarmUpOptionsYoga(), myYogaSeq);
+                warmList.createPoseMenu(PresetPoses.buildWarmUpOptionsYoga());
             }
         });
 
@@ -84,12 +83,12 @@ public class StageViewer extends JPanel {
      * Helper to detect when the main JButton is selected, deploys exercise menu with main exercises
      */
 
-    public void addMainBtnListener(YogaSequence myYogaSeq) {
+    public void addMainBtnListener() {
         mainBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainList = new PoseLists();
-                mainList.createPoseMenu(PresetPoses.buildMainOptionsYoga(), myYogaSeq);
+                mainList.createPoseMenu(PresetPoses.buildMainOptionsYoga());
             }
         });
     }
@@ -98,13 +97,13 @@ public class StageViewer extends JPanel {
      * Helper to detect when the cool JButton is selected, deploys exercise menu with cool down  exercises
      */
 
-    public void addCoolButtonListeners(YogaSequence myYogaSeq) {
+    public void addCoolButtonListeners() {
 
         coolBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 coolList = new PoseLists();
-                coolList.createPoseMenu(PresetPoses.buildWarmDownOptionsYoga(), myYogaSeq);
+                coolList.createPoseMenu(PresetPoses.buildWarmDownOptionsYoga());
             }
         });
     }

@@ -9,7 +9,6 @@ package ui;
 import exceptions.DuplicatePoseException;
 import exceptions.OutOfTimeException;
 import model.YogaPose;
-import model.YogaSequence;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
@@ -33,6 +32,7 @@ public class PoseAdder extends JPanel {
     private JLabel poseDescription;
 
 
+
     /**
      * Initializes the window that displays the details of the pose
      */
@@ -50,44 +50,44 @@ public class PoseAdder extends JPanel {
     }
 
 
-
     /**
      * Adds JLabel of pose instructions and time slider for user to choose time
      */
-    public void displayComponents(List<YogaPose> poses, int selected, YogaSequence sequence) {
+    public void displayComponents(List<YogaPose> poses, int selected) {
         YogaPose selectedPose = poses.get(selected);
         poseWindow.setTitle(selectedPose.getName());
         poseDescription.setText("<html>" + selectedPose.getDescription()
                 .replaceAll(">", "gt").replaceAll("\n", "<br/>") + "</html>");
-
         poseWindow.add(poseDescription, BorderLayout.LINE_START);
         poseWindow.add(timeGUI.createTimeSlider(), BorderLayout.LINE_END);
         poseWindow.add(setBtn, BorderLayout.SOUTH);
-        setBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                timeGUI.setTime(selectedPose);
-                try {
-                    sequence.addPose(selectedPose);
-                    sucessPopup(selectedPose);
-                } catch (DuplicatePoseException ex) {
-                    createWarning("This pose is already in your sequence!");
-                } catch (OutOfTimeException ex) {
-                    createWarning("You have already allocated all your time in this sequence!");
-                }
-            }
-        });
+        createAddListener(selectedPose);
         poseWindow.setSize(1000,600);
         poseWindow.setVisible(true);
     }
 
     /**
-     * Helper to create popUp that informs user, pose is already in sequence
+     * Button listener to add pose to sequence
+     * @param selectedPose Pose user wants to add to sequence
      */
 
-    public void createWarning(String message) {
-        JOptionPane.showMessageDialog(null, message);
+    public void createAddListener(YogaPose selectedPose) {
+        setBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timeGUI.setTime(selectedPose);
+                try {
+                    App.getInstance().getSequence().addPose(selectedPose);
+                    sucessPopup(selectedPose);
+                } catch (DuplicatePoseException ex) {
+                    DialogCreator.createWarning("This pose is already in your sequence!");
+                } catch (OutOfTimeException ex) {
+                    DialogCreator.createWarning("You have already allocated all your time in this sequence!");
+                }
+            }
+        });
     }
+
 
     /**
      * creates popUp to indicate that add was successful

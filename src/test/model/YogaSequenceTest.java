@@ -1,6 +1,5 @@
 package model;
 import exceptions.DuplicatePoseException;
-import exceptions.EmptySequenceException;
 import exceptions.OutOfTimeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -85,7 +84,7 @@ public class YogaSequenceTest {
     }
 
     @Test
-    public void addPoseOutOfTimeException() {
+    public void addPoseOutOfTimeExceptionExpected() {
         POSE_4.setTime(20);
         try{
             testSequence.addPose(POSE_1);
@@ -99,9 +98,26 @@ public class YogaSequenceTest {
         }
     }
 
+    @Test
+    public void addPoseDuplicateAndOutOfTime() {
+        POSE_4.setTime(20);
+        assertEquals(0, testSequence.countPoses());
+        try {
+            testSequence.addPose(POSE_1);
+            testSequence.addPose(POSE_2);
+            testSequence.addPose(POSE_2);
+            testSequence.addPose(POSE_4);
+        } catch (DuplicatePoseException e) {
+            //expect exception to be thrown
+        } catch (OutOfTimeException e) {
+            fail();
+        }
+
+    }
+
 
     @Test
-    public void removePoseNoExceptionExpected() {
+    public void testRemovePose() {
         assertEquals(0, testSequence.countPoses());
         try {
             testSequence.addPose(POSE_1);
@@ -112,29 +128,17 @@ public class YogaSequenceTest {
             fail();
         }
         assertEquals(4, testSequence.countPoses());
-        try {
-            testSequence.removePose(POSE_1.getName());
-        } catch (EmptySequenceException e) {
-            fail();
-        }
+
+        testSequence.removePose(POSE_1.getName());
         assertEquals(3,testSequence.countPoses());
         assertFalse(testSequence.sequenceContainsPose(POSE_1.getName()));
 
     }
 
-    @Test
-    public void testRemoveEmptySequenceException() {
-        assertEquals(0, testSequence.countPoses());
-        try {
-            testSequence.removePose(POSE_1.getName());
-        } catch (EmptySequenceException e) {
-            //expected
-        }
-    }
 
 
     @Test
-    public void testTotalTimeInSeqNoException() {
+    public void testTotalTimeInSeq() {
         try {
             try {
                 testSequence.addPose(POSE_1);
@@ -183,7 +187,7 @@ public class YogaSequenceTest {
     }
 
     @Test
-    public void testUpdateTimeNoException() {
+    public void testUpdateTime() {
         POSE_1.setTime(5);
         try {
             testSequence.addPose(POSE_1);
@@ -201,11 +205,6 @@ public class YogaSequenceTest {
     }
 
 
-    @Test
-    public void testUpdateTimeException() {
-        assertEquals(0, testSequence.countPoses());
-        assertEquals(25, testSequence.updateRemainingTime());
-    }
 
 
 }

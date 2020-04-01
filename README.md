@@ -42,8 +42,6 @@ a duplicate pose exception to alert the user of the duplicate. It is caught in t
 so created an out of time exception to alert the user that all the time has been assigned. It is caught in the PoseAdder
 class of the GUI.
 
-The removePose method throws an empty sequence exception if there are no poses in the sequence, this is handled in the
-PoseManager class in the GUI.
 
 
 **Phase 4 Task 3**
@@ -58,16 +56,16 @@ SequenceSaver, SequenceViewer and SequenceManager.
 2. My PoseAdder class was previously adding poses to the sequence and setting the time for each pose, I created the TimeSetter
 class to handle setting the time for each individual pose and kept the adding functionality in the PoseAdder.
 
-3. Created the IconCreator class as multiple other classes in the GUI were individually handling this responsibility
-so factored it into one class instead. 
+3. Created  IconCreator and DialogCreator classes to create icons and dialog popUps as multiple other classes in the 
+GUI were individually handling these responsibilities so factored it into one class instead. 
 
 
 *Reducing coupling*
 
  Previously, most classes in my GUI were associated with both the YogaPose and YogaSequence classes.
 I removed the redundant associations to YogaPose from these classes since YogaSequence is already associated with YogaPose.
-As well, now only the App class is associated with the YogaSequence class and provides sequence functionality to the 
-'downstream' classes of the GUI as shown in the UML.
+As well, now only the App class is associated with the YogaSequence class and provides sequence functionality to other 
+classes.
 
 
 

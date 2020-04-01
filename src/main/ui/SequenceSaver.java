@@ -4,7 +4,6 @@ import model.YogaSequence;
 import org.codehaus.jackson.map.ObjectMapper;
 import persistence.Writer;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class SequenceSaver {
@@ -18,14 +17,15 @@ public class SequenceSaver {
     /**
      * Saves sequence to text file when save button selected
      */
-    public void saveSeq(YogaSequence sequence) {
+    public void saveSeq() {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            String jsonString = mapper.writeValueAsString(sequence);
+            String jsonString = mapper.writeValueAsString(App.getInstance().getSequence());
             writer.write(jsonString, SEQUENCE_FILE);
             writer.close();
+            DialogCreator.createWarning("Saved sequence!");
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Sorry, could not save");
+            DialogCreator.createWarning("Sorry, could not save");
         }
     }
 }

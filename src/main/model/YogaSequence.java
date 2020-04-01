@@ -5,7 +5,6 @@ package model;
  */
 
 import exceptions.DuplicatePoseException;
-import exceptions.EmptySequenceException;
 import exceptions.OutOfTimeException;
 
 import java.util.ArrayList;
@@ -56,18 +55,15 @@ public  class YogaSequence {
     //MODIFIES: this
     //EFFECTS: Given a pose, removes the pose from the list if it is in the list, otherwise does not modify the list
 
-    public void removePose(String pose) throws EmptySequenceException {
-        if (exerciseSequence.size() == 0) {
-            throw new EmptySequenceException();
-        } else {
-            for (int i = 0; i < exerciseSequence.size(); i++) {
-                if (exerciseSequence.get(i).getName().equals(pose)) {
-                    exerciseSequence.remove(i);
-                    i--;
-                }
+    public void removePose(String pose)  {
+        for (int i = 0; i < exerciseSequence.size(); i++) {
+            if (exerciseSequence.get(i).getName().equals(pose)) {
+                exerciseSequence.remove(i);
+                i--;
             }
         }
     }
+
 
 
     //EFFECTS: returns the total time the sequence will take

@@ -31,12 +31,20 @@ public class App {
     private Font segoe;
     private MainMenu mainMenu;
     private Reader reader;
+    private static App app;
 
 
     /**
      * Constructs and app
      */
-    public App() { }
+    private App() { }
+
+    public static App getInstance() {
+        if (app == null) {
+            app = new App();
+        }
+        return app;
+    }
 
     /**
      *Initializes UI formats and loads sequence
@@ -118,6 +126,8 @@ public class App {
         }
     }
 
+
+
     /**
      * Initializes new sequence and welcome screen when no data was saved
      */
@@ -150,10 +160,20 @@ public class App {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                mainMenu.initializeMainMenu(myYogaSequence);
+                mainMenu.initializeMainMenu();
+               // mainMenu.addListeners(myYogaSequence);
             }
         });
 
+    }
+
+    /**
+     * Gets yoga sequence
+     * @return YogaSequence
+     */
+
+    public YogaSequence getSequence() {
+        return myYogaSequence;
     }
 
 }
