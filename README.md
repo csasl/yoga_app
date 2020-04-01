@@ -67,6 +67,9 @@ I removed the redundant associations to YogaPose from these classes since YogaSe
 As well, now only the App class is associated with the YogaSequence class and provides sequence functionality to other 
 classes.
 
+Note: could not apply singleton pattern to YogaSequence directly, as private constructor prevented deserialization by
+Jackson.
+
 
 
 

@@ -30,7 +30,8 @@ public  class YogaSequence {
     }
 
     //MODIFIES: this
-    //EFFECTS: Given a pose, adds it to the list of poses
+    //EFFECTS: Given a pose, adds it to the sequence. If pose is already in sequence, throws duplicate pose exception
+    //          If adding the pose will result in remaining time less than 0, throws out of time exception
     public void addPose(YogaPose pos) throws DuplicatePoseException, OutOfTimeException {
         if (sequenceContainsPose(pos.getName())) {
             throw new DuplicatePoseException();
@@ -44,8 +45,7 @@ public  class YogaSequence {
     }
 
     //MODIFIES: this
-    //EFFECTS: if sequence is not empty, remaining time is allocated time, else subtracts allocated time from total time
-
+    //EFFECTS: Returns remaining time in sequence after each pose is added
     public int updateRemainingTime()  {
         remainingTime = allocatedTime - totalTimeInSeq();
         return remainingTime;
@@ -54,16 +54,16 @@ public  class YogaSequence {
 
     //MODIFIES: this
     //EFFECTS: Given a pose, removes the pose from the list if it is in the list, otherwise does not modify the list
-
     public void removePose(String pose)  {
-        for (int i = 0; i < exerciseSequence.size(); i++) {
-            if (exerciseSequence.get(i).getName().equals(pose)) {
-                exerciseSequence.remove(i);
-                i--;
+        if (exerciseSequence.size() > 0) {
+            for (int i = 0; i < exerciseSequence.size(); i++) {
+                if (exerciseSequence.get(i).getName().equals(pose)) {
+                    exerciseSequence.remove(i);
+                    i--;
+                }
             }
         }
     }
-
 
 
     //EFFECTS: returns the total time the sequence will take
@@ -74,7 +74,6 @@ public  class YogaSequence {
         }
         return totalTime;
     }
-
 
 
 
@@ -126,7 +125,6 @@ public  class YogaSequence {
     }
 
     //EFFECTS: gets remaining time
-
     public Integer getRemainingTime() {
         return  remainingTime;
     }

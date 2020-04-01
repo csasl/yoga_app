@@ -30,7 +30,6 @@ public class App {
     private Font appFont;
     private Font segoe;
     private MainMenu mainMenu;
-    private Reader reader;
     private static App app;
 
 
@@ -38,6 +37,11 @@ public class App {
      * Constructs and app
      */
     private App() { }
+
+    /**
+     * Retruns instance of app if already instantiated, otherwise instantiates app
+     * @return instance of App
+     */
 
     public static App getInstance() {
         if (app == null) {
@@ -60,7 +64,6 @@ public class App {
         UIManager.put("List.cellHeight", 100);
         setUI("Label");
         mainMenu = new MainMenu();
-        reader = new Reader();
         loadSequence();
     }
 
@@ -113,6 +116,7 @@ public class App {
      * Code from: https://mkyong.com/java/how-to-convert-java-object-to-from-json-jackson/
      */
     public void loadSequence() {
+        Reader reader = new Reader();
 
         try {
             String jsonString = reader.readLines(SEQUENCE_FILE);
@@ -161,7 +165,6 @@ public class App {
             @Override
             public void run() {
                 mainMenu.initializeMainMenu();
-               // mainMenu.addListeners(myYogaSequence);
             }
         });
 

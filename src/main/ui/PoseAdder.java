@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * Represents the window that displays pose details
+ * Represents the window where user can add pose to sequence
  */
 
 public class PoseAdder extends JPanel {
@@ -82,7 +82,7 @@ public class PoseAdder extends JPanel {
                 } catch (DuplicatePoseException ex) {
                     DialogCreator.createWarning("This pose is already in your sequence!");
                 } catch (OutOfTimeException ex) {
-                    DialogCreator.createWarning("You have already allocated all your time in this sequence!");
+                    DialogCreator.createWarning("The time set for this pose exceeds your allocated time!");
                 }
             }
         });

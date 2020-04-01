@@ -1,23 +1,22 @@
 package ui;
 
-import model.YogaSequence;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import persistence.Writer;
 
 import java.io.IOException;
 
 public class SequenceSaver {
-    private Writer writer;
+
     private static final String SEQUENCE_FILE = "./data/sequence.txt";
 
-    public SequenceSaver() {
-        writer = new Writer();
-    }
+    public SequenceSaver() { }
 
     /**
      * Saves sequence to text file when save button selected
      */
     public void saveSeq() {
+        Writer writer = new Writer();
         ObjectMapper mapper = new ObjectMapper();
         try {
             String jsonString = mapper.writeValueAsString(App.getInstance().getSequence());

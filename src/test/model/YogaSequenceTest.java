@@ -43,7 +43,7 @@ public class YogaSequenceTest {
     }
 
     @Test
-    public void addOnePose() {
+    public void testAddOnePoseNoException() {
         assertEquals(0, testSequence.countPoses());
         try {
             testSequence.addPose(POSE_1);
@@ -54,21 +54,23 @@ public class YogaSequenceTest {
     }
 
     @Test
-    public void addMultiplePosesNoExceptionExpected() {
+    public void testAddMultiplePosesNoExceptionExpected() {
         assertEquals(0, testSequence.countPoses());
         try {
             testSequence.addPose(POSE_1);
             testSequence.addPose(POSE_2);
             testSequence.addPose(POSE_3);
             testSequence.addPose(POSE_4);
-        } catch (Exception e) {
+        } catch (DuplicatePoseException e) {
+            fail();
+        } catch (OutOfTimeException e) {
             fail();
         }
         assertEquals(4, testSequence.countPoses());
     }
 
     @Test
-    public void addMultiplePosesDuplicateExceptionExpected() {
+    public void testAddMultiplePosesDuplicateExceptionExpected() {
         assertEquals(0, testSequence.countPoses());
         try {
             testSequence.addPose(POSE_1);
@@ -84,7 +86,7 @@ public class YogaSequenceTest {
     }
 
     @Test
-    public void addPoseOutOfTimeExceptionExpected() {
+    public void testAddPoseOutOfTimeExceptionExpected() {
         POSE_4.setTime(20);
         try{
             testSequence.addPose(POSE_1);
@@ -92,27 +94,26 @@ public class YogaSequenceTest {
             testSequence.addPose(POSE_3);
             testSequence.addPose(POSE_4);
         } catch (OutOfTimeException e) {
-            //expected
+            //expect exception to be thrown
         } catch (DuplicatePoseException e) {
             fail();
         }
     }
 
     @Test
-    public void addPoseDuplicateAndOutOfTime() {
-        POSE_4.setTime(20);
+    public void testAddPoseDuplicateAndOutOfTime() {
+        POSE_3.setTime(25);
         assertEquals(0, testSequence.countPoses());
         try {
             testSequence.addPose(POSE_1);
             testSequence.addPose(POSE_2);
+            testSequence.addPose(POSE_3);
             testSequence.addPose(POSE_2);
-            testSequence.addPose(POSE_4);
         } catch (DuplicatePoseException e) {
             //expect exception to be thrown
         } catch (OutOfTimeException e) {
-            fail();
+            //expect exception to be thrown
         }
-
     }
 
 
@@ -132,10 +133,14 @@ public class YogaSequenceTest {
         testSequence.removePose(POSE_1.getName());
         assertEquals(3,testSequence.countPoses());
         assertFalse(testSequence.sequenceContainsPose(POSE_1.getName()));
-
     }
 
-
+    @Test
+    public void testRemovePoseEmptySequence() {
+        assertEquals(0, testSequence.countPoses());
+        testSequence.removePose(POSE_1.getName());
+        assertEquals(0, testSequence.countPoses());
+    }
 
     @Test
     public void testTotalTimeInSeq() {
