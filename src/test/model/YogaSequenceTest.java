@@ -110,6 +110,7 @@ public class YogaSequenceTest {
         } catch (DuplicatePoseException e) {
             fail();
         }
+        assertEquals(3, testSequence.countPoses());
     }
 
     /**
@@ -130,6 +131,7 @@ public class YogaSequenceTest {
         } catch (OutOfTimeException e) {
             //expect exception to be thrown
         }
+        assertEquals(2, testSequence.countPoses());
     }
 
 
